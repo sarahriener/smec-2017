@@ -1,6 +1,3 @@
-// @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
-$background-color: #ff0000;
+@import "mixins/mixins";
 
-body {
-  background-color: $background-color;
-}
+@import "components/comparison";

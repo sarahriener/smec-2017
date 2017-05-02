@@ -1,4 +1,4 @@
-var gulp = require('gulp');
+/* var gulp = require('gulp'); */
 var elixir = require('laravel-elixir');
 
 /*
@@ -13,7 +13,11 @@ var elixir = require('laravel-elixir');
  */
 
 elixir(function(mix) {
-    mix.sass('app.scss');
+
+    mix.sass([
+        'app.scss',
+        '!components/*.scss'
+    ]);
 
     mix.scripts([
         "dragndrop.js"
