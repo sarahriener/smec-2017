@@ -1,3 +1,12 @@
+# Run the application
+
+## .. for the first time (setup)
+npm install
+
+## .. in development
+php artisan serve
+gulp watch (if that doesn\'t work, try installing gulp globally npm install -g gulp)
+
 ## Laravel PHP Framework
 
 [![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
