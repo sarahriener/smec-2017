@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Drag n Drop</title>
+    <link href="{{ URL::asset('css/app.css') }}" />
 </head>
 <body>
 <div class="container">
@@ -12,6 +13,7 @@
     </div>
 </div>
 
-    <script src="../js/all.js"></script>
+<script src="{{ URL::asset('js/all.js') }}"></script>
+
 </body>
 </html>
