@@ -19,7 +19,10 @@ elixir(function(mix) {
         '!components/*.scss'
     ]);
 
+    mix.browserify('jQueryTest.js');
+
     mix.scripts([
-        "dragndrop.js"
+        'dragndrop.js'
     ]);
+
 });

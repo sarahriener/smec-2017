@@ -15,6 +15,7 @@
 </div>
 
 <script src="{{ URL::asset('js/all.js') }}"></script>
+<script src="{{ URL::asset('js/jQueryTest.js') }}"></script>
 
 </body>
 </html>

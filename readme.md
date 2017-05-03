@@ -2,6 +2,7 @@
 
 ## .. for the first time (setup)
 npm install
+gulp  --production
 
 ## .. in development
 php artisan serve
