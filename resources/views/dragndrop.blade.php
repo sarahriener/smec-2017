@@ -17,6 +17,5 @@
             <div id="drag4" class="draggable" draggable="true" ondragstart="drag(event)"></div>
             <div id="drag5" class="draggable" draggable="true" ondragstart="drag(event)"></div>
         </div>
-
     </div>
 @endsection

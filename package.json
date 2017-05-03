@@ -4,9 +4,10 @@
     "gulp": "^3.9.1"
   },
   "dependencies": {
-    "laravel-elixir": "^4.0.0",
     "bootstrap-sass": "^3.0.0",
+    "canvasjs": "^1.8.1",
     "jquery": "^3.2.1",
+    "laravel-elixir": "^4.0.0",
     "slick-carousel": "^1.6.0"
   }
 }

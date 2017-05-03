@@ -12,10 +12,11 @@
 
 <div class="container">
     @yield('content')
+    @yield('charts')
 </div>
 
 <script src="{{ URL::asset('js/all.js') }}"></script>
-<script src="{{ URL::asset('js/jQueryTest.js') }}"></script>
+<script src="{{ URL::asset('js/base.js') }}"></script>
 
 </body>
 </html>
