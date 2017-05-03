@@ -5,6 +5,13 @@ npm install
 
 ## .. in development
 php artisan serve
+
+## compile css and js file
+
+# Run all tasks (--production will minify all CSS and JavaScript)
+gulp OR gulp --production
+
+#watch changes
 gulp watch (if that doesn\'t work, try installing gulp globally npm install -g gulp)
 
 # Development guidelines
