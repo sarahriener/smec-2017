@@ -26,3 +26,7 @@ Every view in /resources/views should extend the base template from /resources/v
 ### Styling
 
 Use /resources/assets/sass/app.scss as base component - this is the only file converted to CSS.
+
+## Database
+
+Always use current configuration from .env.example.
