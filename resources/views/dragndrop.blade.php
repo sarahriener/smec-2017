@@ -16,7 +16,8 @@
             <div id="drag3" class="draggable" draggable="true" ondragstart="drag(event)"></div>
             <div id="drag4" class="draggable" draggable="true" ondragstart="drag(event)"></div>
             <div id="drag5" class="draggable" draggable="true" ondragstart="drag(event)"></div>
+            <div id="drag6" class="draggable" draggable="true" ondragstart="drag(event)"></div>
+            <div id="drag7" class="draggable" draggable="true" ondragstart="drag(event)"></div>
+            <div id="drag8" class="draggable" draggable="true" ondragstart="drag(event)"></div>
         </div>
-
-    </div>
 @endsection
