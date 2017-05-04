@@ -15,8 +15,8 @@
     @yield('charts')
 </div>
 
-<script src="{{ URL::asset('js/all.js') }}"></script>
 <script src="{{ URL::asset('js/base.js') }}"></script>
+<script src="{{ URL::asset('js/all.js') }}"></script>
 
 </body>
 </html>

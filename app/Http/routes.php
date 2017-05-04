@@ -20,3 +20,7 @@ Route::get('/', function () {
 Route::get('/dragndrop', function () {
     return view('dragndrop');
 });
+
+Route::get('/charts', function () {
+    return view('charts');
+});
