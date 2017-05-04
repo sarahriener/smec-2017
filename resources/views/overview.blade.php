@@ -26,28 +26,22 @@
             </div>
 
             <div class="content__filter__tags">
+
                 <button type="button" class="content__filter__tags--tag">All</button>
-                <button type="button" class="content__filter__tags--tag">Asia</button>
-                <button type="button" class="content__filter__tags--tag">Europe</button>
-                <button type="button" class="content__filter__tags--tag">America</button>
-                <button type="button" class="content__filter__tags--tag">Australia</button>
-                <button type="button" class="content__filter__tags--tag">Africa</button>
+                @foreach ($continents as $continent)
+                    <button type="button" class="content__filter__tags--tag">{{ $continent->name }}</button>
+                @endforeach
+
             </div>
         </div>
 
         <div class="content__items">
-            <div class="content__items--item"></div>
-            <div class="content__items--item"></div>
-            <div class="content__items--item"></div>
-            <div class="content__items--item"></div>
-            <div class="content__items--item"></div>
-            <div class="content__items--item"></div>
-            <div class="content__items--item"></div>
-            <div class="content__items--item"></div>
-            <div class="content__items--item"></div>
-            <div class="content__items--item"></div>
-            <div class="content__items--item"></div>
-            <div class="content__items--item"></div>
+            @foreach ($countries as $country)
+                <div class="content__items--item">
+                    <p>{{ $country->name }}</p>
+                </div>
+            @endforeach
+
 
 
         </div>

@@ -22,9 +22,7 @@ Route::get('/dragndrop', function () {
     return view('dragndrop');
 });
 
-Route::get('/overview', function () {
-    return view('overview');
-});
+Route::get('overview', ['uses' => 'HomeController@index', 'as' => 'home']);
 
 Route::get('/charts', function () {
     return view('charts');
