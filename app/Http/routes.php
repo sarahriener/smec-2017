@@ -22,6 +22,10 @@ Route::get('/dragndrop', function () {
     return view('dragndrop');
 });
 
+Route::get('/overview', function () {
+    return view('overview');
+});
+
 Route::get('/charts', function () {
     return view('charts');
 });
