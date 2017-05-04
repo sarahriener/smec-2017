@@ -3,6 +3,7 @@
 <head>
     <title>@yield('title')</title>
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/app.css') }}" />
+    <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 </head>
 <body>
 

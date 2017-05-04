@@ -1,0 +1,64 @@
+body {
+  @include font-base;
+}
+
+.content__header {
+  background-color: #ebebeb;
+  text-align: center;
+  padding: 30px;
+  margin-bottom: 30px;
+}
+
+.content__header__facts, .content__filter__tags {
+  margin-top: 35px;
+}
+
+.content__filter, .content__items {
+  margin-top: 70px;
+}
+
+.content__header__facts--fact {
+  @include font-bald;
+  font-size: 1.3em;
+  margin: 0 12% 0 12%;
+}
+
+.content__header__button {
+  float: right;
+}
+
+.content__header__button--btn {
+  background: transparent;
+  border: none;
+  color: #736f6f;
+}
+
+.content__filter {
+  text-align: center;
+}
+
+.content__filter__search--search {
+  margin-left: 30px;
+}
+
+.content__filter__tags--tag {
+  background-color: #a1a1a1;
+  border-radius: 7px;
+  padding: 6px 10px 6px 10px;
+  border: none;
+  margin: 0 8px 0 8px;
+  font-size: 15px;
+  text-transform: uppercase;
+}
+
+.content__filter__tags--tag:hover {
+  background-color: #ebebeb;
+}
+
+.content__items--item {
+  width: 145px;
+  height: 145px;
+  background-color: #a1a1a1;
+  float: left;
+  margin: 8px;
+}
