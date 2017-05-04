@@ -11,8 +11,8 @@
 |
 */
 
-Route::resource('continents', 'ContinentController');
-Route::resource('countries', 'CountryController');
+Route::resource('continents', 'admin\ContinentController');
+Route::resource('countries', 'admin\CountryController');
 
 Route::get('/', function () {
     return view('welcome');
