@@ -22,7 +22,8 @@ elixir(function(mix) {
     mix.browserify('base.js');
 
     mix.scripts([
-        'dragndrop.js'
+        'dragndrop.js',
+        'overview.js'
     ]);
 
 });

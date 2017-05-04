@@ -8,6 +8,7 @@
     "bootstrap-grid": "^2.0.1",
     "bootstrap-sass": "^3.0.0",
     "canvasjs": "^1.8.1",
+    "select2-bootstrap-theme": "0.1.0-beta.10",
     "jquery": "^3.2.1",
     "laravel-elixir": "^4.0.0"
   }
