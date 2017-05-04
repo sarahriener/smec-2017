@@ -12,6 +12,7 @@
 */
 
 Route::resource('continents', 'ContinentController');
+Route::resource('countries', 'CountryController');
 
 Route::get('/', function () {
     return view('welcome');
