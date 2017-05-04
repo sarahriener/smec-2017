@@ -1,52 +1,38 @@
 /**
- * Created by manuela_posch on 03.05.17.
- */
+* Created by manuela_posch on 03.05.17.
+*/
 @extends('layouts.app')
 
 @section('title', 'Charts')
 
 @section('charts')
 
-<div id="chartContainer" style="height: 300px; width: 100%;">
 
+    <script src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script type="text/javascript">
 
-<script type="text/javascript">
-
-window.onload = function () {
-var chart = new CanvasJS.Chart("chartContainer",
-{
-title:{
-text: "US Mobile / Tablet OS Market Share, Dec 2012"
-},
-animationEnabled: true,
-theme: "theme2",
-data: [
-{
-type: "doughnut",
-indexLabelFontFamily: "Garamond",
-indexLabelFontSize: 20,
-startAngle:0,
-indexLabelFontColor: "dimgrey",
-indexLabelLineColor: "darkgrey",
-toolTipContent: "{y} %",
-
-dataPoints: [
-{  y: 67.34, indexLabel: "iOS {y}%" },
-{  y: 28.6, indexLabel: "Android {y}%" },
-{  y: 1.78, indexLabel: "Kindle {y}%" },
-{  y: 0.84,  indexLabel: "Symbian {y}%"},
-{  y: 0.74, indexLabel: "BlackBerry {y}%" },
-{  y: 2.06,  indexLabel: "Others {y}%"}
-
-]
-}
-]
-});
-
-chart.render();
-}
-</script>
-</div>
-
+        window.onload = function () {
+            var chart = new CanvasJS.Chart("chartContainer", {
+                title:{
+                    text: "My First Chart in CanvasJS"
+                },
+                data: [
+                    {
+                        // Change type to "doughnut", "line", "splineArea", etc.
+                        type: "splineArea",
+                        dataPoints: [
+                            { label: "apple",  y: 10  },
+                            { label: "orange", y: 15  },
+                            { label: "banana", y: 25  },
+                            { label: "mango",  y: 30  },
+                            { label: "grape",  y: 28  }
+                        ]
+                    }
+                ]
+            });
+            chart.render();
+        }
+    </script>
+    <div id="chartContainer" style="height: 300px; width: 100%;"></div>
 
 @endsection
