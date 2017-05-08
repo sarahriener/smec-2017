@@ -1,15 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Country;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Log;
 
 // MODELS
 use App\Continent;
+use App\Country;
 
 class HomeController extends Controller
 {
@@ -20,10 +20,12 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $countryTest = $this->getCountryByName("Germany");
+
         $continents = Continent::all();
         $countries = Country::all();
 
-         return view('overview', ['continents' => $continents, 'countries' => $countries]);
+         return view('overview', ['continents' => $continents, 'countries' => $countries, 'countryTest' => $countryTest]);
     }
 
     /**
@@ -55,7 +57,12 @@ class HomeController extends Controller
      */
     public function show($id)
     {
-        //
+        $c = Country::find(1);
+        $c->getCountriesByContinent(1);
+        $countriesByContinent = $this->getCountriesPerContinent($id);
+        Log::info('Countries per continent '.$countriesByContinent->get());
+
+        return view('overview', ['countryTest' => $countriesByContinent]);
     }
 
     /**
@@ -90,5 +97,13 @@ class HomeController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getCountriesPerContinent($id) {
+        return Country::where('continent_id', $id);
+    }
+
+    public function getCountryByName($name) {
+        return Country::where('name', $name)->first();
     }
 }

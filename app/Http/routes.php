@@ -23,6 +23,7 @@ Route::get('/dragndrop', function () {
 });
 
 Route::get('overview', ['uses' => 'HomeController@index', 'as' => 'home']);
+Route::get('overview/{continent_id}', ['uses' => 'HomeController@show']);
 
 Route::get('/charts', function () {
     return view('charts');
