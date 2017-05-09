@@ -5,8 +5,8 @@
 //var select2BootstrapTheme = require('select2-bootstrap-theme');
 
 
-//module.exports = {
-    //init: function () {
+module.exports = {
+    init: function () {
         $(document).ready(function () {
             let $selectBox = $(".js-example-basic-single");
             $selectBox.select2({
@@ -41,5 +41,5 @@
             return option;
 
         }
-    //}
-//};
+    }
+};
