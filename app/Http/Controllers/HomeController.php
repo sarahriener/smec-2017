@@ -20,19 +20,20 @@ class HomeController extends Controller
      */
     public function index($id = null)
     {
+        // if continent is selected
         if($id) {
             Log::info("Clicked on a continent, now in index method with id ".$id);
 
-            $countriesByContinent = $this->getCountriesPerContinent($id);
-            Log::info('Countries per continent '.$countriesByContinent->get());
+            $countriesByContinent = $this->getCountriesPerContinent($id)->get();
+            Log::info('Countries per continent '.$countriesByContinent);
         }
 
-        $countryTest = $this->getCountryByName("Germany");
+        //$countryTest = $this->getCountryByName("Germany");
 
-        $continents = Continent::all();
-        $countries = Country::all();
+        $continents = $this->getAllContinents();
+        $countries = $this->getAllCountries();
 
-         return view('overview', ['continents' => $continents, 'countries' => $countries, 'countryTest' => $countryTest]);
+         return view('overview', ['continents' => $continents, 'countries' => $countries]);
     }
 
     /**
@@ -112,5 +113,13 @@ class HomeController extends Controller
 
     public function getCountryByName($name) {
         return Country::where('name', $name)->first();
+    }
+
+    public function getAllContinents() {
+        return Continent::all();
+    }
+
+    public function getAllCountries() {
+        return Country::all();
     }
 }
