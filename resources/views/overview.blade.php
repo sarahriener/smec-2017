@@ -79,7 +79,7 @@
             <div class="content__filter__tags">
                 <button type="button" class="content__filter__tags--tag">All</button>
                 @foreach ($continents as $continent)
-                    <a href="{{ url('/overview/' . $continent->id) }}" class="content__filter__tags--tag">{{ $continent->name }}</a>
+                    <button class="content__filter__tags--tag">{{ $continent->name }}</button>
                 @endforeach
             </div>
         </div>
@@ -94,14 +94,6 @@
                 </div>
             @endforeach
         </div>
-
-        <hr>
-
-        {{--@foreach ($countriesByContinent as $countryByContinent)--}}
-            {{--<p> {{ $countryByContinent->name }}</p>--}}
-        {{--@endforeach--}}
-
-        {{--<p>{{$countryTest->name}}</p>--}}
 
     </div>
 @endsection
