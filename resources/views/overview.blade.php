@@ -85,18 +85,15 @@
         </div>
 
         <div class="content__items">
-
             <!-- find functions for filter in https://laravel.com/docs/5.1/collections#method-filter -->
             <!-- filter only works if page reloads -->
             @foreach ($countries as $country)
                 <div class="content__items--item" data-value="{{ $country->code }}">
                     <p>{{ $country->name }}</p>
                     <script type="text/javascript">
-
                         function myFunction() {
                     window.open("https://www.w3schools.com");
                     }
-
                     </script>
                 </div>
             @endforeach
