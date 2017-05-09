@@ -1,8 +1,3 @@
-var $;
-$ = require('jquery');
-$('body').click(function() {
-    //return console.log('clicked');
-});
+var filter = require('./filter');
 
-var chart;
-chart = require('canvasjs');
+filter.init();
