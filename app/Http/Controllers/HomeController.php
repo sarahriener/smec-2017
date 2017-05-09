@@ -18,8 +18,15 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id = null)
     {
+        if($id) {
+            Log::info("Clicked on a continent, now in index method with id ".$id);
+
+            $countriesByContinent = $this->getCountriesPerContinent($id);
+            Log::info('Countries per continent '.$countriesByContinent->get());
+        }
+
         $countryTest = $this->getCountryByName("Germany");
 
         $continents = Continent::all();
