@@ -23,7 +23,6 @@ elixir(function(mix) {
 
     mix.scripts([
         'dragndrop.js',
-        'overview.js'
     ]);
 
 });
