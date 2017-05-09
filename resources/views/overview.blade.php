@@ -25,6 +25,7 @@
                 <label>
                     <span>Choose a Region or</span>
                     <select class="js-example-basic-single form-control content__filter__search--search">
+                        <option value="null" title="all">All</option>
                         @foreach ($countries as $country)
                             <option value="{{ $country->code }}" title="{{$country->name}}">{{ $country->name }}</option>
                         @endforeach
@@ -33,19 +34,17 @@
             </div>
 
             <div class="content__filter__tags">
-                <button type="button" class="content__filter__tags--tag">All</button>
+                <button type="button" class="content__filter__tags--tag" data-continent="null">All</button>
                 @foreach ($continents as $continent)
-                    <button class="content__filter__tags--tag">{{ $continent->name }}</button>
+                    <button class="content__filter__tags--tag" data-continent="{{$continent->id}}">{{ $continent->name }}</button>
                 @endforeach
             </div>
         </div>
 
         <div class="content__items">
 
-            <!-- find functions for filter in https://laravel.com/docs/5.1/collections#method-filter -->
-            <!-- filter only works if page reloads -->
             @foreach ($countries as $country)
-                <div class="content__items--item" data-value="{{ $country->code }}">
+                <div class="content__items--item" data-country="{{ $country->code }}" data-continent="{{$country->continent_id}}">
                     <p>{{ $country->name }}</p>
                 </div>
             @endforeach
