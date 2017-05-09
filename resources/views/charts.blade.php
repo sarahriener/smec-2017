@@ -21,6 +21,11 @@
                 title: {
                     text: "Spline Area Chart"
                 },
+                legend: {
+                    fontFamily: "arial",
+                    fontColor: "red",
+
+                },
                 axisX: {
                     interval: 10,
                 },
@@ -57,6 +62,11 @@
                 title: {
                     text: "Pie Chart",
                 },
+                legend: {
+                    fontFamily: "arial",
+                    fontColor: "red",
+
+                },
                 data: [
                     {
                         type: "pie",
@@ -80,6 +90,11 @@
                 animationEnabled: true,
                 title: {
                     text: "Line Chart"
+                },
+                legend: {
+                    fontFamily: "arial",
+                    fontColor: "red",
+
                 },
                 axisX: {
                     valueFormatString: "MMM",
@@ -115,7 +130,15 @@
             {
                 animationEnabled: true,
                 title: {
-                    text: "Column Chart"
+                    text: "Column Chart",
+                    fontFamily: "arial",
+                    fontColor: "red",
+
+                },
+                legend: {
+                    fontFamily: "arial",
+                    fontColor: "red",
+
                 },
                 axisX: {
                     interval: 10,

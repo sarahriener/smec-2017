@@ -14,6 +14,7 @@
 <div class="container">
     @yield('content')
     @yield('charts')
+    @yield('detail')
 </div>
 
 <script src="{{ URL::asset('js/base.js') }}"></script>
