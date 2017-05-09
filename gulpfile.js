@@ -19,10 +19,15 @@ elixir(function(mix) {
         '!components/*.scss'
     ]);
 
-    mix.browserify('base.js');
+    //mix.browserify('base.js');
 
-    mix.scripts([
-        'dragndrop.js'
+    mix.browserify([
+        'filter.js'
     ]);
+
+    /*mix.scripts([
+        'dragndrop.js',
+        'filter.js'
+    ]);*/
 
 });

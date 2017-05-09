@@ -4,6 +4,8 @@
     <title>@yield('title')</title>
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/app.css') }}" />
     <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
 </head>
 <body>
 
@@ -16,8 +18,9 @@
     @yield('charts')
 </div>
 
-<script src="{{ URL::asset('js/base.js') }}"></script>
-<script src="{{ URL::asset('js/all.js') }}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+<script src="{{ URL::asset('js/bundle.js') }}"></script>
 
 </body>
 </html>
