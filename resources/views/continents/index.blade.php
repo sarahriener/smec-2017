@@ -4,6 +4,8 @@
     <title>Continents</title>
 </head>
 <body>
-<p>Test</p>
+    @foreach ($continents as $continent)
+        <p>This is continent {{ $continent->name }}</p>
+    @endforeach
 </body>
 </html>

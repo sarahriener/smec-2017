@@ -11,8 +11,8 @@
 |
 */
 
-Route::resource('continents', 'ContinentController');
-Route::resource('countries', 'CountryController');
+Route::resource('continents', 'admin\ContinentController');
+Route::resource('countries', 'admin\CountryController');
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,6 +21,9 @@ Route::get('/', function () {
 Route::get('/dragndrop', function () {
     return view('dragndrop');
 });
+
+Route::get('overview', ['uses' => 'HomeController@index', 'as' => 'home']);
+Route::get('overview/{continent_id}', ['uses' => 'HomeController@index']);
 
 Route::get('/charts', function () {
     return view('charts');

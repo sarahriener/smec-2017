@@ -1,7 +1,7 @@
 var $;
 $ = require('jquery');
 $('body').click(function() {
-    return console.log('clicked');
+    //return console.log('clicked');
 });
 
 var chart;

@@ -1,13 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class CountryController extends Controller
+use App\Continent;
+
+class ContinentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +18,9 @@ class CountryController extends Controller
      */
     public function index()
     {
-        //
+        $continents = Continent::all();
+
+        return view('continents.index', ['continents' => $continents]);
     }
 
     /**
@@ -48,7 +52,8 @@ class CountryController extends Controller
      */
     public function show($id)
     {
-        //
+        $continent = Continent::find($id);
+        return view('continents.show', array('continent' => $continent));
     }
 
     /**
