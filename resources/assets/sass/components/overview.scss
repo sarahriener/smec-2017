@@ -9,7 +9,7 @@ body {
   margin-bottom: 30px;
 }
 
-.overview__header__facts, .overview .filter__tags {
+.overview__header__facts {
   margin-top: 35px;
 }
 
@@ -38,20 +38,6 @@ body {
 }
 
 .overview .filter__search--search {
-}
-
-.overview .filter__tags--tag {
-  background-color: #a1a1a1;
-  border-radius: 7px;
-  padding: 6px 10px 6px 10px;
-  border: none;
-  margin: 0 8px 0 8px;
-  font-size: 15px;
-  text-transform: uppercase;
-}
-
-.overview .filter__tags--tag:hover {
-  background-color: #ebebeb;
 }
 
 .overview__items--item {

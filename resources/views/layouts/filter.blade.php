@@ -1,7 +1,7 @@
 <div class="filter">
     <div class="filter__search">
-        <label>
-            <span>Choose a Region or</span>
+        <label class="filter__search--label">
+            <span class="filter__search--span">Choose a Region or</span>
             <select class="js-example-basic-single form-control filter__search--search">
                 <option value="null" title="all">All</option>
                 @foreach ($countries as $country)
