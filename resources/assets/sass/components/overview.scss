@@ -2,45 +2,45 @@ body {
   @include font-base;
 }
 
-.content__header {
+.overview__header {
   background-color: #ebebeb;
   text-align: center;
   padding: 30px;
   margin-bottom: 30px;
 }
 
-.content__header__facts, .content__filter__tags {
+.overview__header__facts, .overview .filter__tags {
   margin-top: 35px;
 }
 
-.content__filter, .content__items {
+.overview .filter, .overview__items {
   margin-top: 70px;
 }
 
-.content__header__facts--fact {
+.overview__header__facts--fact {
   @include font-bald;
   font-size: 1.3em;
   margin: 0 12% 0 12%;
 }
 
-.content__header__button {
+.overview__header__button {
   float: right;
 }
 
-.content__header__button--btn {
+.overview__header__button--btn {
   background: transparent;
   border: none;
   color: #736f6f;
 }
 
-.content__filter {
+.overview .filter {
   text-align: center;
 }
 
-.content__filter__search--search {
+.overview .filter__search--search {
 }
 
-.content__filter__tags--tag {
+.overview .filter__tags--tag {
   background-color: #a1a1a1;
   border-radius: 7px;
   padding: 6px 10px 6px 10px;
@@ -50,11 +50,11 @@ body {
   text-transform: uppercase;
 }
 
-.content__filter__tags--tag:hover {
+.overview .filter__tags--tag:hover {
   background-color: #ebebeb;
 }
 
-.content__items--item {
+.overview__items--item {
   width: 145px;
   height: 145px;
   background-color: #a1a1a1;

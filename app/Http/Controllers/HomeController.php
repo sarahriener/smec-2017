@@ -26,6 +26,14 @@ class HomeController extends Controller
          return view('overview', ['continents' => $continents, 'countries' => $countries]);
     }
 
+    public function detail()
+    {
+        $continents = $this->getAllContinents();
+        $countries = $this->getAllCountries();
+
+        return view('detail', ['continents' => $continents, 'countries' => $countries]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
