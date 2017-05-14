@@ -28,6 +28,8 @@ Route::get('/country', function () {
 
 Route::get('overview', ['uses' => 'HomeController@index', 'as' => 'home']);
 
+Route::get('detail', ['uses' => 'HomeController@detail', 'as' => 'home']);
+
 Route::get('/charts', function () {
     return view('charts');
 });

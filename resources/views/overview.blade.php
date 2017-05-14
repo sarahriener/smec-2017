@@ -20,6 +20,17 @@
             </div>
         </div>
 
+        @include('layouts.filter')
+
+        <div class="overview__items">
+
+            @foreach ($countries as $country)
+                <div class="overview__items--item" data-country="{{ $country->code }}" data-continent="{{$country->continent_id}}">
+                    <p>{{ $country->name }}</p>
+                </div>
+            @endforeach
+        </div>
+
         <div class="content__filter">
             <div class="content__filter__search">
                 <label>
@@ -41,6 +52,7 @@
         </div>
 
         <div class="content__items">
+
             <!-- find functions for filter in https://laravel.com/docs/5.1/collections#method-filter -->
             <!-- filter only works if page reloads -->
             @foreach ($countries as $country)
@@ -48,8 +60,8 @@
                     <p>{{ $country->name }}</p>
                     <script type="text/javascript">
                         function myFunction() {
-                    window.open("https://www.w3schools.com");
-                    }
+                            window.open("https://www.w3schools.com");
+                        }
                     </script>
                 </div>
             @endforeach
