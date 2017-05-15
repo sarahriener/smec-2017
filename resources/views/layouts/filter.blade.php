@@ -17,4 +17,13 @@
             <button class="filter__tags--tag" data-continent="{{$continent->id}}">{{ $continent->name }}</button>
         @endforeach
     </div>
+
+    <div class="filter__items">
+
+        @foreach ($countries as $country)
+            <div class="filter__items--item" data-country="{{ $country->code }}" data-continent="{{$country->continent_id}}">
+                <p>{{ $country->name }}</p>
+            </div>
+        @endforeach
+    </div>
 </div>
