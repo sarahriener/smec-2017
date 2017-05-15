@@ -40,6 +40,20 @@
 
 }
 
+.overview {
+  .filter__items--item {
+    width: 145px;
+    height: 145px;
+    background-color: #a1a1a1;
+    float: left;
+    margin: 8px;
+  }
+
+  .filter__items {
+    text-align: center;
+  }
+
+}
 
 
 /*search*/
@@ -49,35 +63,15 @@
 
 .filter__search--label {
   width: 30%;
+
+  .filter__search--span {
+    width: 58%;
+    float: left;
+    line-height: 33px;
+  }
+
+  .filter__search--search {
+    width: 40%;
+    float: left;
+  }
 }
-
-.filter__search--span {
-  width: 60%;
-  float: left;
-  line-height: 33px;
-}
-
-.filter__search--search {
-  width: 40%;
-  float: left;
-}
-
-
-
-
-
-/*
-.filter__items {
-  text-align: center;
-}
-
-.filter__items--item {
-  width: 145px;
-  height: 145px;
-  background-color: #a1a1a1;
-  float: left;
-  margin: 8px;
-}*/
-
-
-
