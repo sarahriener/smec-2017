@@ -22,14 +22,5 @@
 
         @include('layouts.filter')
 
-        <div class="overview__items">
-
-            @foreach ($countries as $country)
-                <div class="overview__items--item" data-country="{{ $country->code }}" data-continent="{{$country->continent_id}}">
-                    <p>{{ $country->name }}</p>
-                </div>
-            @endforeach
-        </div>
-
     </div>
 @endsection
