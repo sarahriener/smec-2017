@@ -15,3 +15,25 @@
 .filter__tags--tag:hover {
   background-color: #ebebeb;
 }
+
+
+.compare .filter, .detail .filter {
+  text-align: center;
+}
+
+.compare, .detail {
+  .filter__search--label {
+    width: 30%;
+  }
+
+  .filter__search--span {
+    width: 60%;
+    float: left;
+    line-height: 33px;
+  }
+
+  .filter__search--search {
+    width: 40%;
+    float: left;
+  }
+}
