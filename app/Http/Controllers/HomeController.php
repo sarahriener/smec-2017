@@ -1,10 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
 
+use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Log;
 
 // MODELS
@@ -20,26 +19,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $continents = $this->getAllContinents();
-        $countries = $this->getAllCountries();
+        $countries = Country::all();
+        $continents = Continent::all();
 
          return view('overview', ['continents' => $continents, 'countries' => $countries]);
-    }
-
-    public function detail()
-    {
-        $continents = $this->getAllContinents();
-        $countries = $this->getAllCountries();
-
-        return view('detail', ['continents' => $continents, 'countries' => $countries]);
-    }
-
-    public function compare()
-    {
-        $continents = $this->getAllContinents();
-        $countries = $this->getAllCountries();
-
-        return view('compare', ['continents' => $continents, 'countries' => $countries]);
     }
 
 
