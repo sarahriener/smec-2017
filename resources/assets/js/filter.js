@@ -8,7 +8,7 @@
 module.exports = {
     init: function () {
         $(document).ready(function () {
-            let $selectCountry = $(".content__filter__search .js-example-basic-single");
+            let $selectCountry = $(".filter__search .js-example-basic-single");
             $selectCountry.select2({
                 templateResult: formatState,
                 templateSelection: formatState
@@ -19,7 +19,7 @@ module.exports = {
                 filterCountries("country", $currCountry);
             });
 
-            let $selectContinent = $(".content__filter__tags .content__filter__tags--tag");
+            let $selectContinent = $(".filter__tags .filter__tags--tag");
             $selectContinent.on("click", function(e){
                 let $currContinent = $(e.currentTarget).data("continent");
 
@@ -29,7 +29,7 @@ module.exports = {
         });
 
         function filterCountries($filterBy, $val){
-            let $countryItems = $('.content__items--item');
+            let $countryItems = $('.filter__items--item');
 
             for (let i = 0; i < $countryItems.length; i++) {
                 let $filterVal = $($countryItems[i]).data($filterBy);

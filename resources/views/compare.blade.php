@@ -12,22 +12,14 @@
 
         @include('layouts.filter')
 
-        <div class="compare__items">
-
-            @foreach ($countries as $country)
-                <div class="compare__items--item" data-country="{{ $country->code }}" data-continent="{{$country->continent_id}}">
-                    <p>{{ $country->name }}</p>
-                </div>
-            @endforeach
-        </div>
 
         <div class="compare__detail">
-            <div class="compare__detail__select">
-                <div class="compare__detail__select--item">
+            <div class="compare__detail__select comparison">
+                <div id="div1" class="compare__detail__select--item" ondrop="drop(event)" ondragover="allowDrop(event)">
                     country 1
                 </div>
 
-                <div class="compare__detail__select--item">
+                <div id="div2" class="compare__detail__select--item" ondrop="drop(event)" ondragover="allowDrop(event)">
                     country 1
                 </div>
             </div>

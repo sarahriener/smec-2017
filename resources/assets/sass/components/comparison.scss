@@ -58,14 +58,8 @@
 /* Drag n drop */
 
 .comparison {
-  width: 800px;
-  height: 400px;
 
   #div1, #div2 {
-    height: 100%;
-    width: 49%;
-    margin-right: 1%;
-    border: 1px solid black;
     float: left;
 
     &:last-child {
@@ -79,9 +73,5 @@
 }
 
 .draggable {
-  width: 200px;
-  height: 200px;
-  background-color: #555555;
-  margin: 5px;
   float: left;
 }
