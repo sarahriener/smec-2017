@@ -1,16 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: chrisi
- * Date: 15.05.17
- * Time: 11:08
- */
 
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
-
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 
 // MODELS
 use App\Continent;

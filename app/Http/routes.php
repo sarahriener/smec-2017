@@ -26,7 +26,7 @@ Route::get('overview', ['uses' => 'HomeController@index', 'as' => 'home']);
 
 Route::get('country/{id}', ['uses' => 'DetailsController@show', 'as' => 'detail']);
 
-Route::get('compare', ['uses' => 'HomeController@compare', 'as' => 'home']);
+Route::get('compare', ['uses' => 'ComparisonController@index', 'as' => 'comparison']);
 
 Route::get('/charts', function () {
     return view('charts');
