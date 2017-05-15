@@ -22,13 +22,9 @@ Route::get('/dragndrop', function () {
     return view('dragndrop');
 });
 
-Route::get('/country', function () {
-    return view('detail');
-});
-
 Route::get('overview', ['uses' => 'HomeController@index', 'as' => 'home']);
 
-Route::get('detail', ['uses' => 'HomeController@detail', 'as' => 'home']);
+Route::get('country/{id}', ['uses' => 'DetailsController@show', 'as' => 'detail']);
 
 Route::get('compare', ['uses' => 'HomeController@compare', 'as' => 'home']);
 
