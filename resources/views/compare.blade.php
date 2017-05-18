@@ -16,11 +16,11 @@
         <div class="compare__detail">
             <div class="compare__detail__select comparison">
                 <div id="div1" class="compare__detail__select--item" ondrop="drop(event)" ondragover="allowDrop(event)">
-                    country 1
+                    <a href="country/1" target="_self">Germany</a>
                 </div>
 
                 <div id="div2" class="compare__detail__select--item" ondrop="drop(event)" ondragover="allowDrop(event)">
-                    country 1
+                    <a href="country/2" target="_self">Brazil</a>
                 </div>
             </div>
 

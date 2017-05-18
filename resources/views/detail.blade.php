@@ -33,13 +33,7 @@
                 <div>
                     <h1>{{ $country->name }}
                         <img src="../assets/img/flags" alt="{{ $country->code }}" height="20">
-                        <script>
-                            function openCompare() {
-                                //TODO auf compare View zugreifen
-                                window.open("mynewpage.html");
-                            }
-                        </script>
-                        <button onclick="openCompare()" type="button" class="btn btn-default subs-btn">Compare</button>
+                        <a href="../compare" target="_self" class="btn btn-default subs-btn">Compare</a>
                     </h1>
                     <p class="text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam </p>
                     <!-- TODO wenn Country Img drinnen darauf zugreifen-->
