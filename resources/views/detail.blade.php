@@ -4,6 +4,11 @@
 
 
 @section('content')
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+
 
     <div class="detail">
         <div class="detail__header">
@@ -14,18 +19,18 @@
 
         <div class="menu__left">
             <div>
-                <a class="menu" href="#" class="w3-bar-item w3-button">Overview</a>
-                <a class="menu" href="#" class="w3-bar-item w3-button">Internet Useres</a>
-                <a class="menu" href="#" class="w3-bar-item w3-button">E-Commerce</a>
-                <a class="menu" href="#" class="w3-bar-item w3-button">Sales</a>
-                <a class="menu" href="#" class="w3-bar-item w3-button">Ad Spend</a>
-                <a class="menu" href="#" class="w3-bar-item w3-button">Ausgaben</a>
+                <button class="menu" href="#" >Overview</button>
+                <button class="menu" href="#" >Internet Useres</button>
+                <button class="menu" href="#" >E-Commerce</button>
+                <button class="menu" href="#" >Sales</button>
+                <button class="menu" href="#" >Ad Spend</button>
+                <button class="menu" href="#" >Ausgaben</button>
             </div>
         </div>
 
         <div class="country">
             <div>
-                <div >
+                <div>
                     <h1>{{ $country->name }}
                         <img src="../assets/img/flags" alt="{{ $country->code }}" height="20">
                         <script>
@@ -36,57 +41,44 @@
                         </script>
                         <button onclick="openCompare()" type="button" class="btn btn-default subs-btn">Compare</button>
                     </h1>
+                    <p class="text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam </p>
                     <!-- TODO wenn Country Img drinnen darauf zugreifen-->
 
                 </div>
                 <script type="text/javascript" src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
-                <div id="chartContainer1" style="width: 45%; height: 300px;display: inline-block;"></div>
-                <div id="chartContainer2" style="width: 45%; height: 300px;display: inline-block;"></div><br/>
-                <div id="chartContainer3" style="width: 45%; height: 300px;display: inline-block;"></div>
-                <div id="chartContainer4" style="width: 45%; height: 300px;display: inline-block;"></div>
+                <div id="chartContainer1" class="chart" ></div>
+                <div id="chartContainer2" class="chart" ></div><br/>
+                <div id="chartContainer3" class="chart" ></div>
+                <div id="chartContainer4" class="chart" ></div>
 
                 <script type="text/javascript">
                     var chart = new CanvasJS.Chart("chartContainer1",
                         {
+                            title:{
+                                text: "{{ $country->name }}",
+                                verticalAlign: 'top',
+                                horizontalAlign: 'left'
+                            },
                             animationEnabled: true,
-                            title: {
-                                text: "Spline Area Chart"
-                            },
-                            legend: {
-                                fontFamily: "arial",
-                                fontColor: "red",
-
-                            },
-                            axisX: {
-                                interval: 10,
-                            },
                             data: [
                                 {
-                                    type: "splineArea",
-                                    color: "rgba(255,12,32,.3)",
-                                    type: "splineArea",
+                                    type: "doughnut",
+                                    startAngle:20,
+                                    toolTipContent: "{label}: {y} - <strong>#percent%</strong>",
+                                    indexLabel: "{label} #percent%",
                                     dataPoints: [
-                                        { x: new Date(1992, 0), y: 2506000 },
-                                        { x: new Date(1993, 0), y: 2798000 },
-                                        { x: new Date(1994, 0), y: 3386000 },
-                                        { x: new Date(1995, 0), y: 6944000 },
-                                        { x: new Date(1996, 0), y: 6026000 },
-                                        { x: new Date(1997, 0), y: 2394000 },
-                                        { x: new Date(1998, 0), y: 1872000 },
-                                        { x: new Date(1999, 0), y: 2140000 },
-                                        { x: new Date(2000, 0), y: 7289000 },
-                                        { x: new Date(2001, 0), y: 4830000 },
-                                        { x: new Date(2002, 0), y: 2009000 },
-                                        { x: new Date(2003, 0), y: 2840000 },
-                                        { x: new Date(2004, 0), y: 2396000 },
-                                        { x: new Date(2005, 0), y: 1613000 },
-                                        { x: new Date(2006, 0), y: 2821000 }
+                                        {  y: 67, label: "Inbox" },
+                                        {  y: 28, label: "Archives" },
+                                        {  y: 10, label: "Labels" },
+                                        {  y: 7,  label: "Drafts"},
+                                        {  y: 4,  label: "Trash"}
                                     ]
-                                },
+                                }
                             ]
                         });
                     chart.render();
+
 
                     var chart = new CanvasJS.Chart("chartContainer2",
                         {
@@ -96,7 +88,6 @@
                             },
                             legend: {
                                 fontFamily: "arial",
-                                fontColor: "red",
 
                             },
                             data: [
@@ -125,7 +116,6 @@
                             },
                             legend: {
                                 fontFamily: "arial",
-                                fontColor: "red",
 
                             },
                             axisX: {
@@ -164,12 +154,10 @@
                             title: {
                                 text: "Column Chart",
                                 fontFamily: "arial",
-                                fontColor: "red",
 
                             },
                             legend: {
                                 fontFamily: "arial",
-                                fontColor: "red",
 
                             },
                             axisX: {
