@@ -1,16 +1,22 @@
 /*tags*/
 .filter__tags {
-  margin-top: 35px;
+  margin-top: 15px;
+  margin-bottom: 35px;
 }
 
 .filter__tags--tag {
-  background-color: #a1a1a1;
+  background-color: $w-white;
   border-radius: 7px;
-  padding: 6px 10px 6px 10px;
-  border: none;
+  border: 2px solid $w-green;
+  color: $w-green;
+  padding: 6px 15px 6px 15px;
   margin: 0 8px 0 8px;
   font-size: 15px;
   text-transform: uppercase;
+}
+
+.filter__tags--tag:active {
+  background-color: $w-green;
 }
 
 .filter__tags--tag:hover {
@@ -22,11 +28,17 @@
 }
 
 /*items*/
+.filter__items--item {
+  background-color: $w-alabaster;
+  border-radius: 15px;
+  font-size: initial;
+  color: #000000;
+}
+
 .compare, .detail {
   .filter__items--item {
     width: 110px;
     height: 110px;
-    background-color: #a1a1a1;
     float: left;
     margin: 8px;
     float: none;
@@ -47,9 +59,9 @@
   .filter__items--item {
     width: 145px;
     height: 145px;
-    background-color: #a1a1a1;
     float: left;
-    margin: 8px;
+    margin: 2.2%;
+    padding: 25px;
   }
 
   .filter__items {
@@ -65,16 +77,19 @@
 }
 
 .filter__search--label {
-  width: 30%;
+  width: 50%;
+  font-weight: 300;
+  line-height: 2.4em;
 
   .filter__search--span {
-    width: 58%;
+    width: 50%;
     float: left;
-    line-height: 33px;
+    text-align: right;
   }
 
   .filter__search--search {
-    width: 40%;
+    width: 25%;
     float: left;
+    text-align: left;
   }
 }
