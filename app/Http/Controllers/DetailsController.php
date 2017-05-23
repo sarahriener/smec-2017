@@ -23,7 +23,12 @@ class DetailsController extends Controller
     }
 
 
-    public function show($id)
+    /**
+     * @param $id
+     * @param null $type
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function show($id, $type = null)
     {
         $countries = Country::all();
         $continents = Continent::all();
@@ -31,9 +36,32 @@ class DetailsController extends Controller
         $country = Country::find($id);
         $continent = $country->continent();
 
-        return view('detail', ['continents' => $continents, 'countries' => $countries,
-            'country'=> $country, 'continent'=> $continent]);
+        $data = ['continents' => $continents, 'countries' => $countries,
+            'country'=> $country, 'continent'=> $continent];
+
+        $type = "Population";
+
+        if($type){
+            $data = $this->getStatisticDetailsByType($country, $type, $data);
+        }
+        return view('detail', $data);
     }
+
+    function getStatisticDetailsByType($country, $type, $data){
+
+        $statistic_type  = $country->statistic_types->where('name', $type)->first();
+
+        $statistic = $country->statistics->where('statistic_type_id', $statistic_type->id)->first();
+
+        $statistic_detail = $statistic->statistic_details;
+
+        $data['statistic_type'] = $statistic_type;
+        $data['statistic_detail'] = $statistic_detail;
+
+        return $data;
+
+    }
+
 
 
 }
