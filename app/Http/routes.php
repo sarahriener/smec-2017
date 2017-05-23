@@ -22,6 +22,10 @@ Route::get('/dragndrop', function () {
     return view('dragndrop');
 });
 
+Route::get('/entry', function () {
+    return view('entry');
+});
+
 Route::get('overview', ['uses' => 'HomeController@index', 'as' => 'home']);
 
 Route::get('country/{id}', ['uses' => 'DetailsController@show', 'as' => 'detail']);

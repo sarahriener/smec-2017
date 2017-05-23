@@ -1,7 +1,7 @@
 <div class="filter">
     <div class="filter__search">
         <label class="filter__search--label">
-            <span class="filter__search--span">Choose a Region or</span>
+            <span class="filter__search--span">Choose a region or country</span>
             <select class="js-example-basic-single form-control filter__search--search">
                 <option value="null" title="all">All</option>
                 @foreach ($countries as $country)
@@ -20,9 +20,7 @@
 
     <div class="filter__items" id="dragFalse">
         @foreach ($countries as $country)
-            <div class="filter__items--item" data-country="{{ $country->code }}" data-continent="{{$country->continent_id}}">
-                <p>{{ $country->name }}</p>
-            </div>
+            <a href="detail.blade.php?Land={{$continent->name}}" class="filter__items--item" class="filter__country" data-country="{{ $country->code }}" data-continent="{{$country->continent_id}}">{{ $country->name }}</a>
         @endforeach
     </div>
 

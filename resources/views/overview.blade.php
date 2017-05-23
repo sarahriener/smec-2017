@@ -2,23 +2,16 @@
 
 @section('title', 'Overview')
 
+<div class="whoop-header">
+    <!-- header img -->
+    <span class="whoop-header__intro">Google Shopping Countries</span>
+    <p>
+        Learn more about e-commerce in different regions
+    </p>
+</div>
 
 @section('content')
-
     <div class="overview">
-        <div class="overview__header">
-            <div class="overview__header__title">
-                <span>Global E-Commerce Facts</span>
-            </div>
-
-            <div class="overview__header__facts">
-                <span class="overview__header__facts--fact">78%</span><span class="overview__header__facts--fact">108 Mio. $$</span><span class="overview__header__facts--fact">98%</span>
-            </div>
-
-            <div class="overview__header__button">
-                <span><button type="button" class="overview__header__button--btn">more</button> </span>
-            </div>
-        </div>
 
         @include('layouts.filter')
 
