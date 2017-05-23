@@ -20,7 +20,7 @@
 
     <div class="filter__items" id="dragFalse">
         @foreach ($countries as $country)
-            <a href="detail.blade.php?Land={{$continent->name}}" class="filter__items--item" class="filter__country" data-country="{{ $country->code }}" data-continent="{{$country->continent_id}}">{{ $country->name }}</a>
+            <a href="/country/{{$country->id}}" class="filter__items--item" class="filter__country" data-country="{{ $country->code }}" data-continent="{{$country->continent_id}}">{{ $country->name }}</a>
         @endforeach
     </div>
 
