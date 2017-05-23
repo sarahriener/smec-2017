@@ -39,8 +39,6 @@ class DetailsController extends Controller
         $data = ['continents' => $continents, 'countries' => $countries,
             'country'=> $country, 'continent'=> $continent];
 
-        $type = "Population";
-
         if($type){
             $data = $this->getStatisticDetailsByType($country, $type, $data);
         }
@@ -49,17 +47,15 @@ class DetailsController extends Controller
 
     function getStatisticDetailsByType($country, $type, $data){
 
+        $type= str_replace("_", " ", $type);
         $statistic_type  = $country->statistic_types->where('name', $type)->first();
-
         $statistic = $country->statistics->where('statistic_type_id', $statistic_type->id)->first();
+        $statistic_details = $statistic->statistic_details;
 
-        $statistic_detail = $statistic->statistic_details;
-
-        $data['statistic_type'] = $statistic_type;
-        $data['statistic_detail'] = $statistic_detail;
+        $data['statistic_type'] = $statistic_type; // just one type
+        $data['statistic_details'] = $statistic_details; // several details for each type (per year)
 
         return $data;
-
     }
 
 

@@ -7,9 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
-
-
-
     <div class="detail">
         <div class="detail__header">
             Detail header
@@ -19,12 +16,17 @@
 
         <div class="menu__left">
             <div>
-                <button class="menu" href="#" >Overview</button>
-                <button class="menu" href="#" >Internet Useres</button>
-                <button class="menu" href="#" >E-Commerce</button>
-                <button class="menu" href="#" >Sales</button>
-                <button class="menu" href="#" >Ad Spend</button>
-                <button class="menu" href="#" >Ausgaben</button>
+
+                <!-- TODO generate right menu-points and submenu -->
+                @foreach(\App\StatisticType::all()->where('category_id', null) as $main_statistic_type)
+
+                    <button class="menu">{{$main_statistic_type->name}}</button>
+
+                    @foreach(\App\StatisticType::all()->where('category_id', $main_statistic_type->id) as $sub_statistic_type)
+                        - <a href="/country/{{$country->id}}/{{ str_replace(" ", "_", $sub_statistic_type->name)}}">{{$sub_statistic_type->name}}</a><br>
+                    @endforeach
+                @endforeach
+
             </div>
         </div>
 
@@ -32,14 +34,36 @@
             <div>
                 <div>
                     <h1>{{ $country->name }}
+                                <!-- TODO wenn Country Img drinnen darauf zugreifen-->
                         <img src="../assets/img/flags" alt="{{ $country->code }}" height="20">
                         <a href="../compare" target="_self" class="btn btn-default subs-btn">Compare</a>
                     </h1>
+
+                    <!-- TODO klasse eindeutig benennen!!!! -->
                     <p class="text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam </p>
-                    <!-- TODO wenn Country Img drinnen darauf zugreifen-->
+
+
+                    <div style="margin-left: 50px;">
+
+
+                        <h2>{{$statistic_type->name}}</h2>
+
+                        @if(count($statistic_details)<=0)
+                            <p>There are no details available for this statistic type.</p>
+                        @endif
+
+                        @foreach($statistic_details as $statistic_detail)
+                            <p><b>{{$statistic_detail->year}}:</b> {{$statistic_detail->value}} {{$statistic_type->type}}</p>
+                            <!-- TODO create reusable templates for each value-type (f.e. top 5, %, €, ...)-->
+                        @endforeach
+
+                    </div>
+
+
 
                 </div>
                 <script type="text/javascript" src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
 
                 <div id="chartContainer1" class="chart" ></div>
                 <div id="chartContainer2" class="chart" ></div><br/>
@@ -72,7 +96,6 @@
                             ]
                         });
                     chart.render();
-
 
                     var chart = new CanvasJS.Chart("chartContainer2",
                         {
