@@ -1,21 +1,20 @@
 
 module.exports = {
+
     init: function () {
+
         $(document).ready(function () {
 
-            // show draggable slider items on compare
-            let $wrapper = document.getElementsByClassName('compare')[0];
+            $('#div1').addEventListener("drop", drop(event));
+            $('#div2').addEventListener("drop", drop(event));
 
-            if ($wrapper != undefined) {
-                let $dragTrue = $wrapper.querySelector('#dragTrue');
-                let $dragFalse = $wrapper.querySelector('#dragFalse');
+            $('#div1').addEventListener("dragover", allowDrop(event));
+            $('#div2').addEventListener("dragover", allowDrop(event));
 
-                $dragTrue.style.display = 'inline-block';
-                $dragFalse.style.display = 'none';
-            }
-
+            $('.filter__items--item.draggable').addEventListener("dragstart", drag(event));
 
         });
+
 
         function allowDrop(ev) {
             ev.preventDefault();

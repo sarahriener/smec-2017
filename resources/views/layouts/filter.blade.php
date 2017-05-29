@@ -18,17 +18,10 @@
         @endforeach
     </div>
 
-    <div class="filter__items" id="dragFalse">
+    <div class="filter__items">
         @foreach ($countries as $country)
-            <a href="/country/{{$country->id}}" class="filter__items--item" class="filter__country" data-country="{{ $country->code }}" data-continent="{{$country->continent_id}}">{{ $country->name }}</a>
-        @endforeach
-    </div>
-
-    <!-- HIDE BY DEFAULT-->
-    <div class="filter__items draggables" style="display: none" id="dragTrue">
-        @foreach ($countries as $country)
-            <div class="filter__items--item draggable" id="{{ $country->code }}" data-country="{{ $country->code }}" data-continent="{{$country->continent_id}}" draggable="true" ondragstart="drag(event)">
-                <p>{{ $country->name }}</p>
+            <div class="filter__items--wrapper" id="{{ $country->code }}">
+                <a href="/country/{{$country->id}}" class="filter__items--item" class="filter__country" data-country="{{ $country->code }}" data-continent="{{$country->continent_id}}">{{ $country->name }}</a>
             </div>
         @endforeach
     </div>
