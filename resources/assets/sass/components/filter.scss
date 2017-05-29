@@ -10,7 +10,7 @@
   border: 2px solid $w-green;
   color: $w-green;
   padding: 6px 15px 6px 15px;
-  margin: 0 8px 0 8px;
+  margin: 5 8px 0 8px;
   font-size: 15px;
   text-transform: uppercase;
 }
@@ -91,5 +91,11 @@
     width: 25%;
     float: left;
     text-align: left;
+  }
+}
+
+@media (max-width: $max-phone) {
+  .filter__search--label {
+    width: 100%;
   }
 }

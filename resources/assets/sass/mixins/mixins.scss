@@ -56,3 +56,43 @@ $w-alabaster: #FAFAFA;
 
 
 // Background/Box Style = $w-white, $w-alto, $w-alabaster
+
+
+
+/*=============  MEDIA QUERIES  =============*/
+/*==========  Mobile First Method  ==========*/
+
+/* Custom, iPhone Retina */
+$min-xxs: 320px;
+
+/* Extra Small Devices, Phones */
+$min-xs: 480px;
+
+/* Small Devices, Tablets */
+$min-sm: 768px;
+
+/* Medium Devices, Desktops */
+$min-md: 992px;
+
+/* Large Devices, Wide Screens */
+$min-lg: 1200px;
+
+
+
+
+/*========  Non-Mobile First Method  ========*/
+
+/* Large Devices, Wide Screens */
+$max-lg: 1199px;
+
+/* Medium Devices, Desktops */
+$max-md: 991px;
+
+/* Small Devices, Tablets */
+$max-sm: 767px;
+
+/* Extra Small Devices, Phones */
+$max-xs: 479px;
+
+/* Custom, iPhone Retina */
+$max-xxs: 319px;
