@@ -28,7 +28,7 @@ class DetailsController extends Controller
      * @param null $type
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show($id, $type = null)
+    public function show($id, $type = 'E-Commerce_Users')
     {
         $countries = Country::all();
         $continents = Continent::all();
@@ -39,9 +39,8 @@ class DetailsController extends Controller
         $data = ['continents' => $continents, 'countries' => $countries,
             'country'=> $country, 'continent'=> $continent];
 
-        if($type){
-            $data = $this->getStatisticDetailsByType($country, $type, $data);
-        }
+        $data = $this->getStatisticDetailsByType($country, $type, $data);
+
         return view('detail', $data);
     }
 
@@ -57,7 +56,5 @@ class DetailsController extends Controller
 
         return $data;
     }
-
-
 
 }
