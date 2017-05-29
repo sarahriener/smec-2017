@@ -5,13 +5,23 @@ module.exports = {
 
         $(document).ready(function () {
 
+            var $dragWrapper = $('.compare .filter__items--wrapper');
+            $dragWrapper.addClass('draggable');
+            $dragWrapper.setAttribute('draggable', 'true');
+
+            $dragWrapper.addEventListener("dragstart", drag(event));
+
+
+
+
+
             $('#div1').addEventListener("drop", drop(event));
             $('#div2').addEventListener("drop", drop(event));
 
             $('#div1').addEventListener("dragover", allowDrop(event));
             $('#div2').addEventListener("dragover", allowDrop(event));
 
-            $('.filter__items--item.draggable').addEventListener("dragstart", drag(event));
+
 
         });
 
