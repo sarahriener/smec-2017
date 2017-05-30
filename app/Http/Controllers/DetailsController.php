@@ -39,22 +39,28 @@ class DetailsController extends Controller
         $data = ['continents' => $continents, 'countries' => $countries,
             'country'=> $country, 'continent'=> $continent];
 
-        $data = $this->getStatisticDetailsByType($country, $type, $data);
+        $statistics = $this->getStatisticDetailsByType($id, $type);
+        $data['statistic_type'] = $statistics['statistic_type'];
+        $data['statistic_details'] = $statistics['statistic_details'];
 
         return view('detail', $data);
     }
 
-    function getStatisticDetailsByType($country, $type, $data){
+    public function getStatisticDetailsByType($country_id, $type){
+
+        $country = Country::find($country_id);
 
         $type= str_replace("_", " ", $type);
         $statistic_type  = $country->statistic_types->where('name', $type)->first();
         $statistic = $country->statistics->where('statistic_type_id', $statistic_type->id)->first();
         $statistic_details = $statistic->statistic_details;
 
+        $data = array();
         $data['statistic_type'] = $statistic_type; // just one type
         $data['statistic_details'] = $statistic_details; // several details for each type (per year)
 
         return $data;
     }
+
 
 }

@@ -36,7 +36,7 @@
                     <h1>{{ $country->name }}
                                 <!-- TODO wenn Country Img drinnen darauf zugreifen-->
                         <img src="../assets/img/flags" alt="{{ $country->code }}" height="20">
-                        <a href="../compare" target="_self" class="btn btn-default subs-btn">Compare</a>
+                        <a href="/compare/{{ $country->id }}" target="_self" class="btn btn-default subs-btn">Compare</a>
                     </h1>
 
                     <!-- TODO klasse eindeutig benennen!!!! -->
