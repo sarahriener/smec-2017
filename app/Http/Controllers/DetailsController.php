@@ -63,4 +63,33 @@ class DetailsController extends Controller
     }
 
 
+
+    public function getStatisticDetails(){
+
+        $country_id = $_GET['country_id'];
+        $country = Country::find($country_id);
+
+        $type = $_GET['statistic_type'];
+        $type= str_replace("_", " ", $type);
+
+        $main_statistic_type  = $country->statistic_types->where('name', $type)->first();
+
+        $data = array();
+
+        // search for statistic subtypes
+        $sub_statistic_types = $country->statistic_types->where('category_id', $main_statistic_type->id);
+        foreach($sub_statistic_types as $statistic_type){
+            $statistic = $country->statistics->where('statistic_type_id', $statistic_type->id)->first();
+            $statistic_details = $statistic->statistic_details;
+
+            $statistic_detail = array();
+            $statistic_detail['statistic_type'] = $statistic_type;
+            $statistic_detail['statistic_details'] = $statistic_details;
+            array_push($data, $statistic_detail);
+        }
+
+        return $data;
+    }
+
+
 }
