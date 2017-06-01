@@ -7,6 +7,7 @@ use App\Http\Requests;
 // MODELS
 use App\Continent;
 use App\Country;
+use App\StatisticType;
 
 class ComparisonController extends Controller
 {
@@ -31,8 +32,10 @@ class ComparisonController extends Controller
         $country = Country::find($id);
         $continent = $country->continent();
 
+        $main_statistic_types = StatisticType::all()->where('category_id', null);
+
         $data = ['continents' => $continents, 'countries' => $countries,
-            'country'=> $country, 'continent'=> $continent];
+            'country'=> $country, 'continent'=> $continent, 'main_statistic_types' => $main_statistic_types];
 
         return view('compare', $data);
     }

@@ -6,6 +6,7 @@ use App\Http\Requests;
 // MODELS
 use App\Continent;
 use App\Country;
+use App\StatisticType;
 
 class DetailsController extends Controller
 {
@@ -36,17 +37,19 @@ class DetailsController extends Controller
         $country = Country::find($id);
         $continent = $country->continent();
 
-        $data = ['continents' => $continents, 'countries' => $countries,
-            'country'=> $country, 'continent'=> $continent];
+        $main_statistic_types = StatisticType::all()->where('category_id', null);
 
-        $statistics = $this->getStatisticDetailsByType($id, $type);
-        $data['statistic_type'] = $statistics['statistic_type'];
-        $data['statistic_details'] = $statistics['statistic_details'];
+        $data = ['continents' => $continents, 'countries' => $countries,
+            'country'=> $country, 'continent'=> $continent, 'main_statistic_types' => $main_statistic_types];
+
+        //$statistics = $this->getStatisticDetailsByType($id, $type);
+        //$data['statistic_type'] = $statistics['statistic_type'];
+        //$data['statistic_details'] = $statistics['statistic_details'];
 
         return view('detail', $data);
     }
 
-    public function getStatisticDetailsByType($country_id, $type){
+    /*public function getStatisticDetailsByType($country_id, $type){
 
         $country = Country::find($country_id);
 
@@ -60,7 +63,7 @@ class DetailsController extends Controller
         $data['statistic_details'] = $statistic_details; // several details for each type (per year)
 
         return $data;
-    }
+    }*/
 
 
 
@@ -72,21 +75,15 @@ class DetailsController extends Controller
         $type = $_GET['statistic_type'];
         $type= str_replace("_", " ", $type);
 
-        $main_statistic_type  = $country->statistic_types->where('name', $type)->first();
+        $statistic_type  = $country->statistic_types->where('name', $type)->first();
+        $statistic = $country->statistics->where('statistic_type_id', $statistic_type->id)->first();
+        $statistic_details = $statistic->statistic_details;
 
         $data = array();
 
-        // search for statistic subtypes
-        $sub_statistic_types = $country->statistic_types->where('category_id', $main_statistic_type->id);
-        foreach($sub_statistic_types as $statistic_type){
-            $statistic = $country->statistics->where('statistic_type_id', $statistic_type->id)->first();
-            $statistic_details = $statistic->statistic_details;
-
-            $statistic_detail = array();
-            $statistic_detail['statistic_type'] = $statistic_type;
-            $statistic_detail['statistic_details'] = $statistic_details;
-            array_push($data, $statistic_detail);
-        }
+        $data['country'] = $country;
+        $data['statistic_type'] = $statistic_type; // just one type
+        $data['statistic_details'] = $statistic_details; // several details for each type (per year)
 
         return $data;
     }
