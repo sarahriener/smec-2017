@@ -2,6 +2,22 @@
 
 @section('title', 'Compare')
 
+<script>
+    function allowDrop(ev) {
+        ev.preventDefault();
+    }
+
+    function drag(ev) {
+        ev.dataTransfer.setData("text", ev.target.id);
+    }
+
+    function drop(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("text");
+        ev.target.appendChild(document.getElementById(data));
+    }
+</script>
+
 
 @section('content')
 
@@ -25,8 +41,8 @@
                     <a href="/country/{{$country->id}}" target="_self">{{$country->name}}</a>
                 </div>
 
-                <div id="div2" class="compare__detail__select--item">
-                   <span>Choose a country to compare!</span>
+                <div id="div2" class="compare__detail__select--item" ondrop="drop(event)" ondragover="allowDrop(event)">
+
                 </div>
             </div>
 
