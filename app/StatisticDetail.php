@@ -11,4 +11,8 @@ class StatisticDetail extends Model
     {
         return $this->belongsTo('App\Statistic');
     }
+
+    public function source() {
+        return $this->hasOne('App\Source');
+    }
 }
