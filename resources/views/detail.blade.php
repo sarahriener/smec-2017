@@ -30,18 +30,13 @@
             </div>
         </div>
 
-        <script>
-            $('.button').css("background-color", "#4CAF50");
-        </script>
-
         <div class="country">
             <div>
-                <div menu__right>
-                    <div class="breadcrumb"></div>
+                <div>
                     <h1>{{ $country->name }}
-                                <!-- TODO wenn Country Img drinnen darauf zugreifen-->
-                        <img src="../assets/img/flags/aut.svg" alt="{{ $country->code }}" height="20">
-                        <a class="compare" href="../compare" target="_self" class="btn btn-default subs-btn">Compare</a>
+                    <!-- TODO wenn Country Img drinnen darauf zugreifen-->
+                        <img src="../assets/img/flags" alt="{{ $country->code }}" height="20">
+                        <a href="/compare/{{ $country->id }}" target="_self" class="btn btn-default subs-btn">Compare</a>
                     </h1>
 
                     <!-- TODO klasse eindeutig benennen!!!! -->
@@ -211,5 +206,5 @@
                 <!-- TODO wenn Country Img drinnen darauf zugreifen-->
 
             </div>
-    </div>
+        </div>
 @endsection
