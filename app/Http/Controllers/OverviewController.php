@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Log;
 use App\Continent;
 use App\Country;
 
-class HomeController extends Controller
+class OverviewController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,7 +22,7 @@ class HomeController extends Controller
         $countries = Country::all();
         $continents = Continent::all();
 
-        return view('overview', ['continents' => $continents, 'countries' => $countries]);
+         return view('overview', ['continents' => $continents, 'countries' => $countries]);
     }
 
 

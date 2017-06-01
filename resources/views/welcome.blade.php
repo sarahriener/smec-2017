@@ -1,45 +1,51 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Laravel</title>
+@extends('layouts.app')
 
-        <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+@section('title', 'Entry')
 
-        <style>
-            html, body {
-                height: 100%;
-            }
+<div class="whoop-header">
+    <!-- header img -->
+    <span class="whoop-header__intro">Global E-Commerce Facts</span>
+    <p>
+        Information about all Google Shopping Countries
+    </p>
+</div>
 
-            body {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                display: table;
-                font-weight: 100;
-                font-family: 'Lato';
-            }
+@section('content')
 
-            .container {
-                text-align: center;
-                display: table-cell;
-                vertical-align: middle;
-            }
+    <div class="entry">
 
-            .content {
-                text-align: center;
-                display: inline-block;
-            }
+        <div class="entry__text">
+            <span class="entry__text__header">E-Commerce Facts</span>
+            <p>
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+                sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+                nonumy eirmod tempor invidunt ut labore
+            </p>
+        </div>
 
-            .title {
-                font-size: 96px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <div class="content">
-                <div class="title">Laravel 5</div>
+        <div class="entry__data">
+            <div class="entry__data__item">
+                <span class="entry__data--head">€ 919,03 billion</span>
+                <p class="entry__data--info">e-commerce sales 2015</p>
+            </div>
+
+            <div class="entry__data__item">
+                <span class="entry__data--head">€ 1256,03 billion</span>
+                <p class="entry__data--info">future e-commerce sales 2021</p>
+            </div>
+
+            <div class="entry__data__item">
+                <span class="entry__data--head">United Kingdom</span>
+                <p class="entry__data--info">country with the highest e-commerce sales</p>
             </div>
         </div>
-    </body>
-</html>
+
+        <div class="entry__more">
+            <p>Curious about our Google-Shopping Countries?</p>
+            <span><button type="button" class="entry__more__button">Learn more</button> </span>
+        </div>
+
+
+    </div>
+@endsection
