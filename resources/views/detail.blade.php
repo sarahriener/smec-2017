@@ -15,14 +15,15 @@
         @include('layouts.filter')
 
         <div class="menu__left">
-            <div class="panel-group">
+            <div>
+
                 <!-- TODO generate right menu-points and submenu -->
                 @foreach(\App\StatisticType::all()->where('category_id', null) as $main_statistic_type)
 
-                    <button class="buttons">{{$main_statistic_type->name}}</button>
+                    <button class="menu">{{$main_statistic_type->name}}</button>
 
                     @foreach(\App\StatisticType::all()->where('category_id', $main_statistic_type->id) as $sub_statistic_type)
-                        <div class="panel"><a href="/country/{{$country->id}}/{{ str_replace(" ", "_", $sub_statistic_type->name)}}">{{$sub_statistic_type->name}}</a></div><br>
+                        - <a href="/country/{{$country->id}}/{{ str_replace(" ", "_", $sub_statistic_type->name)}}">{{$sub_statistic_type->name}}</a><br>
                     @endforeach
                 @endforeach
 
@@ -30,7 +31,7 @@
         </div>
 
         <script>
-        $('.button').css("background-color", "#4CAF50");
+            $('.button').css("background-color", "#4CAF50");
         </script>
 
         <div class="country">

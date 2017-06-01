@@ -9,10 +9,6 @@
 </head>
 <body>
 
-<nav>
-    <a href="/">Home</a>
-</nav>
-
 <div class="container">
     @yield('content')
     @yield('charts')

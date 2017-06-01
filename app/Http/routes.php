@@ -30,7 +30,9 @@ Route::get('overview', ['uses' => 'HomeController@index', 'as' => 'home']);
 
 Route::get('country/{id}/{type?}', ['uses' => 'DetailsController@show', 'as' => 'detail']);
 
-Route::get('compare', ['uses' => 'ComparisonController@index', 'as' => 'comparison']);
+Route::get('statistics', ['uses' => 'DetailsController@getStatisticDetailsByType', 'as' => 'type']);
+
+Route::get('compare/{id}', ['uses' => 'ComparisonController@show', 'as' => 'comparison']);
 
 Route::get('/charts', function () {
     return view('charts');

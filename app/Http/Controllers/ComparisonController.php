@@ -19,4 +19,22 @@ class ComparisonController extends Controller
         return view('compare', ['continents' => $continents, 'countries' => $countries]);
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function show($id)
+    {
+        $countries = Country::all();
+        $continents = Continent::all();
+
+        $country = Country::find($id);
+        $continent = $country->continent();
+
+        $data = ['continents' => $continents, 'countries' => $countries,
+            'country'=> $country, 'continent'=> $continent];
+
+        return view('compare', $data);
+    }
+
 }
