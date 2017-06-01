@@ -15,28 +15,32 @@
         @include('layouts.filter')
 
         <div class="menu__left">
-            <div>
-
+            <div class="panel-group">
                 <!-- TODO generate right menu-points and submenu -->
                 @foreach(\App\StatisticType::all()->where('category_id', null) as $main_statistic_type)
 
-                    <button class="menu">{{$main_statistic_type->name}}</button>
+                    <button class="buttons">{{$main_statistic_type->name}}</button>
 
                     @foreach(\App\StatisticType::all()->where('category_id', $main_statistic_type->id) as $sub_statistic_type)
-                        - <a href="/country/{{$country->id}}/{{ str_replace(" ", "_", $sub_statistic_type->name)}}">{{$sub_statistic_type->name}}</a><br>
+                        <div class="panel"><a href="/country/{{$country->id}}/{{ str_replace(" ", "_", $sub_statistic_type->name)}}">{{$sub_statistic_type->name}}</a></div><br>
                     @endforeach
                 @endforeach
 
             </div>
         </div>
 
+        <script>
+        $('.button').css("background-color", "#4CAF50");
+        </script>
+
         <div class="country">
             <div>
-                <div>
+                <div menu__right>
+                    <div class="breadcrumb"></div>
                     <h1>{{ $country->name }}
                                 <!-- TODO wenn Country Img drinnen darauf zugreifen-->
-                        <img src="../assets/img/flags" alt="{{ $country->code }}" height="20">
-                        <a href="../compare" target="_self" class="btn btn-default subs-btn">Compare</a>
+                        <img src="../assets/img/flags/aut.svg" alt="{{ $country->code }}" height="20">
+                        <a class="compare" href="../compare" target="_self" class="btn btn-default subs-btn">Compare</a>
                     </h1>
 
                     <!-- TODO klasse eindeutig benennen!!!! -->
