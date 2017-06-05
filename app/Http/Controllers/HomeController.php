@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Log;
 
 // MODELS
-use App\Continent;
-use App\Country;
+use App\StatisticType;
+use App\Statistic;
+use App\StatisticDetail;
 
 class HomeController extends Controller
 {
@@ -19,97 +19,53 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $countries = Country::all();
-        $continents = Continent::all();
+        Log::info('In HomeController');
 
-        return view('overview', ['continents' => $continents, 'countries' => $countries]);
+        $aggregatedSales = $this->getAggregatedSales();
+        $aggregatedFutureSales = $this->getAggregatedFutureSales();
+        $salesOfCountry = $this->getSalesOfCountry();
+
+        return view('welcome', ['aggregatedSales' => $aggregatedSales, 'aggregatedFutureSales' => $aggregatedFutureSales,
+            'salesOfCountry' => $salesOfCountry]);
+        //return view('welcome',  ['aggregatedSales' => [1,2]]);
+
     }
 
+    private function getAggregatedSales() {
+        $type = 'Sales';
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        /* SELECT one
+            FROM table
+            WHERE datetimefield <= now.year
+            ORDER BY datetimefield DESC
+            LIMIT 1; */
+
+        // get type sales
+        // get all details of type with year
+
+        $statistic_type_id = StatisticType::where('name', $type)->first()->id;
+        // array with all statistic entries
+        $statistic_ids = Statistic::where('statistic_type_id', $statistic_type_id);
+        //StatisticDetail::
+
+        return 0;
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+    private function getAggregatedFutureSales() {
+        /*
+         * SELECT MAX(year)
+FROM table;
+         * */
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $c = Country::find(1);
-        $c->getCountriesByContinent(1);
-        $countriesByContinent = $this->getCountriesPerContinent($id);
-        Log::info('Countries per continent '.$countriesByContinent->get());
-
-        return view('overview', ['countryTest' => $countriesByContinent]);
+        return 0;
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * Get current sales of a random country
      */
-    public function edit($id)
-    {
-        //
+    private function getSalesOfCountry() {
+        /*get all ids, store in array, get random number between 0 and length-1*/
+        return array();
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
-    public function getCountriesPerContinent($id) {
-        return Country::where('continent_id', $id);
-    }
-
-    public function getCountryByName($name) {
-        return Country::where('name', $name)->first();
-    }
-
-    public function getAllContinents() {
-        return Continent::all();
-    }
-
-    public function getAllCountries() {
-        return Country::all();
-    }
 }
