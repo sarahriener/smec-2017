@@ -24,6 +24,9 @@ Route::get('overview', ['uses' => 'OverviewController@index', 'as' => 'overview'
 
 Route::get('country/{id}/{type?}', ['uses' => 'DetailsController@show', 'as' => 'detail']);
 
+
+Route::get('getStatisticDetails', ['uses' => 'DetailsController@getStatisticDetails', 'as' => 'statisticdetail']);
+
 Route::get('statistics', ['uses' => 'DetailsController@getStatisticDetailsByType', 'as' => 'type']);
 
 Route::get('compare/{id}', ['uses' => 'ComparisonController@show', 'as' => 'comparison']);

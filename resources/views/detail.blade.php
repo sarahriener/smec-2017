@@ -17,54 +17,26 @@
         <div class="menu__left">
             <div>
 
-                <!-- TODO generate right menu-points and submenu -->
-                @foreach(\App\StatisticType::all()->where('category_id', null) as $main_statistic_type)
-
-                    <button class="menu">{{$main_statistic_type->name}}</button>
-
-                    @foreach(\App\StatisticType::all()->where('category_id', $main_statistic_type->id) as $sub_statistic_type)
-                        - <a href="/country/{{$country->id}}/{{ str_replace(" ", "_", $sub_statistic_type->name)}}">{{$sub_statistic_type->name}}</a><br>
-                    @endforeach
-                @endforeach
+                @include('layouts.statistic_menu')
 
             </div>
         </div>
 
-        <script>
-            $('.button').css("background-color", "#4CAF50");
-        </script>
-
         <div class="country">
             <div>
-                <div menu__right>
-                    <div class="breadcrumb"></div>
+                <div>
                     <h1>{{ $country->name }}
-                                <!-- TODO wenn Country Img drinnen darauf zugreifen-->
-                        <img src="../assets/img/flags/aut.svg" alt="{{ $country->code }}" height="20">
-                        <a class="compare" href="../compare" target="_self" class="btn btn-default subs-btn">Compare</a>
+                    <!-- TODO wenn Country Img drinnen darauf zugreifen-->
+                        <img src="../assets/img/flags" alt="{{ $country->code }}" height="20">
+                        <a href="/compare/{{ $country->id }}" target="_self" class="btn btn-default subs-btn">Compare</a>
                     </h1>
 
                     <!-- TODO klasse eindeutig benennen!!!! -->
                     <p class="text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam </p>
 
-
-                    <div style="margin-left: 50px;">
-
-
-                        <h2>{{$statistic_type->name}}</h2>
-
-                        @if(count($statistic_details)<=0)
-                            <p>There are no details available for this statistic type.</p>
-                        @endif
-
-                        @foreach($statistic_details as $statistic_detail)
-                            <p><b>{{$statistic_detail->year}}:</b> {{$statistic_detail->value}} {{$statistic_type->type}}</p>
-                            <!-- TODO create reusable templates for each value-type (f.e. top 5, %, €, ...)-->
-                        @endforeach
-
+                    <div style="margin-left: 50px;" class="statistic_type" data-country="{{ $country->id }}">
+                        <p>Select a statistic type.</p>
                     </div>
-
-
 
                 </div>
                 <script type="text/javascript" src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>
@@ -211,5 +183,5 @@
                 <!-- TODO wenn Country Img drinnen darauf zugreifen-->
 
             </div>
-    </div>
+        </div>
 @endsection
