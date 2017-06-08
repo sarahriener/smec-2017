@@ -1,7 +1,7 @@
 @foreach($main_statistic_types as $main_statistic_type)
     <div class="statistic-menu">
 
-        <button class="menu">{{$main_statistic_type->name}}</button>
+        <button class="menu"><h4>{{$main_statistic_type->name}}</h4></button>
         <!-- SUBMENU -->
         <div class="menu__inner">
         @foreach(\App\StatisticType::all()->where('category_id', $main_statistic_type->id) as $sub_statistic_type)
