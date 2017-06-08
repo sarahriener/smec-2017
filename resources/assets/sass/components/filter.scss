@@ -35,6 +35,19 @@
   color: #000000;
 }
 
+.filter__items--wrapper {
+  display: inline;
+}
+
+.filter__items--wrapper.hide {
+  display: none;
+}
+
+.compare .filter__items--wrapper {
+  display: inline-block;
+}
+
+
 .compare, .detail {
   .filter__items--wrapper {
     width: 110px;
