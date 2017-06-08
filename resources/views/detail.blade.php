@@ -20,8 +20,11 @@
                 @include('layouts.statistic_menu')
 
             </div>
+            <!-- TODO falls wir eine Möglichkeit finden auch hier auf Variablen bei den Farben zugreifen-->
+
             <script>
-                    var button = document.getElementsByClassName("menu");
+
+                var button = document.getElementsByClassName("menu");
                     button[0].style.backgroundColor = "#F6CE41";
                     button[1].style.backgroundColor = "#F5852B";
                     button[2].style.backgroundColor = "#E45D5D";
