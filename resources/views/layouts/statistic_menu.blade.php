@@ -14,5 +14,23 @@
 
         @endforeach
 
+        <script>
+
+        changeCSS();
+
+        function changeCSS () {
+        console.log("dd");
+
+        button = document.getElementsByTagName("button")
+        button[6].style.backgroundColor = "#F6CE41";
+        button[10].style.backgroundColor = "#F5852B";
+        button[16].style.backgroundColor = "#E45D5D";
+        button[21].style.backgroundColor = "#C538F4";
+        button[24].style.backgroundColor = "#45A6FA";
+        button[27].style.backgroundColor = "#1DE3E1";
+
+        }
+        $('.button').css("background-color", "red");
+        </script>
     </div>
 @endforeach
