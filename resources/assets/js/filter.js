@@ -35,11 +35,11 @@ module.exports = {
                 let $filterVal = $($countryItems[i]).data($filterBy);
 
                 if($val == "null" || !$val){
-                    $($countryItems[i]).show();
+                    $($countryItems[i]).parent().removeClass('hide');
                 } else if ($filterVal !== $val) {
-                    $($countryItems[i]).hide();
+                    $($countryItems[i]).parent().addClass('hide');
                 } else {
-                    $($countryItems[i]).show();
+                    $($countryItems[i]).parent().removeClass('hide');
                 }
             }
         }
