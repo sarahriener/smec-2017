@@ -90,9 +90,7 @@ h1{
   height: 44px;
   border-radius: 3px;
   color: $w-mine-shaft;
-  border-color: $w-alto;
   border: 2px;
-  //background-color: #4CAF50;
 }
 
 .buttons:hover{
@@ -105,4 +103,69 @@ h1{
   margin-top: 100px;
   white-space: nowrap;
   margin: 40px 30px 0px 30px;
+}
+
+
+// NEUES
+
+
+element.style {
+}
+#accordion {
+  margin-top: 0px;
+}
+
+.panel-group {
+  margin-bottom: 26px;
+}
+
+*, :after, :before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+user agent stylesheet
+div {
+  display: block;
+}
+
+body {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  background-color: #fff;
+}
+
+body {
+  color: #363636;
+}
+
+body {
+  font-family: Lato,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 16px;
+  line-height: 1.67;
+}
+
+html {
+  font-size: 10px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+
+*, :after, :before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+*, :after, :before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
