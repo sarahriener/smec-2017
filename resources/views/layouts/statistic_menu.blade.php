@@ -18,11 +18,16 @@
         </div>
     </div>
      <script>
-    function toggle(){
-        if
-    var button = document.getElementsByClassName("menu__inner");
-    console.log("hi");
-    button[0].style.display = "inline";
-    }
+
+         function toggle() {
+             var button = document.getElementsByClassName("menu__inner");
+             if (button[0].style.display == "inline") {
+                 button[0].style.display = "none";
+             }
+             else {
+                 button[0].style.display = "inline";
+             }
+         }
+
     </script>
 @endforeach
