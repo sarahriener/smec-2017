@@ -3,6 +3,7 @@
 @section('title', 'Compare')
 
 <script>
+
     function allowDrop(ev) {
         ev.preventDefault();
     }
@@ -22,6 +23,7 @@
         ev.target.appendChild(document.getElementById(data));
 
     }
+
 </script>
 
 

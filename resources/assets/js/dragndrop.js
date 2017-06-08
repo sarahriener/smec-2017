@@ -13,23 +13,14 @@ module.exports = {
         function drop(ev) {
             ev.preventDefault();
 
-            var $dropLength = $('#div2 .filter__items--wrapper').length;
-
-            console.log('???');
-            if ($dropLength > 0) {
-                var $toShift = $('#div2 .filter__items--wrapper')[0];
-
-                var $insert = $('.compare .filter__items');
-                $insert.appendChild($toShift);
-                $toShift.remove();
+            if ($('#div2 .filter__items--wrapper')[0]!== undefined) {
+                $('.compare .filter__items')[0].append($('#div2 .filter__items--wrapper')[0]);
             }
-
 
             var data = ev.dataTransfer.getData("text");
             ev.target.appendChild(document.getElementById(data));
 
         }
-
     }
 
 };
