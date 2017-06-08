@@ -1,7 +1,8 @@
 @foreach($main_statistic_types as $main_statistic_type)
     <div class="statistic-menu">
 
-        <button class="menu" onclick="toggle()"><h4>{{$main_statistic_type->name}}</h4></button>
+        <button class="menu" onclick="toggle()" for="toggle-1"><h4>{{$main_statistic_type->name}}</h4></button>
+
         <!-- SUBMENU -->
         <div class="menu__inner">
         @foreach(\App\StatisticType::all()->where('category_id', $main_statistic_type->id) as $sub_statistic_type)
@@ -9,32 +10,19 @@
             <form class="sub-statistic-type" data-statistic-type="{{$sub_statistic_type->name}}" data-country="{{ $country->id }}">
                 <input type="hidden" value="{{$country->id}}" name="country_id">
                 <input type="hidden" value="{{str_replace(" ", "_", $sub_statistic_type->name)}}" name="statistic_type">
-                <button type="submit" class="sub_botton">
+                <button type="submit" class="sub_button">
                      {{$sub_statistic_type->name}}
                 </button>
             </form>
         @endforeach
         </div>
-
-        <script>
-        function toggle() {
-        var x = document.getElementsByClassName('sub-static-type');
-        if (x.style.display === 'none') {
-        x.style.display = 'block';
-        } else {
-        x.style.display = 'none';
-        }
-        }
-        </script>
-                /*console.log("dd");
-
-                button = document.getElementsByTagName("button");
-                button[6].style.backgroundColor = "#F6CE41";
-                button[10].style.backgroundColor = "#F5852B";
-                button[16].style.backgroundColor = "#E45D5D";
-                button[21].style.backgroundColor = "#C538F4";
-                button[25].style.backgroundColor = "#45A6FA";
-                button[27].style.backgroundColor = "#1DE3E1";*/
-            }
     </div>
+     <script>
+    function toggle(){
+        if
+    var button = document.getElementsByClassName("menu__inner");
+    console.log("hi");
+    button[0].style.display = "inline";
+    }
+    </script>
 @endforeach

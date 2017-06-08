@@ -52,6 +52,7 @@ h1{
   border: none;
   height: 100%;
   padding: 16px;
+  display: none;
 }
 
 .statistic-menu {
@@ -61,7 +62,7 @@ h1{
   border-radius: 5px;
 }
 
-.sub_botton{
+.sub_button{
   background-color: #fff;
   width: 100%;
   padding: 8px;
@@ -72,11 +73,11 @@ h1{
   overflow: auto;
 }
 
-.sub_botton:hover{
+.sub_button:hover{
  font-weigh: 600;
 }
 
-.sub_botton:focus {
+.sub_button:focus {
   outline:0;
 }
 

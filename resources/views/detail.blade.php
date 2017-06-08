@@ -20,6 +20,16 @@
                 @include('layouts.statistic_menu')
 
             </div>
+            <script>
+                    var button = document.getElementsByClassName("menu");
+                    button[0].style.backgroundColor = "#F6CE41";
+                    button[1].style.backgroundColor = "#F5852B";
+                    button[2].style.backgroundColor = "#E45D5D";
+                    button[3].style.backgroundColor = "#C538F4";
+                    button[4].style.backgroundColor = "#45A6FA";
+                    button[5].style.backgroundColor = "#1DE3E1";
+
+            </script>
         </div>
 
         <div class="country">
@@ -37,8 +47,8 @@
                     <div style="margin-left: 50px;" class="statistic_type" data-country="{{ $country->id }}">
                         <p>Select a statistic type.</p>
                     </div>
-
                 </div>
+
                 <script type="text/javascript" src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
 
