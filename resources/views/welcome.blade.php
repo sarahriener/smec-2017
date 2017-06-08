@@ -23,7 +23,7 @@
                 nonumy eirmod tempor invidunt ut labore
             </p>
         </div>
-
+        
         <div class="entry__data">
             <div class="entry__data__item">
                 <span class="entry__data--head">€ 919,03 billion</span>
@@ -43,7 +43,7 @@
 
         <div class="entry__more">
             <p>Curious about our Google-Shopping Countries?</p>
-            <span><button type="button" class="entry__more__button">Learn more</button> </span>
+            <span><a href="/overview" class="entry__more__button">Learn more</a> </span>
         </div>
 
 

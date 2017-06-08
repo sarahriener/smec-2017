@@ -1,8 +1,3 @@
-/**
-* Created by manuela_posch on 01.06.17.
-*/
-
-
 @extends('layouts.app')
 
 @section('title', 'Detail')
@@ -21,42 +16,26 @@
 
         <div class="menu__left">
             <div>
+                @include('layouts.statistic_menu')
 
-                <!-- TODO generate right menu-points and submenu -->
-                @foreach(\App\StatisticType::all()->where('category_id', null) as $main_statistic_type)
-
-                    <button class="buttons"><span class="text">{{$main_statistic_type->name}}</span></button>
-                    <table class="table">
-                    <tbody>
-
-                    @foreach(\App\StatisticType::all()->where('category_id', $main_statistic_type->id) as $sub_statistic_type)
-                            <tr>
-                               <td><a class="text" href="/country/{{$country->id}}/{{ str_replace(" ", "_", $sub_statistic_type->name)}}">{{$sub_statistic_type->name}}</a></td>
-                            </tr>
-                    @endforeach
-                    </table>
-                    </tbody>
-                @endforeach
                 <script>
+                changeCSS();
+                function changeCSS () {
+                console.log("dd");
 
-                    changeCSS();
-                    function changeCSS () {
-                        console.log("dd");
+                button = document.getElementsByTagName("button")
+                button[6].style.backgroundColor = "#F6CE41";
+                button[7].style.backgroundColor = "#F5852B";
+                button[8].style.backgroundColor = "#E45D5D";
+                button[9].style.backgroundColor = "#C538F4";
+                button[10].style.backgroundColor = "#45A6FA";
+                button[11].style.backgroundColor = "#1DE3E1";
 
-                        button = document.getElementsByTagName("button")
-                        button[6].style.backgroundColor = "#F6CE41";
-                        button[7].style.backgroundColor = "#F5852B";
-                        button[8].style.backgroundColor = "#E45D5D";
-                        button[9].style.backgroundColor = "#C538F4";
-                        button[10].style.backgroundColor = "#45A6FA";
-                        button[11].style.backgroundColor = "#1DE3E1";
-
-                    }
-                    $('.button').css("background-color", "red");
+                }
+                $('.button').css("background-color", "red");
                 </script>
             </div>
         </div>
-
 
         <div class="panel-group" id="accordion">
             <div class="panel panel-default">
@@ -401,19 +380,14 @@
         </div>
 
 
-
-
-
-
         <div class="country">
             <div>
-                <div menu__right>
-                    <div class="breadcrumb"></div>
-                    <h1>{{ $country->name }}  </h1>
+                <div>
+                    <h1>{{ $country->name }}
                     <!-- TODO wenn Country Img drinnen darauf zugreifen-->
-                    <img src="../assets/img/flags/flagge.png" alt="Mountain View">
-                    <img src="../assets/img/flags/AUT.svg" alt="" height="20">
-                    <a href="../compare" target="_self" class="btn btn-default subs-btn">Compare</a>
+                        <img src="../assets/img/flags" alt="{{ $country->code }}" height="20">
+                        <a href="/compare/{{ $country->id }}" target="_self" class="btn btn-default subs-btn">Compare</a>
+                    </h1>
 
                     <!-- TODO klasse eindeutig benennen!!!! -->
                     <p class="text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam </p>

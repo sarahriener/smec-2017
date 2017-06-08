@@ -18,9 +18,9 @@
         @endforeach
     </div>
 
-    <div class="filter__items">
+    <div class="filter__items" ondrop="drop(event)" ondragover="allowDrop(event)">
         @foreach ($countries as $country)
-            <div class="filter__items--wrapper" id="{{ $country->code }}">
+            <div class="filter__items--wrapper" id="{{ $country->code }}" draggable="true" ondragstart="drag(event)">
                 <a href="/country/{{$country->id}}" class="filter__items--item" class="filter__country" data-country="{{ $country->code }}" data-continent="{{$country->continent_id}}">{{ $country->name }}</a>
             </div>
         @endforeach
