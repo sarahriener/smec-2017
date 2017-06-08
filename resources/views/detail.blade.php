@@ -36,12 +36,23 @@
         </div>
 
         <div class="country">
-            <div>
+            <div class="menu__right">
                 <div>
+                    <div class="menu__right">
+                        <!-- TODO breadcrumb Klasse bennenen auch in CSS -->
+                        <ol class="breadcrumb">
+                            <!--!!update!! href link (startpage)-->
+                            <li><a href="/google-shopping-compendium/#attributes">Google Shopping Compendium</a></li>
+                            <!--!!update!! href link (startpage) section attributes-->
+                            <li class="active"><a href="/google-shopping-compendium/attributes/image-link">Image</a></li>
+                            <li class="active">Image Link</li>
+                        </ol>
+                        <div>
+
                     <h1>{{ $country->name }}
                     <!-- TODO wenn Country Img drinnen darauf zugreifen-->
                        <!-- <img src="../assets/img/flags" alt="{{ $country->code }}" height="20"> -->
-                        <a href="/compare/{{ $country->id }}" target="_self" class="btn btn-default subs-btn">Compare</a>
+                        <a class="compareBtn" href="/compare/{{ $country->id }}" target="_self" class="btn btn-default subs-btn">Compare</a>
                     </h1>
 
                     <!-- TODO klasse eindeutig benennen!!!! -->
