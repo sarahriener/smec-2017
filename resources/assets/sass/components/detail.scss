@@ -38,8 +38,16 @@ h1{
   border: none;
 }
 
+.menu:focus {
+  outline:0;
+}
+
+.menu:active {
+}
+
 .menu__inner{
   float: left;
+  width: 100%;
   border-radius: 4px;
   border: none;
   height: 100%;
@@ -55,13 +63,21 @@ h1{
 
 .sub_botton{
   background-color: #fff;
+  width: 100%;
   padding: 8px;
-  border-top: none;
-  border-left:none;
-  border-right: none;
+  border: none;
   line-height: 1.67;
   vertical-align: top;
-  width: 100%;
+  border-top: 1px solid #ddd;
+  overflow: auto;
+}
+
+.sub_botton:hover{
+ font-weigh: 600;
+}
+
+.sub_botton:focus {
+  outline:0;
 }
 
 .menu__right{

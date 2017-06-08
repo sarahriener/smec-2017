@@ -1,7 +1,7 @@
 @foreach($main_statistic_types as $main_statistic_type)
     <div class="statistic-menu">
 
-        <button class="menu"><h4 >{{$main_statistic_type->name}}</h4></button>
+        <button class="menu" onclick="toggle()"><h4>{{$main_statistic_type->name}}</h4></button>
         <!-- SUBMENU -->
         <div class="menu__inner">
         @foreach(\App\StatisticType::all()->where('category_id', $main_statistic_type->id) as $sub_statistic_type)
@@ -15,11 +15,17 @@
             </form>
         @endforeach
         </div>
+
         <script>
-
-            changeCSS();
-
-            function changeCSS () {
+        function toggle() {
+        var x = document.getElementsByClassName('sub-static-type');
+        if (x.style.display === 'none') {
+        x.style.display = 'block';
+        } else {
+        x.style.display = 'none';
+        }
+        }
+        </script>
                 /*console.log("dd");
 
                 button = document.getElementsByTagName("button");
@@ -30,6 +36,5 @@
                 button[25].style.backgroundColor = "#45A6FA";
                 button[27].style.backgroundColor = "#1DE3E1";*/
             }
-        </script>
     </div>
 @endforeach
