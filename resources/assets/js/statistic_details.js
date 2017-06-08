@@ -4,6 +4,11 @@ module.exports = {
 
     init: function () {
 
+        if($("#div2").not("div.filter__items--wrapper")){
+            $("#data-div2").hide();
+        }
+
+
         $("form.sub-statistic-type").submit(function(e) {
             $.ajax({
                 type: "GET",
@@ -22,10 +27,9 @@ module.exports = {
            var country_elem = e.target;
 
             var country_id = $(country_elem).find(".filter__items--wrapper")[0].id;
-            console.log(country_id);
 
-
-
+            $("#data-div2").find("form.sub-statistic-type").find("input[name='country_id']").val(country_id);
+            $("#data-div2").show();
 
         });
 

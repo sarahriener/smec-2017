@@ -13,6 +13,12 @@ use App\Country;
 
 class HomeController extends Controller
 {
+    private $TYPE = 'Sales';
+    private $sTypeId;
+
+    public function __construct() {
+        $this->sTypeId = StatisticType::where('name', $this->TYPE)->first()->id;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -24,12 +30,8 @@ class HomeController extends Controller
         $aggregatedFutureSales = $this->getAggregatedFutureSales();
         $salesOfCountry = $this->getSalesOfCountry();
 
-        var_dump($salesOfCountry);
-
         return view('welcome', ['aggregatedSales' => $aggregatedSales, 'aggregatedFutureSales' => $aggregatedFutureSales,
             'salesOfCountry' => $salesOfCountry]);
-        //return view('welcome',  ['aggregatedSales' => [1,2]]);
-
     }
 
     private function getAggregatedSales() {
@@ -65,18 +67,32 @@ FROM table;
      * Get current sales of a random country
      */
     private function getSalesOfCountry() {
-        /*get all ids, store in array, get random number between 0 and length-1*/
         $aCountry = array();
-        $aCountryIds = Country::all();
+
+        // Get random one random country
+        $oCountries = Country::all();
         $min = 0;
-        $max = sizeof($aCountryIds) - 1;
+        $max = sizeof($oCountries) - 1;
 
-        $random = rand(0, sizeof($aCountryIds) - 1);
+        $random = rand($min, $max);
+        $oCountry = $oCountries[$random];
 
-        $aCountry['name'] = $aCountryIds[$random]->name;
+        $aCountry['name'] = $oCountry->name;
 
-        // TODO get current sales of this country
-        $aCountry['sales'] = "50" . "€";
+        // Get current sales of this country
+        $oCountryStatistic = Statistic::where('statistic_type_id', $this->sTypeId)
+            ->where('country_id', $oCountry->id)
+            ->first();
+
+        Log::info("Statistic: " . $oCountryStatistic);
+
+        if($oCountryStatistic) {
+            $oStatisticDetails = StatisticDetail::where('statistic_id', $oCountryStatistic->id)->first();
+
+            $oStatisticDetails ? $aCountry['sales'] = $oStatisticDetails->value : $aCountry['sales'] = "No current sales available!";
+        } else {
+            $aCountry['sales'] = "No current sales available!";
+        }
 
         return (object) $aCountry;
     }
