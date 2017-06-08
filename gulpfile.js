@@ -20,5 +20,6 @@ elixir(function(mix) {
     ]);
 
     mix.browserify('base.js');
-    
+
+    mix.copy('resources/assets/img', 'public/img');
 });
