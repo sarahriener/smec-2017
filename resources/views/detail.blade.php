@@ -40,7 +40,7 @@
                 <div>
                     <h1>{{ $country->name }}
                     <!-- TODO wenn Country Img drinnen darauf zugreifen-->
-                        <img src="../assets/img/flags" alt="{{ $country->code }}" height="20">
+                       <!-- <img src="../assets/img/flags" alt="{{ $country->code }}" height="20"> -->
                         <a href="/compare/{{ $country->id }}" target="_self" class="btn btn-default subs-btn">Compare</a>
                     </h1>
 
@@ -59,7 +59,7 @@
                 <div id="chartContainer2" class="chart" ></div><br/>
                 <div id="chartContainer3" class="chart" ></div>
                 <div id="chartContainer4" class="chart" ></div>
-                <img src="../../public/img/cart_icon.png">
+                <!-- <img src="../../public/img/cart_icon.png"> -->
 
                 <script type="text/javascript">
                     var chart = new CanvasJS.Chart("chartContainer1",
