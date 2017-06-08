@@ -12,6 +12,22 @@
 
 }
 
+.compare__detail__select.comparison {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+
+  #div1, #div2 {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
 .compare__detail__data {
   margin-top: 20px;
 }
@@ -33,6 +49,25 @@
   padding-bottom: 400px;
 }
 
+#div2 {
+  .filter__items--wrapper {
+    width: auto;
+    height: auto;
+    margin: 0;
+    background-color: transparent;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .filter__items--item, .detail .filter__items--item {
+    background-color: transparent;
+  }
+}
+
+.div1__wrapper {
+  margin-left: auto;
+  margin-right: auto;
+}
 
 
 
