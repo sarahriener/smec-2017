@@ -7,8 +7,8 @@
             <form class="sub-statistic-type">
                 <input type="hidden" value="{{$country->id}}" name="country_id">
                 <input type="hidden" value="{{str_replace(" ", "_", $sub_statistic_type->name)}}" name="statistic_type">
-                <button type="submit" class="menu">
-                    - {{$sub_statistic_type->name}}
+                <button type="submit" class="sub_botton">
+                     {{$sub_statistic_type->name}}
                 </button>
             </form>
 
@@ -16,20 +16,19 @@
 
         <script>
 
-        changeCSS();
+            changeCSS();
 
-        function changeCSS () {
-        console.log("dd");
+            function changeCSS () {
+                console.log("dd");
 
-        button = document.getElementsByTagName("button")
-        button[6].style.backgroundColor = "#F6CE41";
-        button[10].style.backgroundColor = "#F5852B";
-        button[16].style.backgroundColor = "#E45D5D";
-        button[21].style.backgroundColor = "#C538F4";
-        button[24].style.backgroundColor = "#45A6FA";
-        button[27].style.backgroundColor = "#1DE3E1";
-
-        }
+                button = document.getElementsByTagName("button")
+                button[6].style.backgroundColor = "#F6CE41";
+                button[10].style.backgroundColor = "#F5852B";
+                button[16].style.backgroundColor = "#E45D5D";
+                button[21].style.backgroundColor = "#C538F4";
+                button[24].style.backgroundColor = "#45A6FA";
+                button[27].style.backgroundColor = "#1DE3E1";
+            }
         $('.button').css("background-color", "red");
         </script>
     </div>
