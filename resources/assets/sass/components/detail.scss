@@ -1,6 +1,6 @@
 body {
   color: #363636;
-  font-family: Lato,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-family: Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 1.67;
 }
@@ -34,27 +34,14 @@ h1{
   float: left;
   margin-bottom: 0;
   border-radius: 4px;
-  overflow: auto;
   border: none;
-}
-
-.sub_botton{
-  overflow: auto;
-}
-
-.sub_botton:hover{
-  font:bold;
 }
 
 .menu__inner{
-  position: absolute;
-  margin: 5%;
-  height: 50px;
   float: left;
-  margin-bottom: 0;
   border-radius: 4px;
-  overflow: auto;
   border: none;
+  height: 100%;
 }
 
 .statistic-menu {

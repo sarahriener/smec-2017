@@ -30,7 +30,6 @@
                 button[25].style.backgroundColor = "#45A6FA";
                 button[27].style.backgroundColor = "#1DE3E1";*/
             }
-        $('.button').css("background-color", "red");
         </script>
     </div>
 @endforeach
