@@ -4,7 +4,7 @@
 
         <!-- SUBMENU -->
         @foreach(\App\StatisticType::all()->where('category_id', $main_statistic_type->id) as $sub_statistic_type)
-            <form class="sub-statistic-type">
+            <form class="sub-statistic-type" data-statistic-type="{{$sub_statistic_type->name}}" data-country="{{ $country->id }}">
                 <input type="hidden" value="{{$country->id}}" name="country_id">
                 <input type="hidden" value="{{str_replace(" ", "_", $sub_statistic_type->name)}}" name="statistic_type">
                 <button type="submit" class="sub_botton">
