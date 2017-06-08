@@ -46,6 +46,7 @@
                 <div id="chartContainer2" class="chart" ></div><br/>
                 <div id="chartContainer3" class="chart" ></div>
                 <div id="chartContainer4" class="chart" ></div>
+                <img src="../../public/img/cart_icon.png">
 
                 <script type="text/javascript">
                     var chart = new CanvasJS.Chart("chartContainer1",

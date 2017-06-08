@@ -12,8 +12,16 @@ module.exports = {
 
         function drop(ev) {
             ev.preventDefault();
+
+            if ($('#div2 .filter__items--wrapper')[0]!== undefined) {
+                $('.compare .filter__items')[0].append($('#div2 .filter__items--wrapper')[0]);
+            }
+
             var data = ev.dataTransfer.getData("text");
             ev.target.appendChild(document.getElementById(data));
+
         }
     }
+
 };
+

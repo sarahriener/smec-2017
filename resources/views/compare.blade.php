@@ -3,6 +3,7 @@
 @section('title', 'Compare')
 
 <script>
+
     function allowDrop(ev) {
         ev.preventDefault();
     }
@@ -13,9 +14,16 @@
 
     function drop(ev) {
         ev.preventDefault();
+
+        if ($('#div2 .filter__items--wrapper')[0]!== undefined) {
+            $('.compare .filter__items')[0].append($('#div2 .filter__items--wrapper')[0]);
+        }
+
         var data = ev.dataTransfer.getData("text");
         ev.target.appendChild(document.getElementById(data));
+
     }
+
 </script>
 
 
@@ -31,42 +39,26 @@
         <div class="compare__detail">
             <div class="compare__detail__select comparison">
                 <div id="div1" class="compare__detail__select--item" >
-                    <a href="/country/{{$country->id}}" target="_self">{{$country->name}}</a>
+                    <div class="div1__wrapper">
+                        <a href="/country/{{$country->id}}" target="_self">{{$country->name}}</a>
+                    </div>
                 </div>
 
                 <div id="div2" class="compare__detail__select--item" ondrop="drop(event)" ondragover="allowDrop(event)">
-
+                    <span class="glyphicon glyphicon glyphicon-remove"></span>
                 </div>
             </div>
 
-            <div class="compare__detail__data">
+            <div class="compare__detail__data" id="data-div1">
                 <div class="compare__detail__data--item">
 
-                    @foreach($main_statistic_types as $main_statistic_type)
-                        <div class="statistic-menu">
-                            <button class="menu">{{$main_statistic_type->name}}</button>
-
-                            <!-- SUBMENU -->
-                            @foreach(\App\StatisticType::all()->where('category_id', $main_statistic_type->id) as $sub_statistic_type)
-                                <form class="sub-statistic-type">
-                                    <input type="hidden" value="{{$country->id}}" name="country_id">
-                                    <input type="hidden" value="{{str_replace(" ", "_", $sub_statistic_type->name)}}" name="statistic_type">
-                                    <button type="submit" class="menu">
-                                       - {{$sub_statistic_type->name}}
-                                    </button>
-                                </form>
-                                <div class="statistic_type" data-statistic-type="{{$sub_statistic_type->name}}" data-country="{{ $country->id }}">
-
-                                </div>
-                            @endforeach
-
-                        </div>
-                    @endforeach
+                    @include('layouts.statistic_menu')
 
                 </div>
 
-                <div class="compare__detail__data--item">
+                <div class="compare__detail__data--item" id="data-div2">
 
+                    @include('layouts.statistic_menu')
 
                 </div>
             </div>
