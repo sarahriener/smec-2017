@@ -4,20 +4,17 @@ module.exports = {
 
     init: function () {
 
-        $(document).ready(function () {
-            $("form.sub-statistic-type").submit(function(e) {
-                $.ajax({
-                    type: "GET",
-                    url: "/getStatisticDetails",
-                    data: $(this).serialize(), // serializes the form's elements.
-                    success: function(data) {
-                        showDetails(data);
-                    }
-                });
-
-                e.preventDefault(); // avoid to execute the actual submit of the form.
+        $("form.sub-statistic-type").submit(function(e) {
+            $.ajax({
+                type: "GET",
+                url: "/getStatisticDetails",
+                data: $(this).serialize(), // serializes the form's elements.
+                success: function(data) {
+                    showDetails(data);
+                }
             });
 
+            e.preventDefault(); // avoid to execute the actual submit of the form.
         });
 
         function showDetails(data){
