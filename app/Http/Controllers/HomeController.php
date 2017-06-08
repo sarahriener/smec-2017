@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Log;
 use App\StatisticType;
 use App\Statistic;
 use App\StatisticDetail;
+use App\Country;
 
 class HomeController extends Controller
 {
@@ -19,11 +20,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        Log::info('In HomeController');
-
         $aggregatedSales = $this->getAggregatedSales();
         $aggregatedFutureSales = $this->getAggregatedFutureSales();
         $salesOfCountry = $this->getSalesOfCountry();
+
+        var_dump($salesOfCountry);
 
         return view('welcome', ['aggregatedSales' => $aggregatedSales, 'aggregatedFutureSales' => $aggregatedFutureSales,
             'salesOfCountry' => $salesOfCountry]);
@@ -65,7 +66,19 @@ FROM table;
      */
     private function getSalesOfCountry() {
         /*get all ids, store in array, get random number between 0 and length-1*/
-        return array();
+        $aCountry = array();
+        $aCountryIds = Country::all();
+        $min = 0;
+        $max = sizeof($aCountryIds) - 1;
+
+        $random = rand(0, sizeof($aCountryIds) - 1);
+
+        $aCountry['name'] = $aCountryIds[$random]->name;
+
+        // TODO get current sales of this country
+        $aCountry['sales'] = "50" . "€";
+
+        return (object) $aCountry;
     }
 
 }

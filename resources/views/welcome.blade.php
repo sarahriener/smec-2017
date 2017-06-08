@@ -20,24 +20,26 @@
                 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
                 aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no
                 sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-                nonumy eirmod tempor invidunt ut labore
+                nonumy eirmod tempor invidunt ut laboree
             </p>
         </div>
         
         <div class="entry__data">
             <div class="entry__data__item">
                 <span class="entry__data--head">€ 919,03 billion</span>
+                <span>__{{$aggregatedSales}}__</span>
                 <p class="entry__data--info">e-commerce sales 2015</p>
             </div>
 
             <div class="entry__data__item">
                 <span class="entry__data--head">€ 1256,03 billion</span>
+                <span>__{{$aggregatedFutureSales}}__</span>
                 <p class="entry__data--info">future e-commerce sales 2021</p>
             </div>
 
             <div class="entry__data__item">
-                <span class="entry__data--head">United Kingdom</span>
-                <p class="entry__data--info">country with the highest e-commerce sales</p>
+                <span class="entry__data--head">{{$salesOfCountry->name}}</span>
+                <p class="entry__data--info">current sale: {{$salesOfCountry->sales}}</p>
             </div>
         </div>
 
