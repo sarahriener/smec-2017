@@ -32,7 +32,7 @@ class ComparisonController extends Controller
         $country = Country::find($id);
         $continent = $country->continent();
 
-        $main_statistic_types = StatisticType::all()->where('category_id', null);
+        $main_statistic_types = StatisticType::all()->where('category_id', null)->sortBy('nav_prio', SORT_ASC) ;
 
         $data = ['continents' => $continents, 'countries' => $countries,
             'country'=> $country, 'continent'=> $continent, 'main_statistic_types' => $main_statistic_types];
