@@ -67,7 +67,10 @@ module.exports = {
                         '<p>There are no details available for this statistic type.</p>');
                 }
             } else{
-                var statistic_detail_data = generate_statistic_data(statistic_details);
+                var statistic_detail_data = '<div id="chartContainer-'+ statistic_type.name + '" class="chart" ></div>';
+
+
+
 
                 if(isCompare){
                     $(statistic_detail_div).html(statistic_detail_data);
@@ -76,20 +79,76 @@ module.exports = {
                         '<h2>' + statistic_type.name + '</h2>' +
                         statistic_detail_data);
                 }
+
+                generate_statistic_data(statistic_details, statistic_type);
             }
         }
 
-        function generate_statistic_data(statistic_details){
+        function generate_statistic_data(statistic_details, statistic_type){
             var statistic_detail_data = '';
 
+            /** TODO fallunterscheidung: Um welche Statistikart handelt es sich (es ist bereits definiert welche
+             *  statistic_types welche arten von Graphen eingefügt werden sollen!!
+             *  */
+            // Hier beispiel eines column charts (population) -- nachher besser mit case!
+            if(statistic_type.name == "Population"){
+                createColumnChart(statistic_details, statistic_type);
+            } else{
+                // Come later
+            }
+
+
+            return statistic_detail_data;
+        }
+
+        function createColumnChart(statistic_details, statistic_type){
+
+            var generatedDataPoints = [];
+
+            var data_value = "";
             $(statistic_details).each(function(i, detail){
                 var year =  detail.year;
                 var value =  detail.value;
 
-                statistic_detail_data += '<div><b>' + year + ':</b> ' + value + '</div>';
+
+                var data = {};
+
+                data_value = parseFloat(value.replace(/[^0-9\.]/g, ''));
+                data.x =  year;
+                data.y =  data_value;
+                data.label = year;
+
+                console.log(data);
+                generatedDataPoints.push(data);
+                console.dir(generatedDataPoints);
 
             });
-            return statistic_detail_data;
+            var chart = new CanvasJS.Chart('chartContainer-'+ statistic_type.name + '',
+                {
+                    animationEnabled: true,
+                    title: {
+                        text: statistic_type.name,
+                        fontFamily: "arial"
+                    },
+                    legend: {
+                        fontFamily: "arial"
+                    },
+                    axisX: {
+                        interval: (data_value/100)
+                    },
+                    data: [
+                        {
+                            type: "column",
+                            legendMarkerType: "triangle",
+                            legendMarkerColor: "green",
+                            color: "rgba(255,12,32,.3)",
+                            showInLegend: true,
+                            legendText: statistic_type.description,
+                            dataPoints: generatedDataPoints
+                        }
+                    ]
+                });
+            chart.render();
         }
 
     }
