@@ -58,8 +58,10 @@
                     <!-- TODO klasse eindeutig benennen!!!! -->
                     <p class="text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam </p>
 
-                    <div style="margin-left: 50px;" class="statistic_type" data-country="{{ $country->id }}">
+                    <div style="margin-left: 50px;" class="statistic_data detail_data" data-country="{{ $country->id }}">
                         <p>Select a statistic type.</p>
+
+
                     </div>
                 </div>
 
