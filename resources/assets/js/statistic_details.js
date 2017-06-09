@@ -3,6 +3,9 @@ module.exports = {
     init: function () {
         if($('#div2').not('div.filter__items--wrapper')){
             $('#data-div2').hide();
+            $('#data-div2').find('div.statistic-data.compare-data').each(function(){
+                (this).setAttribute('data-country', null);
+            });
         }
 
         $('.compare__detail__select--item').on('drop', function(e){

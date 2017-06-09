@@ -49,8 +49,8 @@
                 </div>
             </div>
 
-            <div class="compare__detail__data" id="data-div1">
-                <div class="compare__detail__data--item">
+            <div class="compare__detail__data" >
+                <div class="compare__detail__data--item" id="data-div1">
 
                     @include('layouts.statistic_menu')
 
