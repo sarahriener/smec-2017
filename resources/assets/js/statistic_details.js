@@ -31,7 +31,7 @@ module.exports = {
         });
 
         function hideAllDetails(country){
-            var statistic_detail_div = $('div.statistic_data[data-country="' + country.id + '"]');
+            var statistic_detail_div = $('div.statistic-data[data-country="' + country.id + '"]');
             statistic_detail_div.empty();
         }
 
@@ -40,14 +40,14 @@ module.exports = {
             var statistic_type = data['statistic_type'];
             var statistic_details = data['statistic_details'];
 
-            var statistic_detail_div = $('div.statistic_data.detail_data[data-country="' + country.id + '"]');
+            var statistic_detail_div = $('div.statistic-data.detail-data[data-country="' + country.id + '"]');
 
             var isCompare = window.location.href.includes('compare');
             if(isCompare){
 
                 statistic_detail_div = $('div' +
-                    '.statistic_data' +
-                    '.compare_data' +
+                    '.statistic-data' +
+                    '.compare-data' +
                     '[data-country="' + country.id + '"]' +
                     '[data-statistic-type="' + statistic_type.name + '"]');
             }

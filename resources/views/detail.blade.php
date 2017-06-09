@@ -20,19 +20,7 @@
                 @include('layouts.statistic_menu')
 
             </div>
-            <!-- TODO falls wir eine Möglichkeit finden auch hier auf Variablen bei den Farben zugreifen-->
 
-            <script>
-
-                var button = document.getElementsByClassName("menu");
-                    button[0].style.backgroundColor = "#F6CE41";
-                    button[1].style.backgroundColor = "#F5852B";
-                    button[2].style.backgroundColor = "#E45D5D";
-                    button[3].style.backgroundColor = "#C538F4";
-                    button[4].style.backgroundColor = "#45A6FA";
-                    button[5].style.backgroundColor = "#1DE3E1";
-
-            </script>
         </div>
 
         <div class="country">
@@ -55,13 +43,14 @@
                         <a class="compareBtn" href="/compare/{{ $country->id }}" target="_self" class="btn btn-default subs-btn">Compare</a>
                     </h1>
 
-                    <!-- TODO klasse eindeutig benennen!!!! -->
-                    <p class="text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam </p>
+                    <div class="detail-content">
+                        <p class="intro-text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam </p>
 
-                    <div style="margin-left: 50px;" class="statistic_data detail_data" data-country="{{ $country->id }}">
-                        <p>Select a statistic type.</p>
+                        <div class="statistic-data detail-data" data-country="{{ $country->id }}">
+                            <p>Select a statistic type.</p>
 
 
+                        </div>
                     </div>
                 </div>
 
