@@ -91,11 +91,9 @@ module.exports = {
              *  statistic_types welche arten von Graphen eingefügt werden sollen!!
              *  */
             // Hier beispiel eines column charts (population) -- nachher besser mit case!
-            if(statistic_type.name == "Population"){
-                createColumnChart(statistic_details, statistic_type);
-            } else{
-                // Come later
-            }
+            //if(statistic_type.name == "Population"){
+            createColumnChart(statistic_details, statistic_type);
+            //}
 
 
             return statistic_detail_data;

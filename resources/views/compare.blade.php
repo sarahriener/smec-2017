@@ -65,4 +65,7 @@
         </div>
 
     </div>
+    <script type="text/javascript" src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+
 @endsection
