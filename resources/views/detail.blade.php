@@ -8,10 +8,7 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
     <div class="detail">
-        <div class="detail__header">
-            Detail header
-        </div>
-
+        @include('layouts.header')
         @include('layouts.filter')
 
         <div class="menu__left">

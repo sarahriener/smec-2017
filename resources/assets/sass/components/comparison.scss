@@ -62,11 +62,19 @@
   .filter__items--item, .detail .filter__items--item {
     background-color: transparent;
   }
+
+  .filter__items--imagediv {
+    display: none;
+  }
 }
 
 .div1__wrapper {
-  margin-left: auto;
-  margin-right: auto;
+  margin: auto;
+
+  a {
+    color: #000000;
+    font-size: initial;
+  }
 }
 
 

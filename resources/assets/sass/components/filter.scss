@@ -37,7 +37,9 @@
 }
 
 .filter__items--wrapper {
-  display: inline;
+  display: inline-block;
+  padding: 15px;
+  width: 100px;
 }
 
 .filter__items--wrapper.hide {
@@ -73,17 +75,15 @@
   }
 
 }
+.filter__items--image {
+  width: 60%;
+  height: auto;
+  margin-top: 4px;
+}
 
 
 /* overview */
 .overview {
-  .filter__items--item {
-    width: 145px;
-    height: 145px;
-    float: left;
-    margin: 2.2%;
-    padding: 25px;
-  }
 
   .filter__items {
     text-align: center;
@@ -108,7 +108,7 @@
   }
 
   .filter__search--search {
-    width: 25%;
+    width: 35%;
     float: left;
     text-align: left;
   }

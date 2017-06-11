@@ -1,0 +1,15 @@
+.header {
+  overflow: auto;
+}
+
+.header__img {
+  height: 60px;
+  width: auto;
+}
+
+.header__nav {
+  margin-left: 25px;
+  text-transform: uppercase;
+  color: $w-boulder;
+  vertical-align: middle;
+}

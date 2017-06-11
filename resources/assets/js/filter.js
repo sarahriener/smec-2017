@@ -49,7 +49,7 @@ module.exports = {
                 return country.text;
             }
             let countryOption = $(
-                '<span><img width="30px"  height="auto" src="https://c.tadst.com/gfx/n/fl/128/at.png" class="img-flag" /> ' + country.text + '</span>'
+                '<span><img width="30px"  height="auto" src="/img/flags/' + country.id +'.svg" class="img-flag" /> ' + country.text + '</span>'
                 // TODO add Flag images
                 // '<span><img src="vendor/imgs/flags/' + country.id.toLowerCase() + '.png" class="img-flag" /> ' + country.title + '</span>'
             );
