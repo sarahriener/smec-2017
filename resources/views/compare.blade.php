@@ -15,8 +15,8 @@
     function drop(ev) {
         ev.preventDefault();
 
-        if ($('#div2 .filter__items--wrapper')[0]!== undefined) {
-            $('.compare .filter__items')[0].append($('#div2 .filter__items--wrapper')[0]);
+        if ($('#div2 .filter__items__wrapper')[0]!== undefined) {
+            $('.compare .filter__items')[0].append($('#div2 .filter__items__wrapper')[0]);
         }
 
         var data = ev.dataTransfer.getData("text");
@@ -38,25 +38,24 @@
 
         <div class="compare__detail">
             <div class="compare__detail__select comparison">
-                <div id="div1" class="compare__detail__select--item" >
+                <div id="div1" class="compare__detail__select__item" >
                     <div class="div1__wrapper">
                         <a href="/country/{{$country->id}}" target="_self">{{$country->name}}</a>
                     </div>
                 </div>
 
-                <div id="div2" class="compare__detail__select--item" ondrop="drop(event)" ondragover="allowDrop(event)">
-                    <span class="glyphicon glyphicon glyphicon-remove"></span>
+                <div id="div2" class="compare__detail__select__item" ondrop="drop(event)" ondragover="allowDrop(event)">
                 </div>
             </div>
 
             <div class="compare__detail__data" >
-                <div class="compare__detail__data--item" id="data-div1">
+                <div class="compare__detail__data__item" id="data-div1">
 
                     @include('layouts.statistic_menu')
 
                 </div>
 
-                <div class="compare__detail__data--item" id="data-div2">
+                <div class="compare__detail__data__item" id="data-div2">
 
                     @include('layouts.statistic_menu')
 

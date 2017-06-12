@@ -4,50 +4,50 @@ body {
 
 .entry {
   font-size: 1.3em;
-}
 
-.entry__text {
-  margin: 35px 0 35px 0;
-}
+  &__text {
+    margin: 35px 0 35px 0;
 
-.entry__text__header {
-  font-weight: 700;
-}
+    &__header {
+      font-weight: 700;
+    }
+  }
 
-.entry__data {
-  margin-top: 35px;
-  background-color: $w-alabaster;
-  text-align: center;
-  padding: 30px;
-  margin-bottom: 30px;
-  overflow: auto;
-}
+  &__data {
+    margin-top: 35px;
+    background-color: $w-alabaster;
+    text-align: center;
+    padding: 30px;
+    margin-bottom: 30px;
+    overflow: auto;
 
-.entry__data__item {
-  width: 30%;
-  float: left;
-}
+    &__item {
+      width: 30%;
+      float: left;
 
-.entry__data--head {
-  @include font-bald;
-  font-size: 1.3em;
-  margin: 0 12% 0 12%;
-}
+      &__head {
+        @include font-bald;
+        font-size: 1.3em;
+        margin: 0 12% 0 12%;
+      }
 
-.entry__data--info {
-  font-size: 1.1em;
-  margin: 0 12% 0 12%;
-}
+      &__info {
+        font-size: 1.1em;
+        margin: 0 12% 0 12%;
+      }
+    }
+  }
 
-.entry__more {
-  float: right;
-  text-align: right;
-}
+  &__more {
+    float: right;
+    text-align: right;
 
-.entry__more__button {
-  border: none;
-  color: $w-white;
-  background-color: $w-orange;
-  text-transform: uppercase;
-  padding: 15px;
+    &__button {
+      border: none;
+      color: $w-white;
+      background-color: $w-orange;
+      text-transform: uppercase;
+      padding: 15px;
+    }
+  }
 }

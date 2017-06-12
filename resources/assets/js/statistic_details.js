@@ -1,17 +1,17 @@
 
 module.exports = {
     init: function () {
-        if($('#div2').not('div.filter__items--wrapper')){
+        if($('#div2').not('div.filter__items__wrapper')){
             $('#data-div2').hide();
             $('#data-div2').find('div.statistic-data.compare-data').each(function(){
                 (this).setAttribute('data-country', null);
             });
         }
 
-        $('.compare__detail__select--item').on('drop', function(e){
+        $('.compare__detail__select__item').on('drop', function(e){
            var country_elem = e.target;
 
-            var country_id = $(country_elem).find('.filter__items--wrapper')[0].id;
+            var country_id = $(country_elem).find('.filter__items__wrapper')[0].id;
 
             var country_div_2 =  $('#data-div2');
             country_div_2.find('form.sub-statistic-type').find('input[name="' + country_id + '"]').val(country_id);

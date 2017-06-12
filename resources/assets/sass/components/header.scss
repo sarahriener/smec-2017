@@ -1,3 +1,7 @@
+body {
+  @include font-base;
+}
+
 .header {
   overflow: auto;
 }

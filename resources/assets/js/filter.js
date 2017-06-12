@@ -19,9 +19,14 @@ module.exports = {
                 filterCountries("country", $currCountry);
             });
 
-            let $selectContinent = $(".filter__tags .filter__tags--tag");
+            let $selectContinent = $(".filter__tags .filter__tag");
             $selectContinent.on("click", function(e){
                 let $currContinent = $(e.currentTarget).data("continent");
+
+                // reset select if region is chosen -- not working yet
+                //$('select__country option:first-child').attr("selected", "selected");
+
+                $("#select__country option:selected").val($("#target option:first").val());
 
                 filterCountries("continent", $currContinent);
 
@@ -29,7 +34,7 @@ module.exports = {
         });
 
         function filterCountries($filterBy, $val){
-            let $countryItems = $('.filter__items--item');
+            let $countryItems = $('.filter__item');
 
             for (let i = 0; i < $countryItems.length; i++) {
                 let $filterVal = $($countryItems[i]).data($filterBy);

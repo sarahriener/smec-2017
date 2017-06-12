@@ -1,10 +1,11 @@
+
 /*tags*/
 .filter__tags {
   margin-top: 15px;
   margin-bottom: 35px;
 }
 
-.filter__tags--tag {
+.filter__tag {
   background-color: $w-white;
   border-radius: 7px;
   border: 2px solid $w-green;
@@ -13,15 +14,16 @@
   margin: 5px 8px 0 8px;
   font-size: 15px;
   text-transform: uppercase;
+
+  &:active {
+    background-color: $w-green;
+  }
+
+  &:hover {
+    background-color: #ebebeb;
+  }
 }
 
-.filter__tags--tag:active {
-  background-color: $w-green;
-}
-
-.filter__tags--tag:hover {
-  background-color: #ebebeb;
-}
 
 .filter__country {
   background-color: #ebebeb;
@@ -29,31 +31,69 @@
 
 
 /*items*/
-.filter__items--item, .filter__items--wrapper {
+.filter__item, .filter__items__wrapper {
   background-color: $w-alto;
   border-radius: 15px;
   font-size: initial;
   color: #000000;
 }
 
-.filter__items--wrapper {
+.filter__items__wrapper {
   display: inline-block;
   padding: 15px;
   width: 100px;
+
+  &.hide {
+    display: none;
+  }
 }
 
-.filter__items--wrapper.hide {
-  display: none;
+
+/* search */
+.filter {
+  text-align: center;
 }
 
+.filter__search__label {
+  width: 50%;
+  font-weight: 300;
+  line-height: 2.4em;
+
+  .filter__search__span {
+    width: 50%;
+    float: left;
+    text-align: right;
+  }
+
+  .filter__search__search {
+    width: 35%;
+    height: 40px;
+    float: left;
+    text-align: left;
+  }
+
+  .img-flag {
+    height: 100%;
+    width: auto;
+    margin-top: -4px;
+  }
+
+}
+
+@media (max-width: $max-sm) {
+  .filter__search__label {
+    width: 100%;
+  }
+
+}
 
 /* compare */
-.compare .filter__items--wrapper {
+.compare .filter__items__wrapper {
   display: inline-block;
 }
 
 .compare, .detail {
-  .filter__items--wrapper {
+  .filter__items__wrapper {
     width: 110px;
     height: 110px;
     margin: 8px;
@@ -61,7 +101,7 @@
     display: inline-block;
   }
 
-  .filter__items--item {
+  .filter__item {
     width: 110px;
     height: 110px;
   }
@@ -75,7 +115,7 @@
   }
 
 }
-.filter__items--image {
+.filter__items__img {
   width: 60%;
   height: auto;
   margin-top: 4px;
@@ -84,39 +124,7 @@
 
 /* overview */
 .overview {
-
   .filter__items {
     text-align: center;
   }
-}
-
-
-/* search */
-.filter {
-  text-align: center;
-}
-
-.filter__search--label {
-  width: 50%;
-  font-weight: 300;
-  line-height: 2.4em;
-
-  .filter__search--span {
-    width: 50%;
-    float: left;
-    text-align: right;
-  }
-
-  .filter__search--search {
-    width: 35%;
-    float: left;
-    text-align: left;
-  }
-}
-
-@media (max-width: $max-sm) {
-  .filter__search--label {
-    width: 100%;
-  }
-
 }
