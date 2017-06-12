@@ -12,7 +12,7 @@
 
 @section('content')
     <div class="overview">
-
+        @include('layouts.header')
         @include('layouts.filter')
 
     </div>

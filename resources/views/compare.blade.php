@@ -29,11 +29,7 @@
 
 @section('content')
 
-    <div class="compare">
-        <div class="compare__header">
-            Compare header
-        </div>
-
+        @include('layouts.header')
         @include('layouts.filter')
 
         <div class="compare__detail">
