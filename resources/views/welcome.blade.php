@@ -25,18 +25,24 @@
         
         <div class="entry__data">
             <div class="entry__data__item">
-                <span class="entry__data__item__head">€ {{$aggregatedSales}}</span>
+                <span class="entry__data__item__head">{{$type}} {{$aggregatedSales}}</span>
                 <p class="entry__data__item__info">E-Commerce Sales 2016</p>
             </div>
 
             <div class="entry__data__item">
-                <span class="entry__data__item__head">€ {{$aggregatedFutureSales}}</span>
+                <span class="entry__data__item__head">{{$type}} {{$aggregatedFutureSales}}</span>
                 <p class="entry__data__item__info">Future E-Commerce Sales 2021</p>
             </div>
 
             <div class="entry__data__item">
                 <span class="entry__data__item__head">{{$salesOfCountry->name}}</span>
-                <p class="entry__data__item__info">Current Sale: {{$salesOfCountry->sales}}</p>
+                <p class="entry__data__item__info">
+                    @if (strcmp($salesOfCountry->sales, "") === 0)
+                        No current sales available
+                    @else
+                        Current Sale: {{$type}} {{$salesOfCountry->sales}}
+                    @endif
+                </p>
             </div>
         </div>
 
