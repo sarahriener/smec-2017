@@ -9,7 +9,11 @@
 @mixin font-base {
   font-family: 'Lato', sans-serif;
   font-weight: 300;
+  font-size: 16px;
+  line-height: 24px;
+  color: #767676;
 }
+
 
 @mixin font-bald {
   font-family: 'Lato', sans-serif;
