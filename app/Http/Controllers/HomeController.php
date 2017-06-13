@@ -47,7 +47,17 @@ class HomeController extends Controller
 
         //var_dump($statistic_ids);
 
-        $oStatisticDetails = StatisticDetail::whereIn('statistic_id', $statistic_ids)->sum('value');
+        $iCurrentYear = StatisticDetail::whereIn('statistic_id', $statistic_ids)
+            ->where('year', '<=', date('Y'))
+            ->orderBy('year')
+            ->take(1)
+            ->lists('year')
+            ->first();
+
+        $oStatisticDetails = StatisticDetail::whereIn('statistic_id', $statistic_ids)
+            ->where('year', $iCurrentYear)
+            ->sum('value');
+
         //$oStatisticDetails2 = StatisticDetail::whereIn('statistic_id', $statistic_ids)->lists('value');
         //var_dump($oStatisticDetails2);
         //Log::info("sum of current sales: ".$oStatisticDetails);
@@ -56,12 +66,17 @@ class HomeController extends Controller
     }
 
     private function getAggregatedFutureSales() {
-        /*
-         * SELECT MAX(year)
-FROM table;
-         * */
+        $statistic_ids = Statistic::where('statistic_type_id', $this->sTypeId)->lists('id');
 
-        return 0;
+        $iFutureYear = StatisticDetail::whereIn('statistic_id', $statistic_ids)
+            ->max('year');
+
+        $oStatisticDetails = StatisticDetail::whereIn('statistic_id', $statistic_ids)
+            ->where('year', $iFutureYear)
+            ->sum('value');
+
+
+        return $oStatisticDetails;
     }
 
     /**

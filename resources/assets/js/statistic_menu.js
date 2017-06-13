@@ -16,7 +16,7 @@ module.exports = {
         });
 
 
-        <!-- TODO falls wir eine Möglichkeit finden auch hier auf Variablen bei den Farben zugreifen-->
+        // TODO falls wir eine Möglichkeit finden auch hier auf Variablen bei den Farben zugreifen
         var button = $("div.statistic-menu button.menu");
         button[0].style.backgroundColor = "#F6CE41";
         button[1].style.backgroundColor = "#F5852B";
