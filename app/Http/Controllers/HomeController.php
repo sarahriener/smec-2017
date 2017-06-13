@@ -35,17 +35,8 @@ class HomeController extends Controller
     }
 
     private function getAggregatedSales() {
-
-        /* SELECT one
-            FROM table
-            WHERE datetimefield <= now.year
-            ORDER BY datetimefield DESC
-            LIMIT 1; */
-
         // array with all statistic entries of type "Sales"
         $statistic_ids = Statistic::where('statistic_type_id', $this->sTypeId)->lists('id');
-
-        //var_dump($statistic_ids);
 
         $iCurrentYear = StatisticDetail::whereIn('statistic_id', $statistic_ids)
             ->where('year', '<=', date('Y'))
@@ -54,15 +45,9 @@ class HomeController extends Controller
             ->lists('year')
             ->first();
 
-        $oStatisticDetails = StatisticDetail::whereIn('statistic_id', $statistic_ids)
-            ->where('year', $iCurrentYear)
-            ->sum('value');
+        $iAggregatedSales = $this->aggregateSales($statistic_ids, $iCurrentYear);
 
-        //$oStatisticDetails2 = StatisticDetail::whereIn('statistic_id', $statistic_ids)->lists('value');
-        //var_dump($oStatisticDetails2);
-        //Log::info("sum of current sales: ".$oStatisticDetails);
-
-        return $oStatisticDetails;
+        return $iAggregatedSales;
     }
 
     private function getAggregatedFutureSales() {
@@ -71,12 +56,17 @@ class HomeController extends Controller
         $iFutureYear = StatisticDetail::whereIn('statistic_id', $statistic_ids)
             ->max('year');
 
-        $oStatisticDetails = StatisticDetail::whereIn('statistic_id', $statistic_ids)
-            ->where('year', $iFutureYear)
+        $iAggregatedSales = $this->aggregateSales($statistic_ids, $iFutureYear);
+
+        return $iAggregatedSales;
+    }
+
+    private function aggregateSales($statistic_ids, $year) {
+        $iAggregatedSales = StatisticDetail::whereIn('statistic_id', $statistic_ids)
+            ->where('year', $year)
             ->sum('value');
 
-
-        return $oStatisticDetails;
+        return $iAggregatedSales;
     }
 
     /**
