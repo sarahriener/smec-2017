@@ -26,7 +26,7 @@
         <div class="entry__data">
             <div class="entry__data__item">
                 <span class="entry__data__item__head">€ {{$aggregatedSales}}</span>
-                <p class="entry__data__item__info">E-Commerce Sales 2015</p>
+                <p class="entry__data__item__info">E-Commerce Sales 2016</p>
             </div>
 
             <div class="entry__data__item">
