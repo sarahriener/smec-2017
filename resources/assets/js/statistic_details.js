@@ -16,7 +16,6 @@ module.exports = {
             var country_div_2 =  $('#data-div2');
             country_div_2.find('form.sub-statistic-type').find('input[name="' + country_id + '"]').val(country_id);
             country_div_2.show();
-
         });
 
         $('form.sub-statistic-type').submit(function(e) {
