@@ -30,8 +30,7 @@
             </div>
 
             <div class="entry__data__item">
-                <span class="entry__data__item__head">€ 1256,03 billion</span>
-                <span>__{{$aggregatedFutureSales}}__</span>
+                <span class="entry__data__item__head">€ {{$aggregatedFutureSales}}</span>
                 <p class="entry__data__item__info">Future E-Commerce Sales 2021</p>
             </div>
 
