@@ -3,12 +3,12 @@
 
     <div class="statistic-menu" id="menu-type-{{$x}}">
 
-        <button class="menu" onclick="toggle({{$x}})">
+        <button class="menu" onclick="toggle('{{$main_statistic_type->name}}')">
             <h4>{{$main_statistic_type->name}}</h4>
         </button>
 
         <!-- SUBMENU -->
-        <div class="menu__inner">
+        <div class="{{$main_statistic_type->name}} menu__inner">
             @foreach(\App\StatisticType::all()->where('category_id', $main_statistic_type->id) as $sub_statistic_type)
                 <form class="sub-statistic-type" data-statistic-type="{{$sub_statistic_type->name}}" data-country="{{ $country->id }}">
                     <input type="hidden" value="{{$country->id}}" name="country_id">
@@ -27,13 +27,16 @@
 
     <script>
 
-        function toggle($i) {
-            var button = document.getElementById('menu-type-' + $i).getElementsByClassName("menu__inner");
-            if (button[0].style.display == "inline") {
-                button[0].style.display = "none";
-            } else {
-                button[0].style.display = "inline";
-            }
+        function toggle($type) {
+            var button = document.getElementsByClassName($type + " menu__inner");
+            $(button).each(function($i){
+                if (button[$i].style.display == "inline") {
+                    button[$i].style.display = "none";
+                } else {
+                    button[$i].style.display = "inline";
+                }
+            });
+
         }
 
         var button = document.getElementsByClassName("menu");

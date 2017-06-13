@@ -69,9 +69,6 @@ module.exports = {
             } else{
                 var statistic_detail_data = '<div id="chartContainer-'+ statistic_type.name + '" class="chart" ></div>';
 
-
-
-
                 if(isCompare){
                     $(statistic_detail_div).html(statistic_detail_data);
                 } else{
@@ -116,9 +113,7 @@ module.exports = {
                 data.y =  data_value;
                 data.label = year;
 
-                console.log(data);
                 generatedDataPoints.push(data);
-                console.dir(generatedDataPoints);
 
             });
             var chart = new CanvasJS.Chart('chartContainer-'+ statistic_type.name + '',
