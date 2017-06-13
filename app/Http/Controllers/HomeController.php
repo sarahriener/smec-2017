@@ -35,32 +35,38 @@ class HomeController extends Controller
     }
 
     private function getAggregatedSales() {
-        $type = 'Sales';
+        // array with all statistic entries of type "Sales"
+        $statistic_ids = Statistic::where('statistic_type_id', $this->sTypeId)->lists('id');
 
-        /* SELECT one
-            FROM table
-            WHERE datetimefield <= now.year
-            ORDER BY datetimefield DESC
-            LIMIT 1; */
+        $iCurrentYear = StatisticDetail::whereIn('statistic_id', $statistic_ids)
+            ->where('year', '<=', date('Y'))
+            ->orderBy('year')
+            ->take(1)
+            ->lists('year')
+            ->first();
 
-        // get type sales
-        // get all details of type with year
+        $iAggregatedSales = $this->aggregateSales($statistic_ids, $iCurrentYear);
 
-        $statistic_type_id = StatisticType::where('name', $type)->first()->id;
-        // array with all statistic entries
-        $statistic_ids = Statistic::where('statistic_type_id', $statistic_type_id);
-        //StatisticDetail::
-
-        return 0;
+        return $iAggregatedSales;
     }
 
     private function getAggregatedFutureSales() {
-        /*
-         * SELECT MAX(year)
-FROM table;
-         * */
+        $statistic_ids = Statistic::where('statistic_type_id', $this->sTypeId)->lists('id');
 
-        return 0;
+        $iFutureYear = StatisticDetail::whereIn('statistic_id', $statistic_ids)
+            ->max('year');
+
+        $iAggregatedSales = $this->aggregateSales($statistic_ids, $iFutureYear);
+
+        return $iAggregatedSales;
+    }
+
+    private function aggregateSales($statistic_ids, $year) {
+        $iAggregatedSales = StatisticDetail::whereIn('statistic_id', $statistic_ids)
+            ->where('year', $year)
+            ->sum('value');
+
+        return $iAggregatedSales;
     }
 
     /**
@@ -83,8 +89,6 @@ FROM table;
         $oCountryStatistic = Statistic::where('statistic_type_id', $this->sTypeId)
             ->where('country_id', $oCountry->id)
             ->first();
-
-        Log::info("Statistic: " . $oCountryStatistic);
 
         if($oCountryStatistic) {
             $oStatisticDetails = StatisticDetail::where('statistic_id', $oCountryStatistic->id)->first();
