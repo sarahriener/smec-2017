@@ -30,6 +30,9 @@
 @section('content')
 
         @include('layouts.header')
+
+        <a href="/country/{{ $country->id }}" class="button__back"><span class="glyphicon glyphicon-menu-left"></span>Back to countries</a>
+
         @include('layouts.filter')
 
         <div class="compare__detail">

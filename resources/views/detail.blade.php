@@ -9,6 +9,9 @@
 
     <div class="detail">
         @include('layouts.header')
+
+        <a href="/overview" class="button__back"><span class="glyphicon glyphicon-menu-left"></span>Back to overview</a>
+
         @include('layouts.filter')
 
         <div class="menu__left">
