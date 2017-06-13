@@ -9,27 +9,41 @@ module.exports = {
         }
 
         $('.compare__detail__select__item').on('drop', function(e){
-           var country_elem = e.target;
-
-            var country_id = $(country_elem).find('.filter__items__wrapper')[0].id;
-
+            var country_id = $(e.target).find('.filter__items__wrapper')[0].id;
             var country_div_2 =  $('#data-div2');
-            country_div_2.find('form.sub-statistic-type').find('input[name="' + country_id + '"]').val(country_id);
+
+            country_div_2.find('button.sub_menu').each(function(){
+                var curr = this;
+                curr.setAttribute('data-country', country_id); // update country id in button
+
+                $(curr).next()[0].setAttribute('data-country', country_id); // update country id in div
+            });
             country_div_2.show();
         });
 
-        $('form.sub-statistic-type').submit(function(e) {
-            $.ajax({
-                type: 'GET',
-                url: '/getStatisticDetails',
-                data: $(this).serialize(), // serializes the form's elements.
-                success: function(data) {
-                    hideAllDetails(data['country']);
-                    showDetails(data);
-                }
+
+        $("div.statistic-menu button.sub_menu").on("click", function(e){
+            var type = e.target;
+            var sub_statistic_type = $(type).data("statisticType");
+            var sub_menu = $(".statistic-menu").find("button.sub_menu[data-statistic-type='" + sub_statistic_type + "']") ;
+
+            $(sub_menu).each(function(i){ // both countries
+                var country_id = $(sub_menu[i]).data("country");
+                var statistic_type = $(sub_menu[i]).data("statisticType");
+
+                $.ajax({ // ask for data and add to div
+                    type: 'GET',
+                    url: '/getStatisticDetails',
+                    data: {
+                        country_id: country_id,
+                        statistic_type: statistic_type},
+                    success: function(data) {
+                        hideAllDetails(data['country']);
+                        showDetails(data);
+                    }
+                });
             });
 
-            e.preventDefault(); // avoid to execute the actual submit of the form.
         });
 
         function hideAllDetails(country){
@@ -51,9 +65,8 @@ module.exports = {
                     '.statistic-data' +
                     '.compare-data' +
                     '[data-country="' + country.id + '"]' +
-                    '[data-statistic-type="' + statistic_type.name + '"]');
+                    '[data-statistic-type="' + statistic_type.name.replace(" ", "_") + '"]');
             }
-
 
             //insert data
             if(statistic_details.length <= 0){ // no date available
@@ -90,7 +103,6 @@ module.exports = {
             //if(statistic_type.name == "Population"){
             createColumnChart(statistic_details, statistic_type);
             //}
-
 
             return statistic_detail_data;
         }

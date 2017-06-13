@@ -23,7 +23,6 @@ class DetailsController extends Controller
         return view('detail', ['continents' => $continents, 'countries' => $countries]);
     }
 
-
     /**
      * @param $id
      * @param null $type

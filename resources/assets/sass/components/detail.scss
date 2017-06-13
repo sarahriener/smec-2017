@@ -61,7 +61,7 @@ h1{
   border-radius: 5px;
 }
 
-.sub_button{
+.sub_menu{
   background-color: #fff;
   width: 100%;
   padding: 8px;
@@ -70,13 +70,14 @@ h1{
   vertical-align: top;
   border-top: 1px solid #ddd;
   overflow: auto;
+  margin-bottom: 0.5em;
 }
 
-.sub_button:hover{
+.sub_menu:hover{
  font-weight: 600;
 }
 
-.sub_button:focus {
+.sub_menu:focus {
   outline:0;
 }
 

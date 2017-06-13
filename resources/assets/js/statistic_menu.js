@@ -4,9 +4,16 @@ module.exports = {
         $("div.statistic-menu button.menu").on("click", function(e){
             var statistic_type = $(this).data("statisticType");
 
-           var statistic_type_div = $("div." + statistic_type + ".menu__inner");
+            // hide all
+            var statistic_type_divs = $("div.menu__inner");
+            $(statistic_type_divs).each(function(i){
+                statistic_type_divs[i].style.display = "none";
+            });
 
+            // toggle
+           var statistic_type_div = $("div." + statistic_type + ".menu__inner");
             $(statistic_type_div).each(function(i){
+
                 if (statistic_type_div[i].style.display == "inline") {
                     statistic_type_div[i].style.display = "none";
                 } else {
@@ -16,7 +23,7 @@ module.exports = {
         });
 
 
-        <!-- TODO falls wir eine Möglichkeit finden auch hier auf Variablen bei den Farben zugreifen-->
+        // TODO falls wir eine Möglichkeit finden auch hier auf Variablen bei den Farben zugreife
         var button = $("div.statistic-menu button.menu");
         button[0].style.backgroundColor = "#F6CE41";
         button[1].style.backgroundColor = "#F5852B";

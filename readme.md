@@ -10,6 +10,9 @@ gulp  --production
 ## .. in development
 php artisan serve
 
+## env
+copy der .env.example to .env
+
 ## compile css and js file
 
 # Run all tasks (--production will minify all CSS and JavaScript)
