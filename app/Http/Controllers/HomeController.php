@@ -35,7 +35,6 @@ class HomeController extends Controller
     }
 
     private function getAggregatedSales() {
-        $type = 'Sales';
 
         /* SELECT one
             FROM table
@@ -43,15 +42,17 @@ class HomeController extends Controller
             ORDER BY datetimefield DESC
             LIMIT 1; */
 
-        // get type sales
-        // get all details of type with year
+        // array with all statistic entries of type "Sales"
+        $statistic_ids = Statistic::where('statistic_type_id', $this->sTypeId)->lists('id');
 
-        $statistic_type_id = StatisticType::where('name', $type)->first()->id;
-        // array with all statistic entries
-        $statistic_ids = Statistic::where('statistic_type_id', $statistic_type_id);
-        //StatisticDetail::
+        //var_dump($statistic_ids);
 
-        return 0;
+        $oStatisticDetails = StatisticDetail::whereIn('statistic_id', $statistic_ids)->sum('value');
+        //$oStatisticDetails2 = StatisticDetail::whereIn('statistic_id', $statistic_ids)->lists('value');
+        //var_dump($oStatisticDetails2);
+        //Log::info("sum of current sales: ".$oStatisticDetails);
+
+        return $oStatisticDetails;
     }
 
     private function getAggregatedFutureSales() {
@@ -83,8 +84,6 @@ FROM table;
         $oCountryStatistic = Statistic::where('statistic_type_id', $this->sTypeId)
             ->where('country_id', $oCountry->id)
             ->first();
-
-        Log::info("Statistic: " . $oCountryStatistic);
 
         if($oCountryStatistic) {
             $oStatisticDetails = StatisticDetail::where('statistic_id', $oCountryStatistic->id)->first();
