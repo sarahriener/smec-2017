@@ -29,6 +29,7 @@ module.exports = {
 
             $(sub_menu).each(function(i){ // both countries
                 var country_id = $(sub_menu[i]).data("country");
+
                 var statistic_type = $(sub_menu[i]).data("statisticType");
 
                 $.ajax({ // ask for data and add to div
@@ -36,7 +37,8 @@ module.exports = {
                     url: '/getStatisticDetails',
                     data: {
                         country_id: country_id,
-                        statistic_type: statistic_type},
+                        statistic_type: statistic_type
+                    },
                     success: function(data) {
                         hideAllDetails(data['country']);
                         showDetails(data);
@@ -79,7 +81,7 @@ module.exports = {
                         '<p>There are no details available for this statistic type.</p>');
                 }
             } else{
-                var statistic_detail_data = '<div id="chartContainer-'+ statistic_type.name + '" class="chart" ></div>';
+                var statistic_detail_data = '<div id="chartContainer-'+ statistic_type.name + '_' + country.id + '" class="chart" ></div>';
 
                 if(isCompare){
                     $(statistic_detail_div).html(statistic_detail_data);
@@ -89,11 +91,11 @@ module.exports = {
                         statistic_detail_data);
                 }
 
-                generate_statistic_data(statistic_details, statistic_type);
+                generate_statistic_data(statistic_details, statistic_type, country.id);
             }
         }
 
-        function generate_statistic_data(statistic_details, statistic_type){
+        function generate_statistic_data(statistic_details, statistic_type, country_id){
             var statistic_detail_data = '';
 
             /** TODO fallunterscheidung: Um welche Statistikart handelt es sich (es ist bereits definiert welche
@@ -101,13 +103,13 @@ module.exports = {
              *  */
             // Hier beispiel eines column charts (population) -- nachher besser mit case!
             //if(statistic_type.name == "Population"){
-            createColumnChart(statistic_details, statistic_type);
+            createColumnChart(statistic_details, statistic_type, country_id);
             //}
 
             return statistic_detail_data;
         }
 
-        function createColumnChart(statistic_details, statistic_type){
+        function createColumnChart(statistic_details, statistic_type, country_id){
 
             var generatedDataPoints = [];
 
@@ -115,8 +117,6 @@ module.exports = {
             $(statistic_details).each(function(i, detail){
                 var year =  detail.year;
                 var value =  detail.value;
-
-
                 var data = {};
 
                 data_value = parseFloat(value.replace(/[^0-9\.]/g, ''));
@@ -127,7 +127,8 @@ module.exports = {
                 generatedDataPoints.push(data);
 
             });
-            var chart = new CanvasJS.Chart('chartContainer-'+ statistic_type.name + '',
+
+            var chart = new CanvasJS.Chart('chartContainer-'+ statistic_type.name + '_' + country_id,
                 {
                     animationEnabled: true,
                     title: {
