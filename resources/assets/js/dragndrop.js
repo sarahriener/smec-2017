@@ -30,15 +30,16 @@ module.exports = {
 
         function drop(ev) {
             ev.preventDefault();
-            console.log("drop on target", ev.target);
 
             if ($('#div2 .filter__items__wrapper')[0] !== undefined) {
                 $('.compare .filter__items')[0].append($('#div2 .filter__items__wrapper')[0]);
             }
 
             var data = ev.originalEvent.dataTransfer.getData("countryId");
-            console.log("drop of data", data);
-            ev.target.appendChild(document.getElementById(data));
+
+            if(data) {
+                ev.target.appendChild(document.getElementById(data));
+            }
         }
     }
 
