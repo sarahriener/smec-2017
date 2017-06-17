@@ -14,9 +14,9 @@ h1{
 
 .chart{
   width: 300px;
-  margin: 50px;
   height: 200px;
   display: inline-block;
+  float: left;
 }
 
 .breadcrumb{
@@ -137,7 +137,6 @@ h1{
 
 a {
   color: $w-green;
-  text-decoration: none;
 }
 
 .compareBtn {
@@ -150,5 +149,11 @@ a {
 }
 
 .compareBtn:hover{
-  color: #ffff;
+  color: #ffffff;
+  text-decoration: none;
+
+}
+
+.chart {
+  width: 50%;
 }
