@@ -7,8 +7,7 @@
 
 module.exports = {
     init: function () {
-        $(document).ready(function () {
-            let $selectCountry = $(".filter__search .js-example-basic-single");
+            let $selectCountry = $(".filter__search .filter__search__search");
             $selectCountry.select2({
                 templateResult: formatState,
                 templateSelection: formatState
@@ -19,17 +18,21 @@ module.exports = {
                 filterCountries("country", $currCountry);
             });
 
-            let $selectContinent = $(".filter__tags .filter__tags--tag");
+            let $selectContinent = $(".filter__tags .filter__tag");
             $selectContinent.on("click", function(e){
                 let $currContinent = $(e.currentTarget).data("continent");
+
+                // reset select if region is chosen -- not working yet
+                //$('select__country option:first-child').attr("selected", "selected");
+
+                $("#select__country option:selected").val($("#target option:first").val());
 
                 filterCountries("continent", $currContinent);
 
             });
-        });
 
         function filterCountries($filterBy, $val){
-            let $countryItems = $('.filter__items--item');
+            let $countryItems = $('.filter__item');
 
             for (let i = 0; i < $countryItems.length; i++) {
                 let $filterVal = $($countryItems[i]).data($filterBy);
@@ -49,9 +52,7 @@ module.exports = {
                 return country.text;
             }
             let countryOption = $(
-                '<span><img width="30px"  height="auto" src="https://c.tadst.com/gfx/n/fl/128/at.png" class="img-flag" /> ' + country.text + '</span>'
-                // TODO add Flag images
-                // '<span><img src="vendor/imgs/flags/' + country.id.toLowerCase() + '.png" class="img-flag" /> ' + country.title + '</span>'
+                '<span><img height="25" src="/img/flags/' + country.id +'.svg" class="img-flag" /> ' + country.text + '</span>'
             );
             return countryOption;
         }

@@ -1,11 +1,17 @@
 # Run the application
 
+composer install
+
 ## .. for the first time (setup)
-npm install
+node.js download
+npm install (installs also gulp!)
 gulp  --production
 
 ## .. in development
 php artisan serve
+
+## env
+copy der .env.example to .env
 
 ## compile css and js file
 

@@ -1,22 +1,8 @@
-body {
-  color: #363636;
-  font-family: Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 1.67;
-}
-
-h1{
-  margin-top: 20px;
-  text-align: center;
-  margin-top: 10px;
-  padding-left: 15px;
-}
-
 .chart{
   width: 300px;
+  margin: 50px;
   height: 200px;
   display: inline-block;
-  float: left;
 }
 
 .breadcrumb{
@@ -50,7 +36,6 @@ h1{
   width: 100%;
   border-radius: 4px;
   border: none;
-  height: 100%;
   padding: 16px;
   display: none;
 }
@@ -60,9 +45,45 @@ h1{
   overflow: auto;
   border: 1px solid #ddd;
   border-radius: 5px;
+
+  &:first-child {
+    button.menu {
+      background-color: $w-yellow;
+    }
+  }
+
+  &:nth-child(2) {
+    button.menu {
+      background-color: $w-orange;
+    }
+  }
+
+  &:nth-child(3) {
+    button.menu {
+      background-color: $w-sunglow;
+    }
+  }
+
+  &:nth-child(4) {
+    button.menu {
+      background-color: $w-heliotrope;
+    }
+  }
+
+  &:nth-child(5) {
+    button.menu {
+      background-color: $w-dodger-blue;
+    }
+  }
+
+  &:nth-child(6) {
+    button.menu {
+      background-color: $w-java;
+    }
+  }
 }
 
-.sub_button{
+.sub_menu{
   background-color: #fff;
   width: 100%;
   padding: 8px;
@@ -71,13 +92,14 @@ h1{
   vertical-align: top;
   border-top: 1px solid #ddd;
   overflow: auto;
+  margin-bottom: 0.5em;
 }
 
-.sub_button:hover{
- font-weight: 600;
+.sub_menu:hover{
+  font-weight: 600;
 }
 
-.sub_button:focus {
+.sub_menu:focus {
   outline:0;
 }
 
@@ -85,11 +107,14 @@ h1{
   padding-left: 15px;
 }
 
-.text{
+.detail-content{
   padding-left: 15px;
-  color: #767676;
   font-family: Lato;
-  Size: 16px
+  font-size: 16px;
+}
+
+.detail-content .intro-text{
+  color: #767676;
 }
 
 .menu__left {
@@ -137,6 +162,7 @@ h1{
 
 a {
   color: $w-green;
+  text-decoration: none;
 }
 
 .compareBtn {
@@ -145,15 +171,10 @@ a {
   font-size: 15px;
   padding: 16px;
   text-transform: uppercase;
-  background-color: #E36C0C;
+  color: $w-alabaster;
+  background-color: $w-green;
 }
 
 .compareBtn:hover{
   color: #ffffff;
-  text-decoration: none;
-
-}
-
-.chart {
-  width: 50%;
 }

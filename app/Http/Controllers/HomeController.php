@@ -14,10 +14,14 @@ use App\Country;
 class HomeController extends Controller
 {
     private $TYPE = 'Sales';
-    private $sTypeId;
+    private $sType;
+    private $iTypeId;
 
     public function __construct() {
-        $this->sTypeId = StatisticType::where('name', $this->TYPE)->first()->id;
+        $oStatisticType = StatisticType::where('name', $this->TYPE)->first();
+
+        $this->sType = $oStatisticType->type;
+        $this->iTypeId = $oStatisticType->id;
     }
     /**
      * Display a listing of the resource.
@@ -31,36 +35,42 @@ class HomeController extends Controller
         $salesOfCountry = $this->getSalesOfCountry();
 
         return view('welcome', ['aggregatedSales' => $aggregatedSales, 'aggregatedFutureSales' => $aggregatedFutureSales,
-            'salesOfCountry' => $salesOfCountry]);
+            'salesOfCountry' => $salesOfCountry, 'type' => $this->sType]);
     }
 
     private function getAggregatedSales() {
-        $type = 'Sales';
+        // array with all statistic entries of type "Sales"
+        $statistic_ids = Statistic::where('statistic_type_id', $this->iTypeId)->lists('id');
 
-        /* SELECT one
-            FROM table
-            WHERE datetimefield <= now.year
-            ORDER BY datetimefield DESC
-            LIMIT 1; */
+        $iCurrentYear = StatisticDetail::whereIn('statistic_id', $statistic_ids)
+            ->where('year', '<=', date('Y'))
+            ->orderBy('year')
+            ->take(1)
+            ->lists('year')
+            ->first();
 
-        // get type sales
-        // get all details of type with year
+        $iAggregatedSales = $this->aggregateSales($statistic_ids, $iCurrentYear);
 
-        $statistic_type_id = StatisticType::where('name', $type)->first()->id;
-        // array with all statistic entries
-        $statistic_ids = Statistic::where('statistic_type_id', $statistic_type_id);
-        //StatisticDetail::
-
-        return 0;
+        return $iAggregatedSales;
     }
 
     private function getAggregatedFutureSales() {
-        /*
-         * SELECT MAX(year)
-FROM table;
-         * */
+        $statistic_ids = Statistic::where('statistic_type_id', $this->iTypeId)->lists('id');
 
-        return 0;
+        $iFutureYear = StatisticDetail::whereIn('statistic_id', $statistic_ids)
+            ->max('year');
+
+        $iAggregatedSales = $this->aggregateSales($statistic_ids, $iFutureYear);
+
+        return $iAggregatedSales;
+    }
+
+    private function aggregateSales($statistic_ids, $year) {
+        $iAggregatedSales = StatisticDetail::whereIn('statistic_id', $statistic_ids)
+            ->where('year', $year)
+            ->sum('value');
+
+        return $iAggregatedSales;
     }
 
     /**
@@ -79,19 +89,17 @@ FROM table;
 
         $aCountry['name'] = $oCountry->name;
 
-        // Get current sales of this country
-        $oCountryStatistic = Statistic::where('statistic_type_id', $this->sTypeId)
+        $oCountryStatistic = Statistic::where('statistic_type_id', $this->iTypeId)
             ->where('country_id', $oCountry->id)
             ->first();
-
-        Log::info("Statistic: " . $oCountryStatistic);
 
         if($oCountryStatistic) {
             $oStatisticDetails = StatisticDetail::where('statistic_id', $oCountryStatistic->id)->first();
 
-            $oStatisticDetails ? $aCountry['sales'] = $oStatisticDetails->value : $aCountry['sales'] = "No current sales available!";
+            //$oStatisticDetails ? $aCountry['sales'] = $oStatisticDetails->value : $aCountry['sales'] = "No current sales available!";
+            $oStatisticDetails ? $aCountry['sales'] = $oStatisticDetails->value : $aCountry['sales'] = "";
         } else {
-            $aCountry['sales'] = "No current sales available!";
+            $aCountry['sales'] = "";
         }
 
         return (object) $aCountry;

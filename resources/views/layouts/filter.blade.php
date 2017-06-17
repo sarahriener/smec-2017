@@ -1,8 +1,9 @@
 <div class="filter">
     <div class="filter__search">
-        <label class="filter__search--label">
-            <span class="filter__search--span">Choose a region or country</span>
-            <select class="js-example-basic-single form-control filter__search--search">
+        <label class="filter__search__label">
+            <span class="filter__search__span">Choose a region or country</span>
+
+            <select id="select__country" class="filter__search__search" style="width: 50%">
                 <option value="null" title="all">All</option>
                 @foreach ($countries as $country)
                     <option value="{{ $country->code }}" title="{{$country->name}}">{{ $country->name }}</option>
@@ -12,16 +13,22 @@
     </div>
 
     <div class="filter__tags">
-        <button type="button" class="filter__tags--tag" data-continent="null">All</button>
+        <button type="button" class="filter__tag" data-continent="null">All</button>
         @foreach ($continents as $continent)
-            <button class="filter__tags--tag" data-continent="{{$continent->id}}">{{ $continent->name }}</button>
+            <button class="filter__tag" data-continent="{{$continent->id}}">{{ $continent->name }}</button>
         @endforeach
     </div>
 
-    <div class="filter__items" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <div class="filter__items">
         @foreach ($countries as $country)
-            <div class="filter__items--wrapper" id="{{ $country->id }}" draggable="true" ondragstart="drag(event)">
-                <a href="/country/{{$country->id}}" class="filter__items--item" class="filter__country" data-country="{{ $country->code }}" data-continent="{{$country->continent_id}}">{{ $country->name }}</a>
+            <div class="filter__items__wrapper" id="{{ $country->id }}" draggable="true">
+                <a href="/country/{{$country->id}}" class="filter__item filter__country" data-country="{{ $country->code }}" data-continent="{{$country->continent_id}}" draggable="true">
+                    {{ $country->name }}
+                    <div class="filter__items__imagediv" draggable="true">
+                        <img class="filter__items__img" src="/img/flags/{{$country->code}}.svg">
+                    </div>
+                </a>
+
             </div>
         @endforeach
     </div>
