@@ -45,7 +45,42 @@
   overflow: auto;
   border: 1px solid #ddd;
   border-radius: 5px;
-  color: #000000;
+
+  &:first-child {
+    button.menu {
+      background-color: $w-yellow;
+    }
+  }
+
+  &:nth-child(2) {
+    button.menu {
+      background-color: $w-orange;
+    }
+  }
+
+  &:nth-child(3) {
+    button.menu {
+      background-color: $w-sunglow;
+    }
+  }
+
+  &:nth-child(4) {
+    button.menu {
+      background-color: $w-heliotrope;
+    }
+  }
+
+  &:nth-child(5) {
+    button.menu {
+      background-color: $w-dodger-blue;
+    }
+  }
+
+  &:nth-child(6) {
+    button.menu {
+      background-color: $w-java;
+    }
+  }
 }
 
 .sub_menu{
@@ -141,5 +176,5 @@ a {
 }
 
 .compareBtn:hover{
-  color: #ffff;
+  color: #ffffff;
 }
