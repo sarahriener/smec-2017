@@ -13,6 +13,16 @@
 @section('content')
     <div class="overview">
         @include('layouts.header')
+
+        <div class="nav__top">
+            <div class="nav__top__breadcrumbs">
+                <!-- TODO breadcrumb Klasse bennenen auch in CSS -->
+                <ol class="nav__top__breadcrumb">
+                    <li><a href="/overview">Google Shopping Compendium</a></li>
+                </ol>
+            </div>
+        </div>
+
         @include('layouts.filter')
 
     </div>
