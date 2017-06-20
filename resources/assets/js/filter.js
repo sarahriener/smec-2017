@@ -37,7 +37,7 @@ module.exports = {
             for (let i = 0; i < $countryItems.length; i++) {
                 let $filterVal = $($countryItems[i]).data($filterBy);
 
-                if($val == "null" || !$val){
+                if($val == "ALL" || !$val){
                     $($countryItems[i]).parent().removeClass('hide');
                 } else if ($filterVal !== $val) {
                     $($countryItems[i]).parent().addClass('hide');

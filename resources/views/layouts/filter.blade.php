@@ -2,9 +2,8 @@
     <div class="filter__search">
         <label class="filter__search__label">
             <span class="filter__search__span">Choose a region or country</span>
-
-            <select id="select__country" class="filter__search__search" style="width: 50%">
-                <option value="null" title="all">All</option>
+            <select id="select__country" class="js-example-basic-single form-control filter__search__search" style="width: 50%">
+                <option value="ALL" title="all">All</option>
                 @foreach ($countries as $country)
                     <option value="{{ $country->code }}" title="{{$country->name}}">{{ $country->name }}</option>
                 @endforeach
