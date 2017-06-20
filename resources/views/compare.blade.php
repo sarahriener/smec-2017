@@ -3,7 +3,7 @@
 @section('title', 'Compare')
 
 @section('content')
-
+    <div class="compare">
         @include('layouts.header')
 
         <div class="nav__top">
@@ -52,6 +52,7 @@
         </div>
 
     </div>
+
     <script type="text/javascript" src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
 
