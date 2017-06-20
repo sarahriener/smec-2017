@@ -17,7 +17,8 @@
             <div class="nav__top__breadcrumbs">
                 <!-- TODO breadcrumb Klasse bennenen auch in CSS -->
                 <ol class="nav__top__breadcrumb">
-                    <li><a href="/overview">Google Shopping Compendium</a></li>
+                    <li><a href="/">Google Shopping Compendium</a></li> /
+                    <li><a href="/overview">Overview</a></li>
                 </ol>
             </div>
         </div>

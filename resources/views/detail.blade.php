@@ -17,7 +17,8 @@
                 <!-- TODO breadcrumb Klasse bennenen auch in CSS -->
                 <ol class="nav__top__breadcrumb">
                     <!--!!update!! href link (startpage)-->
-                    <li><a href="/overview">Google Shopping Compendium</a></li> /
+                    <li><a href="/">Google Shopping Compendium</a></li> /
+                    <li><a href="/overview">Overview</a></li> /
                     <!--!!update!! href link (startpage) section attributes-->
                     <li class="active"><a href="/country/{{ $country->id }}">{{ $country->name }}</a></li>
                 </ol>
