@@ -9,8 +9,6 @@
 
 .menu{
   width: 100%;
-  font-size: 16px;
-  font-weight: 400;
   line-height: 24px;
   float: left;
   margin-bottom: 0;
@@ -39,6 +37,7 @@
   overflow: auto;
   border: 1px solid #ddd;
   border-radius: 5px;
+  color: #000000;
 
   &:first-child {
     button.menu {
@@ -95,11 +94,6 @@
 
 .sub_menu:focus {
   outline:0;
-}
-
-.detail-content{
-  font-family: Lato;
-  font-size: 16px;
 }
 
 .detail-content .intro-text{
