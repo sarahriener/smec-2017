@@ -29,6 +29,7 @@
             <div class="compare__detail__select comparison">
                 <div id="div1" class="compare__detail__select__item" >
                     <div class="div1__wrapper">
+                        <img class="compare__flag" src="/img/flags/{{$country->code}}.svg">
                         <a href="/country/{{$country->id}}" target="_self">{{$country->name}}</a>
                     </div>
                 </div>

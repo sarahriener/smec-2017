@@ -20,6 +20,12 @@
       width: 30%;
       float: left;
 
+      &__img {
+        height: 50px;
+        width: auto;
+        margin-bottom: 10px;
+      }
+
       &__head {
         @include font-bald;
         font-size: 1.3em;
