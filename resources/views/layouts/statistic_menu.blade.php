@@ -4,6 +4,7 @@
     <div class="statistic-menu">
 
         <button class="menu" data-statistic-type="{{str_replace(' ', '_', $main_statistic_type->name)}}">
+            <img class="menu__img" src="/img/icons/{{str_replace(' ', '_', $main_statistic_type->name)}}.svg">
             <h4>{{$main_statistic_type->name}}</h4>
         </button>
 
