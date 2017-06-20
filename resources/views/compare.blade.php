@@ -6,7 +6,21 @@
 
         @include('layouts.header')
 
-        <a href="/country/{{ $country->id }}" class="button__back"><span class="glyphicon glyphicon-menu-left"></span>Back to countries</a>
+        <div class="nav__top">
+            <a href="/country/{{ $country->id }}" class="nav__top__back"><span class="glyphicon glyphicon-menu-left"></span>Back to countries</a>
+
+            <div class="nav__top__breadcrumbs">
+                <!-- TODO breadcrumb Klasse bennenen auch in CSS -->
+                <ol class="nav__top__breadcrumb">
+                    <!--!!update!! href link (startpage)-->
+                    <li><a href="/overview">Google Shopping Compendium</a></li> /
+                    <!--!!update!! href link (startpage) section attributes-->
+                    <li class="active"><a href="/country/{{ $country->id }}">{{ $country->name }}</a></li> /
+                    <li class="active"><a href="/compare/{{ $country->id }}">Compare with {{ $country->name }}</a></li>
+                </ol>
+            </div>
+        </div>
+
 
         @include('layouts.filter')
 

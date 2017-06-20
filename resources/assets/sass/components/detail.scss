@@ -5,13 +5,7 @@
   display: inline-block;
 }
 
-.breadcrumb{
-  padding-left: 15px;
-  margin-top: 20px;
-  height: 40px;
-  width: 100%;
-  padding: 8px 15px 8px 15px;
-}
+
 
 .menu{
   width: 100%;
@@ -96,25 +90,24 @@
 }
 
 .sub_menu:hover{
- font-weight: 600;
+  color: $w-green;
 }
 
 .sub_menu:focus {
   outline:0;
 }
 
-.menu__right{
-  padding-left: 15px;
-}
-
 .detail-content{
-  padding-left: 15px;
   font-family: Lato;
   font-size: 16px;
 }
 
 .detail-content .intro-text{
   color: #767676;
+}
+
+.canvasjs-chart-credit {
+  margin-top: 15px !important;
 }
 
 .menu__left {
@@ -129,6 +122,7 @@
 }
 
 .country {
+  padding-left: 15px;
   width: 80%;
   float: right;
 }
@@ -151,14 +145,6 @@
   margin: 40px 30px 0px 30px;
 }
 
-//neuer Shit
-.breadcrumb {
-  padding: 8px 15px;
-  margin-bottom: 26px;
-  list-style: none;
-  background-color: #f5f5f5;
-  border-radius: 4px;
-}
 
 a {
   color: $w-green;

@@ -10,7 +10,20 @@
     <div class="detail">
         @include('layouts.header')
 
-        <a href="/overview" class="button__back"><span class="glyphicon glyphicon-menu-left"></span>Back to overview</a>
+        <div class="nav__top">
+            <a href="/overview" class="nav__top__back"><span class="glyphicon glyphicon-menu-left"></span>Back to overview</a>
+
+            <div class="nav__top__breadcrumbs">
+                <!-- TODO breadcrumb Klasse bennenen auch in CSS -->
+                <ol class="nav__top__breadcrumb">
+                    <!--!!update!! href link (startpage)-->
+                    <li><a href="/overview">Google Shopping Compendium</a></li> /
+                    <!--!!update!! href link (startpage) section attributes-->
+                    <li class="active"><a href="/country/{{ $country->id }}">{{ $country->name }}</a></li>
+                </ol>
+            </div>
+        </div>
+
 
         @include('layouts.filter')
 
@@ -19,16 +32,6 @@
         </div>
 
         <div class="country">
-            <div class="menu__right">
-                <!-- TODO breadcrumb Klasse bennenen auch in CSS -->
-                <ol class="breadcrumb">
-                    <!--!!update!! href link (startpage)-->
-                    <li><a href="/google-shopping-compendium/#attributes">Google Shopping Compendium</a></li>
-                    <!--!!update!! href link (startpage) section attributes-->
-                    <li class="active"><a href="/google-shopping-compendium/attributes/image-link">Image</a></li>
-                    <li class="active">Image Link</li>
-                </ol>
-            </div>
 
             <h1>{{ $country->name }}
             <!-- TODO wenn Country Img drinnen darauf zugreifen-->
@@ -37,7 +40,7 @@
             </h1>
 
             <div class="detail-content">
-                <p class="intro-text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam </p>
+                <p class="intro-text"> HIER BRAUCHEN WIR UNBEDINGT NOCH EINEN INTRO TEXT PRO LAND </p>
 
                 <div class="statistic-data detail-data" data-country="{{ $country->id }}">
                     <p>Select a statistic type.</p>
