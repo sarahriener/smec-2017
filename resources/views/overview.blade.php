@@ -12,7 +12,6 @@
 
 @section('content')
     <div class="overview">
-        @include('layouts.header')
 
         <div class="nav__top">
             <div class="nav__top__breadcrumbs">
