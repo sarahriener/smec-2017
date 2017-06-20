@@ -12,7 +12,7 @@
 
 @section('content')
     <div class="overview">
-        
+
         <div class="nav__top">
             <div class="nav__top__breadcrumbs">
                 <!-- TODO breadcrumb Klasse bennenen auch in CSS -->
