@@ -13,6 +13,11 @@
   text-transform: uppercase;
   color: $w-boulder;
   vertical-align: middle;
+  font-size: 12px;
+}
+
+a:hover {
+  text-decoration: none;
 }
 
 .nav__top {
