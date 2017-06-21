@@ -95,9 +95,8 @@
 
 
 .filter__items {
-  width: 90%;
+  width: 100%;
   white-space: nowrap;
-  margin: 40px 30px 0 30px;
 }
 
 .filter__items__img {
@@ -129,8 +128,7 @@
 
   .filter__items {
     overflow-x: scroll;
-    width: 90%;
+    width: 100%;
     white-space: nowrap;
-    margin: 40px 30px 0 30px;
   }
 }
