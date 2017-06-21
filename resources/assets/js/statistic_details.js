@@ -80,7 +80,7 @@ module.exports = {
                         '<p>There are no details available for this statistic type.</p>');
                 }
             } else{
-                var statistic_detail_data = '<canvas width="400px" height="200px" id="chartContainer-'+ statistic_type.name + '_' + country.id + '" class="chart" ></canvas>';
+                var statistic_detail_data = '<div class="chart"><canvas id="chartContainer-'+ statistic_type.name + '_' + country.id + '"></canvas></div>';
 
                 if(isCompare){
                     $(statistic_detail_div).html(statistic_detail_data);
@@ -175,12 +175,13 @@ module.exports = {
                     },
                     title: {
                         display: true,
-                        text: 'Chart.js Doughnut Chart'
+                        text: statistic_type.description
                     },
                     animation: {
                         animateScale: true,
                         animateRotate: true
-                    }
+                    },
+                    maintainAspectRatio: false
                 }
             });
         }
@@ -210,7 +211,13 @@ module.exports = {
                                 beginAtZero:true
                             }
                         }]
-                    }
+                    },
+                    title: {
+                        display: true,
+                        text: statistic_type.description
+                    },
+                    responsive: true,
+                    maintainAspectRatio: false
                 }
             });
         }
