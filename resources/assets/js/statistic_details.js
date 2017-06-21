@@ -24,31 +24,38 @@ module.exports = {
         $("div.statistic-menu button.sub_menu").on("click", function(e){
             var type = e.target;
             var sub_statistic_type = $(type).data("statisticType");
-            var sub_menu = $(".statistic-menu").find("button.sub_menu[data-statistic-type='" + sub_statistic_type + "']") ;
+            var sub_menu = $(".statistic-menu").find("button.sub_menu[data-statistic-type='" + sub_statistic_type + "']");
 
-            $(sub_menu).each(function(i){ // both countries
-                var country_id = $(sub_menu[i]).data("country");
+            var country_id = $(sub_menu[1]).data("country");
+            var statistic_detail_div = $('div.statistic-data.compare-data[data-country="' + country_id + '"]');
 
-                var statistic_type = $(sub_menu[i]).data("statisticType");
+            if($(statistic_detail_div).children().length >0){
+                hideAllDetails(country_id);
+            } else{
+                $(sub_menu).each(function(i){ // both countries
 
-                $.ajax({ // ask for data and add to div
-                    type: 'GET',
-                    url: '/getStatisticDetails',
-                    data: {
-                        country_id: country_id,
-                        statistic_type: statistic_type
-                    },
-                    success: function(data) {
-                        hideAllDetails(data['country']);
-                        showDetails(data);
-                    }
+                    var statistic_type = $(sub_menu[i]).data("statisticType");
+
+                    $.ajax({ // ask for data and add to div
+                        type: 'GET',
+                        url: '/getStatisticDetails',
+                        data: {
+                            country_id: country_id,
+                            statistic_type: statistic_type
+                        },
+                        success: function(data) {
+                            hideAllDetails(data['country'].id);
+                            showDetails(data);
+                        }
+                    });
+
                 });
-            });
+            }
 
         });
 
-        function hideAllDetails(country){
-            var statistic_detail_div = $('div.statistic-data[data-country="' + country.id + '"]');
+        function hideAllDetails(country_id){
+            var statistic_detail_div = $('div.statistic-data[data-country="' + country_id + '"]');
             statistic_detail_div.empty();
         }
 
