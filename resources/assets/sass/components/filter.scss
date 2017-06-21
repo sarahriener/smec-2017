@@ -16,10 +16,12 @@
 
   &:active {
     background-color: $w-green;
+    color: $w-alabaster;
   }
 
   &:hover {
-    background-color: #ebebeb;
+    background-color: $w-green;
+    color: $w-alabaster;
   }
 }
 
