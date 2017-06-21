@@ -38,7 +38,7 @@
             </h1>
 
             <div class="detail-content">
-                <p class="intro-text"> HIER BRAUCHEN WIR UNBEDINGT NOCH EINEN INTRO TEXT PRO LAND </p>
+                <p class="intro-text">{{$country->description}} </p>
                 <div class="statistic-data detail-data" data-country="{{ $country->id }}">
 
                 <p>Select a statistic type.</p>
