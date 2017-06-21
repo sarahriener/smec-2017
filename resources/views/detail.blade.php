@@ -12,14 +12,14 @@
 
 
         <div class="nav__top">
-            <a href="/overview" class="nav__top__back"><span class="glyphicon glyphicon-menu-left"></span>Back to overview</a>
+            <!--a href="/overview" class="nav__top__back"><span class="glyphicon glyphicon-menu-left"></span>Back to overview</a-->
 
             <div class="nav__top__breadcrumbs">
                 <!-- TODO breadcrumb Klasse bennenen auch in CSS -->
                 <ol class="nav__top__breadcrumb">
                     <li><a href="/">Google Shopping Compendium</a></li> /
                     <li><a href="/overview">Overview</a></li> /
-                    <li class="active"><a href="/country/{{ $country->id }}">{{ $country->name }}</a></li>
+                    <li class="active">{{ $country->name }}</li>
                 </ol>
             </div>
         </div>
