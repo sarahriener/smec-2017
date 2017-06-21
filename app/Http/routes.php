@@ -16,10 +16,6 @@ Route::resource('countries', 'admin\CountryController');
 
 Route::get('/', ['uses' => 'HomeController@index']);
 
-Route::get('/dragndrop', function () {
-    return view('dragndrop');
-});
-
 Route::get('overview', ['uses' => 'OverviewController@index', 'as' => 'overview']);
 
 Route::get('country/{id}/{type?}', ['uses' => 'DetailsController@show', 'as' => 'detail']);
