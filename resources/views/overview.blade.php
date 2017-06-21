@@ -16,7 +16,7 @@
             <div class="nav__top__breadcrumbs">
                 <ol class="nav__top__breadcrumb">
                     <li><a href="/">Google Shopping Compendium</a></li> /
-                    <li><a href="/overview">Overview</a></li>
+                    <li class="active">Overview</li>
                 </ol>
             </div>
         </div>
