@@ -47,10 +47,14 @@ a:hover {
       display: inline-block;
 
       a {
-        color: #000000;
+        color: $w-green;
         font-size: initial;
       }
+      &>.active{
+        color: #777;
+      }
     }
+
   }
 
   &:after {

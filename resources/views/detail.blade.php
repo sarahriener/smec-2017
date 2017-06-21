@@ -12,14 +12,14 @@
 
 
         <div class="nav__top">
-            <a href="/overview" class="nav__top__back"><span class="glyphicon glyphicon-menu-left"></span>Back to overview</a>
+            <!--a href="/overview" class="nav__top__back"><span class="glyphicon glyphicon-menu-left"></span>Back to overview</a-->
 
             <div class="nav__top__breadcrumbs">
                 <!-- TODO breadcrumb Klasse bennenen auch in CSS -->
                 <ol class="nav__top__breadcrumb">
                     <li><a href="/">Google Shopping Compendium</a></li> /
                     <li><a href="/overview">Overview</a></li> /
-                    <li class="active"><a href="/country/{{ $country->id }}">{{ $country->name }}</a></li>
+                    <li class="active">{{ $country->name }}</li>
                 </ol>
             </div>
         </div>
@@ -38,17 +38,16 @@
             </h1>
 
             <div class="detail-content">
-                <p class="intro-text"> HIER BRAUCHEN WIR UNBEDINGT NOCH EINEN INTRO TEXT PRO LAND </p>
+                <p class="intro-text">
+                    {{$country->description}}
+                    {{$country->name}} is also one of the 26 Google Shopping-Countries. Facts and Figures about E-Commerce in {{$country->name}} are presented bellow.
+                    <br><br>
+                </p>
                 <div class="statistic-data detail-data" data-country="{{ $country->id }}">
-
-                <p>Select a statistic type.</p>
+                    <p>Select a statistic type.</p>
                 </div>
             </div>
         </div>
     </div>
-
-
-    <script type="text/javascript" src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>
-
 
 @endsection
