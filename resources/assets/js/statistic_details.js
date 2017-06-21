@@ -26,15 +26,21 @@ module.exports = {
             var sub_statistic_type = $(type).data("statisticType");
             var sub_menu = $(".statistic-menu").find("button.sub_menu[data-statistic-type='" + sub_statistic_type + "']");
 
-            var country_id = $(sub_menu[1]).data("country");
-            var statistic_detail_div = $('div.statistic-data.compare-data[data-country="' + country_id + '"]');
 
-            if($(statistic_detail_div).children().length >0){
+            var isCompare = window.location.href.includes('compare');
+            var isOpen = false;
+            if(isCompare) {
+                var country_id = $(sub_menu[1]).data("country");
+                var statistic_detail_div = $('div.statistic-data.compare-data[data-country="' + country_id + '"]');
+                isOpen = $(statistic_detail_div).children().length > 0;
+            }
+            if(isOpen){
                 hideAllDetails(country_id);
             } else{
                 $(sub_menu).each(function(i){ // both countries
 
                     var statistic_type = $(sub_menu[i]).data("statisticType");
+                    var country_id = $(sub_menu[i]).data("country");
 
                     $.ajax({ // ask for data and add to div
                         type: 'GET',
