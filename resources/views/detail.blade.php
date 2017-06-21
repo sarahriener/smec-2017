@@ -38,9 +38,10 @@
             </h1>
 
             <div class="detail-content">
-                <p class="intro-text"> {{$country->name}} is one of the 26 Google Shopping-Countries. Facts and Figures about E-Commerce in {{$country->name}} in are presented bellow.
-                    <br><br>
+                <p class="intro-text">
                     {{$country->description}}
+                    {{$country->name}} is also one of the 26 Google Shopping-Countries. Facts and Figures about E-Commerce in {{$country->name}} are presented bellow.
+                    <br><br>
                 </p>
                 <div class="statistic-data detail-data" data-country="{{ $country->id }}">
                     <p>Select a statistic type.</p>
