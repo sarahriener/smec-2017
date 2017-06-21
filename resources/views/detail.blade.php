@@ -50,11 +50,4 @@
         </div>
     </div>
 
-<<<<<<< HEAD
-=======
-
-    <script type="text/javascript" src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>
-
-
->>>>>>> 456fe36289fa757fc188a3ef434bf1fc9cdff44a
 @endsection
