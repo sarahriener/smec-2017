@@ -15,7 +15,7 @@
                     <li><a href="/">Google Shopping Compendium</a></li> /
                     <li><a href="/overview">Overview</a></li> /
                     <li class="active"><a href="/country/{{ $country->id }}">{{ $country->name }}</a></li> /
-                    <li class="active"><a href="/compare/{{ $country->id }}">Compare with {{ $country->name }}</a></li>
+                    <li class="active">Compare with {{ $country->name }}</li>
                 </ol>
             </div>
         </div>
