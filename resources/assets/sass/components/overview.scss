@@ -3,10 +3,13 @@
 }
 
 .whoop-header {
-  background-color: $w-green;
+  color: #ffffff;
+  font-family: 'Lato', sans-serif;
+  background-image: url(/img/hero-whoop.jpg);
+  background-size: 100%;
   padding: 40px;
-  color: $w-white;
   text-align: center;
+  margin-bottom: 15px;
 }
 
 .whoop-header__intro {

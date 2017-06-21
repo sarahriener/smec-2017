@@ -25,16 +25,28 @@
         
         <div class="entry__data">
             <div class="entry__data__item">
+                <div>
+                    <img class="entry__data__item__img" src="/img/icons/coins_orange.png">
+                </div>
+
                 <span class="entry__data__item__head">{{$type}} {{$aggregatedSales}}</span>
                 <p class="entry__data__item__info">E-Commerce Sales 2016</p>
             </div>
 
             <div class="entry__data__item">
+                <div>
+                    <img class="entry__data__item__img" src="/img/icons/basket_orange.png">
+                </div>
+
                 <span class="entry__data__item__head">{{$type}} {{$aggregatedFutureSales}}</span>
                 <p class="entry__data__item__info">Future E-Commerce Sales 2021</p>
             </div>
 
             <div class="entry__data__item">
+                <div>
+                    <img class="entry__data__item__img" src="/img/icons/globe_orange.png">
+                </div>
+
                 <span class="entry__data__item__head">{{$salesOfCountry->name}}</span>
                 <p class="entry__data__item__info">
                     @if (strcmp($salesOfCountry->sales, "") === 0)

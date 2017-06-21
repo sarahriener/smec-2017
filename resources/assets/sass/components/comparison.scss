@@ -4,7 +4,7 @@
 
 .compare__detail__select, .compare__detail__data {
   margin-top: 50px;
-  width: 80%;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
 
@@ -49,6 +49,7 @@
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
+    height: 54px;
   }
 }
 
@@ -61,14 +62,25 @@
     background-color: transparent;
     margin-left: auto;
     margin-right: auto;
+    margin-top: -9px;
   }
 
   .filter__item, .detail .filter__item {
     background-color: transparent;
   }
 
+  .filter__items__img {
+    width: 20px;
+    height: auto;
+    margin-top: -2px;
+  }
+
   .filter__items__imagediv {
-    display: none;
+    float: left;
+  }
+
+  .filter__item.filter__country {
+    margin-left: 3px;
   }
 }
 
@@ -79,6 +91,11 @@
     color: #000000;
     font-size: initial;
   }
+}
+
+.compare__flag {
+  height: 20px;
+  width: auto;
 }
 
 

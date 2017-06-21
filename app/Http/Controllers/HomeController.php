@@ -51,6 +51,8 @@ class HomeController extends Controller
 
         $iAggregatedSales = $this->aggregateSales($statistic_ids, $iCurrentYear);
 
+        if(is_numeric($iAggregatedSales)) $iAggregatedSales = $this->formatNumber($iAggregatedSales);
+
         return $iAggregatedSales;
     }
 
@@ -61,6 +63,8 @@ class HomeController extends Controller
             ->max('year');
 
         $iAggregatedSales = $this->aggregateSales($statistic_ids, $iFutureYear);
+
+        if(is_numeric($iAggregatedSales)) $iAggregatedSales = $this->formatNumber($iAggregatedSales);
 
         return $iAggregatedSales;
     }
@@ -97,12 +101,19 @@ class HomeController extends Controller
             $oStatisticDetails = StatisticDetail::where('statistic_id', $oCountryStatistic->id)->first();
 
             //$oStatisticDetails ? $aCountry['sales'] = $oStatisticDetails->value : $aCountry['sales'] = "No current sales available!";
-            $oStatisticDetails ? $aCountry['sales'] = $oStatisticDetails->value : $aCountry['sales'] = "";
+            $oStatisticDetails ? $aCountry['sales'] = $this->formatNumber($oStatisticDetails->value) : $aCountry['sales'] = "";
         } else {
             $aCountry['sales'] = "";
         }
 
         return (object) $aCountry;
+    }
+
+    private function formatNumber($n) {
+        if ($n > 1000000000000) return round(($n/1000000000000), 2).' trillion';
+        elseif ($n > 1000000000) return round(($n/1000000000), 2).' billion';
+        elseif ($n > 1000000) return round(($n/1000000), 2).' million';
+        elseif ($n > 1000) return round(($n/1000), 2).' thousand';
     }
 
 }

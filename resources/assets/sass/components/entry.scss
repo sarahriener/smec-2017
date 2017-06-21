@@ -1,5 +1,4 @@
 .entry {
-  font-size: 1.3em;
 
   &__text {
     margin: 35px 0 35px 0;
@@ -21,6 +20,12 @@
       width: 30%;
       float: left;
 
+      &__img {
+        height: 50px;
+        width: auto;
+        margin-bottom: 10px;
+      }
+
       &__head {
         @include font-bald;
         font-size: 1.3em;
@@ -37,6 +42,7 @@
   &__more {
     float: right;
     text-align: right;
+    line-height: 2.1em;
 
     &__button {
       border: none;

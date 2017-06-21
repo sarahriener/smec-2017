@@ -2,7 +2,13 @@ module.exports = {
     init: function () {
 
         $("div.statistic-menu button.menu").on("click", function (e) {
-            var statistic_type = $(this).data("statisticType");
+            var $statisticMenu = $(this);
+
+            $('html, body').animate({
+               scrollTop: $statisticMenu.offset().top - 100
+            }, 800);
+
+            var statistic_type = $statisticMenu.data("statisticType");
 
             // hide all
             var statistic_type_divs = $("div.menu__inner");
