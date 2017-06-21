@@ -12,10 +12,8 @@
             <div class="nav__top__breadcrumbs">
                 <!-- TODO breadcrumb Klasse bennenen auch in CSS -->
                 <ol class="nav__top__breadcrumb">
-                    <!--!!update!! href link (startpage)-->
                     <li><a href="/">Google Shopping Compendium</a></li> /
                     <li><a href="/overview">Overview</a></li> /
-                    <!--!!update!! href link (startpage) section attributes-->
                     <li class="active"><a href="/country/{{ $country->id }}">{{ $country->name }}</a></li> /
                     <li class="active"><a href="/compare/{{ $country->id }}">Compare with {{ $country->name }}</a></li>
                 </ol>
