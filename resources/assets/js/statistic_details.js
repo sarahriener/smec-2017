@@ -1,4 +1,3 @@
-
 module.exports = {
     init: function () {
         if($('#div2').not('div.filter__items__wrapper')){
@@ -25,31 +24,38 @@ module.exports = {
         $("div.statistic-menu button.sub_menu").on("click", function(e){
             var type = e.target;
             var sub_statistic_type = $(type).data("statisticType");
-            var sub_menu = $(".statistic-menu").find("button.sub_menu[data-statistic-type='" + sub_statistic_type + "']") ;
+            var sub_menu = $(".statistic-menu").find("button.sub_menu[data-statistic-type='" + sub_statistic_type + "']");
 
-            $(sub_menu).each(function(i){ // both countries
-                var country_id = $(sub_menu[i]).data("country");
+            var country_id = $(sub_menu[1]).data("country");
+            var statistic_detail_div = $('div.statistic-data.compare-data[data-country="' + country_id + '"]');
 
-                var statistic_type = $(sub_menu[i]).data("statisticType");
+            if($(statistic_detail_div).children().length >0){
+                hideAllDetails(country_id);
+            } else{
+                $(sub_menu).each(function(i){ // both countries
 
-                $.ajax({ // ask for data and add to div
-                    type: 'GET',
-                    url: '/getStatisticDetails',
-                    data: {
-                        country_id: country_id,
-                        statistic_type: statistic_type
-                    },
-                    success: function(data) {
-                        hideAllDetails(data['country']);
-                        showDetails(data);
-                    }
+                    var statistic_type = $(sub_menu[i]).data("statisticType");
+
+                    $.ajax({ // ask for data and add to div
+                        type: 'GET',
+                        url: '/getStatisticDetails',
+                        data: {
+                            country_id: country_id,
+                            statistic_type: statistic_type
+                        },
+                        success: function(data) {
+                            hideAllDetails(data['country'].id);
+                            showDetails(data);
+                        }
+                    });
+
                 });
-            });
+            }
 
         });
 
-        function hideAllDetails(country){
-            var statistic_detail_div = $('div.statistic-data[data-country="' + country.id + '"]');
+        function hideAllDetails(country_id){
+            var statistic_detail_div = $('div.statistic-data[data-country="' + country_id + '"]');
             statistic_detail_div.empty();
         }
 
@@ -81,7 +87,7 @@ module.exports = {
                         '<p>There are no details available for this statistic type.</p>');
                 }
             } else{
-                var statistic_detail_data = '<div id="chartContainer-'+ statistic_type.name + '_' + country.id + '" class="chart" ></div>';
+                var statistic_detail_data = '<div class="chart"><canvas id="chartContainer-'+ statistic_type.name + '_' + country.id + '"></canvas></div>';
 
                 if(isCompare){
                     $(statistic_detail_div).html(statistic_detail_data);
@@ -101,59 +107,126 @@ module.exports = {
             /** TODO fallunterscheidung: Um welche Statistikart handelt es sich (es ist bereits definiert welche
              *  statistic_types welche arten von Graphen eingefügt werden sollen!!
              *  */
-            // Hier beispiel eines column charts (population) -- nachher besser mit case!
-            //if(statistic_type.name == "Population"){
-            createColumnChart(statistic_details, statistic_type, country_id);
-            //}
+                // Hier beispiel eines column charts (population) -- nachher besser mit case!
+                //
+
+
+            var Chart = require('chart.js');
+
+            var data = createData(statistic_details);
+            var ctx = document.getElementById('chartContainer-'+ statistic_type.name + '_' + country_id).getContext("2d");
+
+            switch(statistic_type.name) {
+                case "Population":
+                    createBarChart(data, ctx, statistic_type);
+                    break;
+                case "Internet Users":
+                case "E-Commerce User of Population":
+                case "Share of Ad Spend by Medium":
+                case "Age":
+                    createDoughnutChart(data, ctx, statistic_type);
+                    break;
+                default:
+                    createBarChart(data, ctx, statistic_type);
+            }
+
+            //TODO Add other cases!!!
 
             return statistic_detail_data;
         }
 
-        function createColumnChart(statistic_details, statistic_type, country_id){
 
+        function createData(statistic_details){
             var generatedDataPoints = [];
+            var generatedDataLabels = [];
 
-            var data_value = "";
             $(statistic_details).each(function(i, detail){
                 var year =  detail.year;
                 var value =  detail.value;
-                var data = {};
+                var data_value = parseFloat(value.replace(/[^0-9\.]/g, ''));
 
-                data_value = parseFloat(value.replace(/[^0-9\.]/g, ''));
-                data.x =  year;
-                data.y =  data_value;
-                data.label = year;
-
-                generatedDataPoints.push(data);
+                generatedDataPoints.push(data_value);
+                generatedDataLabels.push(year.toString());
 
             });
+            var data = {};
+            data.generatedDataPoints = generatedDataPoints;
+            data.generatedDataLabels = generatedDataLabels;
 
-            var chart = new CanvasJS.Chart('chartContainer-'+ statistic_type.name + '_' + country_id,
-                {
-                    animationEnabled: true,
-                    title: {
-                        text: statistic_type.name,
-                        fontFamily: "arial"
-                    },
+            return data;
+        }
+
+
+        function createDoughnutChart(data, ctx, statistic_type){
+            var doughnutChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: data.generatedDataLabels,
+                    datasets: [{
+                        label: statistic_type.name,
+                        data: data.generatedDataPoints,
+                        backgroundColor: [
+                            'rgba(255, 99, 132,1)',
+                            'rgba(54, 162, 235,1)',
+                            'rgba(255, 206, 86,1)',
+                            'rgba(75, 192, 192,1)',
+                            'rgba(153, 102, 255,1)',
+                            'rgba(255, 159, 64,1)'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
                     legend: {
-                        fontFamily: "arial"
+                        position: 'top'
                     },
-                    axisX: {
-                        interval: (data_value/100)
+                    title: {
+                        display: true,
+                        text: statistic_type.description
                     },
-                    data: [
-                        {
-                            type: "column",
-                            legendMarkerType: "triangle",
-                            legendMarkerColor: "green",
-                            color: "rgba(255,12,32,.3)",
-                            showInLegend: true,
-                            legendText: statistic_type.description,
-                            dataPoints: generatedDataPoints
-                        }
-                    ]
-                });
-            chart.render();
+                    animation: {
+                        animateScale: true,
+                        animateRotate: true
+                    },
+                    maintainAspectRatio: false
+                }
+            });
+        }
+
+        function createBarChart(data, ctx, statistic_type){
+            var barChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: data.generatedDataLabels,
+                    datasets: [{
+                        label: statistic_type.name,
+                        data: data.generatedDataPoints,
+                        backgroundColor: [
+                            'rgba(255, 99, 132,1)',
+                            'rgba(54, 162, 235,1)',
+                            'rgba(255, 206, 86,1)',
+                            'rgba(75, 192, 192,1)',
+                            'rgba(153, 102, 255,1)',
+                            'rgba(255, 159, 64,1)'
+                        ]
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero:true
+                            }
+                        }]
+                    },
+                    title: {
+                        display: true,
+                        text: statistic_type.description
+                    },
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
         }
 
     }
