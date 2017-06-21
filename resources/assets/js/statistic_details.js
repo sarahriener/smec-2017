@@ -5,6 +5,11 @@ module.exports = {
             $('#data-div2').find('div.statistic-data.compare-data').each(function(){
                 (this).setAttribute('data-country', null);
             });
+
+            $('#data-div2').find('button.sub_menu').each(function(){
+                (this).setAttribute('data-country', null);
+            });
+
         }
 
         $('.compare__detail__select__item').on('drop', function(e){
@@ -30,30 +35,33 @@ module.exports = {
             var isCompare = window.location.href.includes('compare');
             var isOpen = false;
             if(isCompare) {
-                var country_id = $(sub_menu[1]).data("country");
-                var statistic_detail_div = $('div.statistic-data.compare-data[data-country="' + country_id + '"]');
+
+                var statistic_detail_div = $(type).next();
                 isOpen = $(statistic_detail_div).children().length > 0;
             }
             if(isOpen){
-                hideAllDetails(country_id);
+                hideAllDetails($(sub_menu[0]).data("country"));
+                hideAllDetails($(sub_menu[1]).data("country"));
             } else{
                 $(sub_menu).each(function(i){ // both countries
 
                     var statistic_type = $(sub_menu[i]).data("statisticType");
                     var country_id = $(sub_menu[i]).data("country");
 
-                    $.ajax({ // ask for data and add to div
-                        type: 'GET',
-                        url: '/getStatisticDetails',
-                        data: {
-                            country_id: country_id,
-                            statistic_type: statistic_type
-                        },
-                        success: function(data) {
-                            hideAllDetails(data['country'].id);
-                            showDetails(data);
-                        }
-                    });
+                    if(country_id){
+                        $.ajax({ // ask for data and add to div
+                            type: 'GET',
+                            url: '/getStatisticDetails',
+                            data: {
+                                country_id: country_id,
+                                statistic_type: statistic_type
+                            },
+                            success: function(data) {
+                                hideAllDetails(data['country'].id);
+                                showDetails(data);
+                            }
+                        });
+                    }
 
                 });
             }
@@ -79,7 +87,8 @@ module.exports = {
                     '.statistic-data' +
                     '.compare-data' +
                     '[data-country="' + country.id + '"]' +
-                    '[data-statistic-type="' + statistic_type.name.replace(" ", "_") + '"]');
+                    '[data-statistic-type="' + statistic_type.name.split(' ').join('_') + '"]');
+
             }
 
             //insert data
@@ -93,6 +102,7 @@ module.exports = {
                         '<p>There are no details available for this statistic type.</p>');
                 }
             } else{
+
                 var statistic_detail_data = '<div class="chart"><canvas id="chartContainer-'+ statistic_type.name + '_' + country.id + '"></canvas></div>';
 
                 if(isCompare){
