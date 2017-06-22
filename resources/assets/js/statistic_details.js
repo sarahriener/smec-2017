@@ -74,6 +74,7 @@ module.exports = {
         }
 
         function showDetails(data){
+            console.log(data);
             var country = data['country'];
             var statistic_type = data['statistic_type'];
             var statistic_details = data['statistic_details'];
@@ -108,8 +109,11 @@ module.exports = {
                 if(isCompare){
                     $(statistic_detail_div).html(statistic_detail_data);
                 } else{
+                    var statisticTypeExplanation = statistic_type.explanation ? statistic_type.explanation : '';
+
                     $(statistic_detail_div).html(
                         '<h2>' + statistic_type.name + '</h2>' +
+                        '<p>' + statisticTypeExplanation + '</p>' +
                         statistic_detail_data);
                 }
 
