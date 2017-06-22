@@ -139,6 +139,10 @@ module.exports = {
                 case "inhabitants":
                     createBarChart(data, ctx, statistic_type);
                     break;
+                case "€":
+                case "$":
+                    //TODO einfach anzeigen
+                    break;
 
                 case "%":
                 case "years":
@@ -146,7 +150,7 @@ module.exports = {
                     break;
 
                 case "top":
-                    createRanking(data, ctx, statistic_type);
+                    createRanking(ctx, statistic_type);
                     break;
 
                 default:
@@ -176,10 +180,26 @@ module.exports = {
             return data;
         }
 
-        function createRanking(data, ctx, statistic_type){
-            //$(ctx).parent());
+        function createRanking(ctx, statistic_type){
+           console.log(statistic_type.pivot.country_id);
 
             // todo unterkategorien herausholen und anzeigen!
+            /*$.ajax({ // ask for data and add to div
+                type: 'GET',
+                url: '/getStatisticDetails',
+                data: {
+                    country_id: country_id,
+                    statistic_type: statistic_type
+                },
+                success: function(data) {
+                    hideAllDetails(data['country'].id);
+                    showDetails(data);
+                }
+            });*/
+
+
+
+
         }
 
         function createDoughnutChart(data, ctx, statistic_type){
