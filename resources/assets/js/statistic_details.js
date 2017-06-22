@@ -51,10 +51,9 @@ module.exports = {
                     hideAllDetails($(sub_menu[1]).data("country"));
                 } else{
                     $(sub_menu).each(function(i){ // both countries
-
                         var statistic_type = $(sub_menu[i]).data("statisticType");
                         var country_id = $(sub_menu[i])[0].getAttribute("data-country");
-                        if(country_id){
+                        if(country_id != "null"){
                             $.ajax({ // ask for data and add to div
                                 type: 'GET',
                                 url: '/getStatisticDetails',
@@ -68,10 +67,8 @@ module.exports = {
                                 }
                             });
                         }
-
                     });
                 }
-
             });
         }
 
@@ -134,24 +131,27 @@ module.exports = {
                 //
 
             var Chart = require('chart.js');
-            var data = createData(statistic_details);
-            var ctx = document.getElementById('chartContainer-'+ statistic_type.name.split(' ').join('_') + '_' + country_id).getContext("2d");
 
-            switch(statistic_type.name) {
-                case "Population":
+            var ctx = document.getElementById('chartContainer-'+ statistic_type.name.split(' ').join('_') + '_' + country_id).getContext("2d");
+            var data = createData(statistic_details);
+
+            switch(statistic_type.type) {
+                case "inhabitants":
                     createBarChart(data, ctx, statistic_type);
                     break;
-                case "Internet Users":
-                case "E-Commerce User of Population":
-                case "Share of Ad Spend by Medium":
-                case "Age":
+
+                case "%":
+                case "years":
                     createDoughnutChart(data, ctx, statistic_type);
                     break;
+
+                case "top":
+                    createRanking(data, ctx, statistic_type);
+                    break;
+
                 default:
                     createBarChart(data, ctx, statistic_type);
             }
-
-            //TODO Add other cases!!!
 
             return statistic_detail_data;
         }
@@ -174,6 +174,12 @@ module.exports = {
             data.generatedDataLabels = generatedDataLabels;
 
             return data;
+        }
+
+        function createRanking(data, ctx, statistic_type){
+            //$(ctx).parent());
+
+            // todo unterkategorien herausholen und anzeigen!
         }
 
         function createDoughnutChart(data, ctx, statistic_type){
