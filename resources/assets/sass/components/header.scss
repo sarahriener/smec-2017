@@ -1,19 +1,33 @@
-.header {
+/*.header {
   overflow: auto;
-  margin-top: 15px;
+  margin-top: 10px;
+  position: relative;
+  min-height: 50px;
 }
 
 .header__img {
+  text-indent: -878px;
   height: 60px;
   width: auto;
+  position: relative;
+  top: -15px;
+  display: block;
+  z-index: 20;
 }
 
 .header__nav {
-  margin-left: 25px;
+  margin-left: 8px;
   text-transform: uppercase;
   color: $w-boulder;
   vertical-align: middle;
   font-size: 12px;
+}
+
+.signup {
+  background-color: #e65c5a;
+  border-radius: 5px;
+  font-weight: 700 !important;
+  color: #ffffff;
 }
 
 .header__nav:hover {
@@ -33,7 +47,6 @@
 
   &__back {
     float: left;
-    padding: 8px 15px;
     background-color: $w-yellow-light;
     border-radius: 4px;
     color: #000000;
@@ -75,3 +88,45 @@
   }
 
 }
+
+
+
+#main-navbar {
+  background-color: #ffffff;
+  font-family: Lato,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  height: 80px;
+  z-index: 9999;
+  position: relative;
+  -moz-box-shadow: 10px 10px 10px #000;
+  -webkit-box-shadow: 10px 10px 10px #000;
+  box-shadow: 1px 1px 2px #797979;
+}
+
+
+#main-navbar .navbar-default {
+  background-color: #fff;
+  border: none;
+}
+
+#main-navbar nav {
+  margin-bottom: 0;
+  padding-top: 10px;
+}
+
+.navbar {
+  border-radius: 4px;
+}
+
+.navbar {
+  position: relative;
+  min-height: 50px;
+  margin-bottom: 26px;
+  border: 1px solid transparent;
+}
+
+.container-fluid {
+  margin-right: auto;
+  margin-left: auto;
+} **/
+
