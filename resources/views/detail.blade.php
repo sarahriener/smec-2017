@@ -2,18 +2,17 @@
 
 @section('title', 'Detail')
 
+@include('layouts.header')
+
 
 @section('content')
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    @include('layouts.header')
-
     <div class="detail">
 
 
         <div class="nav__top">
             <!--a href="/overview" class="nav__top__back"><span class="glyphicon glyphicon-menu-left"></span>Back to overview</a-->
-
             <div class="nav__top__breadcrumbs">
                 <!-- TODO breadcrumb Klasse bennenen auch in CSS -->
                 <ol class="nav__top__breadcrumb">
@@ -23,7 +22,6 @@
                 </ol>
             </div>
         </div>
-
 
         @include('layouts.filter')
 
