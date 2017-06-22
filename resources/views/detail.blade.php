@@ -40,7 +40,7 @@
             <div class="detail-content">
                 <p class="intro-text">
                     {{$country->description}}
-                    {{$country->name}} is also one of the 26 Google Shopping-Countries. Facts and Figures about E-Commerce in {{$country->name}} are presented bellow.
+                    {{$country->name}} is also one of the 26 Google Shopping-Countries. Facts and Figures about E-Commerce in {{$country->name}} are presented below.
                     <br><br>
                 </p>
                 <div class="statistic-data detail-data" data-country="{{ $country->id }}">
