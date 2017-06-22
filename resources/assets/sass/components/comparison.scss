@@ -1,5 +1,16 @@
 .compare {
   margin-bottom: 30px;
+
+  .chart{
+    height: 230px;
+    width: 90%;
+    margin: 30px;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+    padding: auto;
+
+  }
 }
 
 .compare__detail__select, .compare__detail__data {
