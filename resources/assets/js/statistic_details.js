@@ -1,5 +1,6 @@
 module.exports = {
     init: function () {
+
         if($('#div2').not('div.filter__items__wrapper')){
             $('#data-div2').hide();
             $('#data-div2').find('div.statistic-data.compare-data').each(function(){
@@ -9,7 +10,6 @@ module.exports = {
             $('#data-div2').find('button.sub_menu').each(function(){
                 (this).setAttribute('data-country', null);
             });
-
         }
 
         $('.compare__detail__select__item').on('drop', function(e){
@@ -22,51 +22,58 @@ module.exports = {
 
                 $(curr).next()[0].setAttribute('data-country', country_id); // update country id in div
             });
+
+            hideAllDetails(country_id);
+
+            var sub_menu = $("#data-div1 .statistic-menu").find("button.sub_menu");
+            hideAllDetails($(sub_menu[0]).data("country"));
+
             country_div_2.show();
         });
 
+        initMenu();
 
-        $("div.statistic-menu button.sub_menu").on("click", function(e){
-            var type = e.target;
-            var sub_statistic_type = $(type).data("statisticType");
-            var sub_menu = $(".statistic-menu").find("button.sub_menu[data-statistic-type='" + sub_statistic_type + "']");
+        function initMenu(){
+            $("div.statistic-menu button.sub_menu").on("click", function(e){
+                var type = e.target;
+                var sub_statistic_type = $(type).data("statisticType");
+                var sub_menu = $(".statistic-menu").find("button.sub_menu[data-statistic-type='" + sub_statistic_type + "']");
 
+                var isCompare = window.location.href.includes('compare');
+                var isOpen = false;
 
-            var isCompare = window.location.href.includes('compare');
-            var isOpen = false;
-            if(isCompare) {
+                if(isCompare) {
+                    var statistic_detail_div = $(type).next();
+                    isOpen = $(statistic_detail_div).children().length > 0;
+                }
+                if(isOpen){
+                    hideAllDetails($(sub_menu[0]).data("country"));
+                    hideAllDetails($(sub_menu[1]).data("country"));
+                } else{
+                    $(sub_menu).each(function(i){ // both countries
 
-                var statistic_detail_div = $(type).next();
-                isOpen = $(statistic_detail_div).children().length > 0;
-            }
-            if(isOpen){
-                hideAllDetails($(sub_menu[0]).data("country"));
-                hideAllDetails($(sub_menu[1]).data("country"));
-            } else{
-                $(sub_menu).each(function(i){ // both countries
+                        var statistic_type = $(sub_menu[i]).data("statisticType");
+                        var country_id = $(sub_menu[i])[0].getAttribute("data-country");
+                        if(country_id){
+                            $.ajax({ // ask for data and add to div
+                                type: 'GET',
+                                url: '/getStatisticDetails',
+                                data: {
+                                    country_id: country_id,
+                                    statistic_type: statistic_type
+                                },
+                                success: function(data) {
+                                    hideAllDetails(data['country'].id);
+                                    showDetails(data);
+                                }
+                            });
+                        }
 
-                    var statistic_type = $(sub_menu[i]).data("statisticType");
-                    var country_id = $(sub_menu[i]).data("country");
+                    });
+                }
 
-                    if(country_id){
-                        $.ajax({ // ask for data and add to div
-                            type: 'GET',
-                            url: '/getStatisticDetails',
-                            data: {
-                                country_id: country_id,
-                                statistic_type: statistic_type
-                            },
-                            success: function(data) {
-                                hideAllDetails(data['country'].id);
-                                showDetails(data);
-                            }
-                        });
-                    }
-
-                });
-            }
-
-        });
+            });
+        }
 
         function hideAllDetails(country_id){
             var statistic_detail_div = $('div.statistic-data[data-country="' + country_id + '"]');
@@ -103,7 +110,7 @@ module.exports = {
                 }
             } else{
 
-                var statistic_detail_data = '<div class="chart"><canvas id="chartContainer-'+ statistic_type.name + '_' + country.id + '"></canvas></div>';
+                var statistic_detail_data = '<div class="chart"><canvas id="chartContainer-'+ statistic_type.name.split(' ').join('_') + '_' + country.id + '"></canvas></div>';
 
                 if(isCompare){
                     $(statistic_detail_div).html(statistic_detail_data);
@@ -126,11 +133,9 @@ module.exports = {
                 // Hier beispiel eines column charts (population) -- nachher besser mit case!
                 //
 
-
             var Chart = require('chart.js');
-
             var data = createData(statistic_details);
-            var ctx = document.getElementById('chartContainer-'+ statistic_type.name + '_' + country_id).getContext("2d");
+            var ctx = document.getElementById('chartContainer-'+ statistic_type.name.split(' ').join('_') + '_' + country_id).getContext("2d");
 
             switch(statistic_type.name) {
                 case "Population":
@@ -150,7 +155,6 @@ module.exports = {
 
             return statistic_detail_data;
         }
-
 
         function createData(statistic_details){
             var generatedDataPoints = [];
@@ -172,7 +176,6 @@ module.exports = {
             return data;
         }
 
-
         function createDoughnutChart(data, ctx, statistic_type){
             var doughnutChart = new Chart(ctx, {
                 type: 'doughnut',
@@ -182,9 +185,9 @@ module.exports = {
                         label: statistic_type.name,
                         data: data.generatedDataPoints,
                         backgroundColor: [
-                            'rgba(255, 99, 132,1)',
                             'rgba(54, 162, 235,1)',
                             'rgba(255, 206, 86,1)',
+                            'rgba(255, 99, 132,1)',
                             'rgba(75, 192, 192,1)',
                             'rgba(153, 102, 255,1)',
                             'rgba(255, 159, 64,1)'
@@ -218,10 +221,10 @@ module.exports = {
                         label: statistic_type.name,
                         data: data.generatedDataPoints,
                         backgroundColor: [
-                            'rgba(255, 99, 132,1)',
                             'rgba(54, 162, 235,1)',
                             'rgba(255, 206, 86,1)',
                             'rgba(75, 192, 192,1)',
+                            'rgba(255, 99, 132,1)',
                             'rgba(153, 102, 255,1)',
                             'rgba(255, 159, 64,1)'
                         ]
@@ -244,6 +247,5 @@ module.exports = {
                 }
             });
         }
-
     }
 };
