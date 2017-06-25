@@ -65,4 +65,12 @@ class DetailsController extends Controller
     }
 
 
+    public function getStatisticTypeSubTypes(){
+        $statistic_type_id = $_GET['statistic_type_id'];
+        $statistic_type = StatisticType::find($statistic_type_id);
+
+        return $statistic_type->subTypes();
+    }
+
+
 }

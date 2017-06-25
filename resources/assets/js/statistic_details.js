@@ -54,6 +54,7 @@ module.exports = {
                         var statistic_type = $(sub_menu[i]).data("statisticType");
                         var country_id = $(sub_menu[i])[0].getAttribute("data-country");
                         if(country_id != "null"){
+
                             $.ajax({ // ask for data and add to div
                                 type: 'GET',
                                 url: '/getStatisticDetails',
@@ -63,9 +64,10 @@ module.exports = {
                                 },
                                 success: function(data) {
                                     hideAllDetails(data['country'].id);
-                                    showDetails(data);
+                                    generateCharts(data);
                                 }
                             });
+
                         }
                     });
                 }
@@ -77,13 +79,13 @@ module.exports = {
             statistic_detail_div.empty();
         }
 
-        function showDetails(data){
-            console.log(data);
+        function generateCharts(data){
             var country = data['country'];
             var statistic_type = data['statistic_type'];
             var statistic_details = data['statistic_details'];
 
             var statistic_detail_div = $('div.statistic-data.detail-data[data-country="' + country.id + '"]');
+
 
             var isCompare = window.location.href.includes('compare');
             if(isCompare){
@@ -126,45 +128,38 @@ module.exports = {
         }
 
         function generate_statistic_data(statistic_details, statistic_type, country_id){
-            var statistic_detail_data = '';
-
-            /** TODO fallunterscheidung: Um welche Statistikart handelt es sich (es ist bereits definiert welche
-             *  statistic_types welche arten von Graphen eingefügt werden sollen!!
-             *  */
-                // Hier beispiel eines column charts (population) -- nachher besser mit case!
-                //
-
             var Chart = require('chart.js');
 
-            var ctx = document.getElementById('chartContainer-'+ statistic_type.name.split(' ').join('_') + '_' + country_id).getContext("2d");
-            var data = createData(statistic_details);
+            var detail_div = document.getElementById('chartContainer-'+ statistic_type.name.split(' ').join('_') + '_' + country_id);
+            var ctx = detail_div.getContext("2d");
+
 
             switch(statistic_type.type) {
                 case "inhabitants":
+                    var data = createDataForChart(statistic_details);
                     createBarChart(data, ctx, statistic_type);
                     break;
                 case "€":
                 case "$":
                     //TODO einfach anzeigen
                     break;
+                case "top":
+                    createRanking(detail_div, statistic_type);
+                    break;
 
                 case "%":
                 case "years":
+                    var data = createDataForChart(statistic_details);
                     createDoughnutChart(data, ctx, statistic_type);
                     break;
 
-                case "top":
-                    createRanking(ctx, statistic_type);
-                    break;
-
                 default:
+                    var data = createDataForChart(statistic_details);
                     createBarChart(data, ctx, statistic_type);
             }
-
-            return statistic_detail_data;
         }
 
-        function createData(statistic_details){
+        function createDataForChart(statistic_details){
             var generatedDataPoints = [];
             var generatedDataLabels = [];
 
@@ -184,26 +179,50 @@ module.exports = {
             return data;
         }
 
-        function createRanking(ctx, statistic_type){
-           console.log(statistic_type.pivot.country_id);
+        function createRanking(detail_div, statistic_type){
+            var country_id = statistic_type.pivot.country_id;
 
-            // todo unterkategorien herausholen und anzeigen!
-            /*$.ajax({ // ask for data and add to div
+            $.ajax({ // ask for data and add to div
                 type: 'GET',
-                url: '/getStatisticDetails',
+                url: '/getStatisticTypeSubTypes',
                 data: {
-                    country_id: country_id,
-                    statistic_type: statistic_type
+                    statistic_type_id: statistic_type.id
                 },
-                success: function(data) {
-                    hideAllDetails(data['country'].id);
-                    showDetails(data);
+                success: function(statisticTypeSubTypes) {
+                    var subTypes = statisticTypeSubTypes;
+                    var rankings = [];
+
+                    $.each(subTypes, function( i, subType ){
+                        $.ajax({ // ask for data and add to div
+                            type: 'GET',
+                            url: '/getStatisticDetails',
+                            data: {
+                                country_id: country_id,
+                                statistic_type: subType.name
+                            },
+                            success: function(data){
+                                rankings.push(data);
+                                if(rankings.length == Object.keys(subTypes).length){
+                                    var sorted_detail_array = [];
+                                    $.each(rankings, function(i, ranking) {
+                                        sorted_detail_array[ranking.statistic_type.name] = ranking.statistic_details[0];
+                                    });
+                                    var keys = Object.keys(sorted_detail_array).sort();
+
+                                    var detail_string = "";
+                                    $.each(keys, function(i, name) {
+                                        detail_string += "<p><b>" + name + "</b>: ";
+                                        detail_string +=  sorted_detail_array[name].value + " (" + sorted_detail_array[name].year + ") " + "</p>";
+
+                                    });
+                                    $(detail_div).parent().html(detail_string);
+                                }
+                            }
+                        });
+                    });
+
                 }
-            });*/
-
-
-
-
+            });
         }
 
         function createDoughnutChart(data, ctx, statistic_type){
