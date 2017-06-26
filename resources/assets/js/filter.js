@@ -22,10 +22,8 @@ module.exports = {
             $selectContinent.on("click", function(e){
                 let $currContinent = $(e.currentTarget).data("continent");
 
-                // reset select if region is chosen -- not working yet
-                //$('select__country option:first-child').attr("selected", "selected");
-
-                $("#select__country option:selected").val($("#target option:first").val());
+                // reset select if region is chosen
+                $($selectCountry).val('ALL').trigger('change');
 
                 filterCountries("continent", $currContinent);
 

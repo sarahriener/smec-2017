@@ -53,6 +53,7 @@ module.exports = {
                     $(sub_menu).each(function(i){ // both countries
                         var statistic_type = $(sub_menu[i]).data("statisticType");
                         var country_id = $(sub_menu[i])[0].getAttribute("data-country");
+
                         if(country_id != "null"){
 
                             $.ajax({ // ask for data and add to div
@@ -89,15 +90,12 @@ module.exports = {
 
             var isCompare = window.location.href.includes('compare');
             if(isCompare){
-
                 statistic_detail_div = $('div' +
                     '.statistic-data' +
                     '.compare-data' +
                     '[data-country="' + country.id + '"]' +
                     '[data-statistic-type="' + statistic_type.name.split(' ').join('_') + '"]');
-
             }
-
             //insert data
             if(statistic_details.length <= 0){ // no date available
                 if(isCompare){
@@ -109,8 +107,7 @@ module.exports = {
                         '<p>There are no details available for this statistic type.</p>');
                 }
             } else{
-
-                var statistic_detail_data = '<div class="chart"><canvas id="chartContainer-'+ statistic_type.name.split(' ').join('_') + '_' + country.id + '"></canvas></div>';
+                var statistic_detail_data = '<div class="chart"><canvas id="chartContainer-'+ statistic_type.name.split(' ').join('_') + '_' + country.id + '">Loading data ...</canvas></div>';
 
                 if(isCompare){
                     $(statistic_detail_div).html(statistic_detail_data);
@@ -141,12 +138,16 @@ module.exports = {
                     break;
                 case "€":
                 case "$":
-                    //TODO einfach anzeigen
+                    if(statistic_details.length == 1){
+                        showData(statistic_details, statistic_type, detail_div, statistic_type);
+                    } else {
+                        var data = createDataForChart(statistic_details);
+                        createLineChart(data, ctx, statistic_type);
+                    }
                     break;
                 case "top":
                     createRanking(detail_div, statistic_type);
                     break;
-
                 case "%":
                 case "years":
                     var data = createDataForChart(statistic_details);
@@ -177,6 +178,20 @@ module.exports = {
             data.generatedDataLabels = generatedDataLabels;
 
             return data;
+        }
+
+        function showData(statistic_details, statistic_type, detail_div){
+            var detail_string = "";
+            var stat_type = statistic_type.type;
+            $(statistic_details).each(function(i, detail){
+                var data_value = parseFloat(detail.value.replace(/[^0-9\.]/g, ''));
+                if(data_value){
+                    detail_string +=  data_value + " " + stat_type;
+                    detail_string += " (" + detail.year + ") " + "</p>";
+                }
+            });
+
+            $(detail_div).parent().html(detail_string);
         }
 
         function createRanking(detail_div, statistic_type){
@@ -225,6 +240,58 @@ module.exports = {
             });
         }
 
+
+        /* ------------------------------------------------------------ */
+        /*                  Different Chart Types                       */
+
+        /**
+         * Line Chart
+         * @param data
+         * @param ctx
+         * @param statistic_type
+         */
+        function createLineChart(data, ctx, statistic_type){
+            var myLineChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: data.generatedDataLabels,
+                    datasets: [{
+                        label: statistic_type.name,
+                        data: data.generatedDataPoints,
+                        backgroundColor: [
+                            'rgba(54, 162, 235,1)',
+                            'rgba(255, 206, 86,1)',
+                            'rgba(255, 99, 132,1)',
+                            'rgba(75, 192, 192,1)',
+                            'rgba(153, 102, 255,1)',
+                            'rgba(255, 159, 64,1)'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    legend: {
+                        position: 'top'
+                    },
+                    title: {
+                        display: true,
+                        text: statistic_type.description
+                    },
+                    animation: {
+                        animateScale: true,
+                        animateRotate: true
+                    },
+                    maintainAspectRatio: false
+                }
+            });
+        }
+
+        /**
+         * Doughnut Chart
+         * @param data
+         * @param ctx
+         * @param statistic_type
+         */
         function createDoughnutChart(data, ctx, statistic_type){
             var doughnutChart = new Chart(ctx, {
                 type: 'doughnut',
@@ -261,6 +328,12 @@ module.exports = {
             });
         }
 
+        /**
+         * Bar Chart
+         * @param data
+         * @param ctx
+         * @param statistic_type
+         */
         function createBarChart(data, ctx, statistic_type){
             var barChart = new Chart(ctx, {
                 type: 'bar',
