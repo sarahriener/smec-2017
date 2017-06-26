@@ -3,11 +3,6 @@ module.exports = {
 
         $("div.statistic-menu button.menu").on("click", function (e) {
             var $statisticMenu = $(this);
-
-            $('html, body').animate({
-               scrollTop: $statisticMenu.offset().top - 100
-            }, 800);
-
             var statistic_type = $statisticMenu.data("statisticType");
 
             // hide all
@@ -26,6 +21,10 @@ module.exports = {
                     statistic_type_div[i].style.display = "inline";
                 }
             });
+
+            $('html, body').animate({
+                scrollTop: $statisticMenu.offset().top
+            }, 800);
         });
 
         /*var button = $("div.statistic-menu button.menu");
