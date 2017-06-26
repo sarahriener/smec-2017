@@ -130,7 +130,6 @@ module.exports = {
             var detail_div = document.getElementById('chartContainer-'+ statistic_type.name.split(' ').join('_') + '_' + country_id);
             var ctx = detail_div.getContext("2d");
 
-
             switch(statistic_type.type) {
                 case "inhabitants":
                     var data = createDataForChart(statistic_details);
@@ -171,7 +170,6 @@ module.exports = {
 
                 generatedDataPoints.push(data_value);
                 generatedDataLabels.push(year.toString());
-
             });
             var data = {};
             data.generatedDataPoints = generatedDataPoints;
@@ -190,6 +188,9 @@ module.exports = {
                     detail_string += " (" + detail.year + ") " + "</p>";
                 }
             });
+            if(detail_string == ""){
+                detail_string = "There is no data available!";
+            }
 
             $(detail_div).parent().html(detail_string);
         }
