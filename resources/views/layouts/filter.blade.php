@@ -21,7 +21,7 @@
         <div class="filter__items">
             @foreach ($countries as $country)
                 <div class="filter__items__wrapper" id="{{ $country->id }}" draggable="true">
-                    <a class="country__link" href="/country/{{$country->id}}" class="filter__item filter__country" data-country="{{ $country->code }}" data-continent="{{$country->continent_id}}" draggable="true">
+                    <a href="/country/{{$country->id}}" class="country__link filter__item filter__country" data-country="{{ $country->code }}" data-continent="{{$country->continent_id}}" draggable="true">
                         {{ $country->name }}
                         <div class="filter__items__imagediv" draggable="true">
                             <img class="filter__items__img" src="/img/flags/{{$country->code}}.svg">
