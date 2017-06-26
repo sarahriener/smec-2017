@@ -76,7 +76,19 @@
 .filter__items__wrapper {
   display: inline-block;
   padding: 15px;
-  width: 100px;
+  width: 110px;
+  margin-left: 10px;
+  margin-right: 10px;
+
+  &.hide {
+    display: none;
+  }
+}
+
+.overview .filter__items__wrapper {
+  display: inline-block;
+  padding: 17px 11px 11px 11px;
+  width: 130px;
   margin-left: 10px;
   margin-right: 10px;
 
@@ -114,7 +126,7 @@
   margin-top: 15px;
 }
 
-.compare, .detail, .overview {
+.compare, .detail{
   .filter__items__wrapper {
     width: 110px;
     height: 110px;
@@ -130,9 +142,35 @@
   }
 
   .filter__items {
-    overflow-x: auto;
     width: 56%;
+    overflow-x: auto;
     white-space: nowrap;
+  }
+
+  .filter__items__container{
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.overview {
+  .filter__items__wrapper {
+    width: 130px;
+    height: 130px;
+    margin: 8px;
+    margin-bottom: 20px;
+    float: none;
+    display: inline-block;
+  }
+
+  .filter__item {
+    width: 130px;
+    height: 130px;
+  }
+
+  .filter__items {
+    overflow-x: visible;
+    white-space: initial;
 
   }
 
@@ -140,6 +178,7 @@
     display: flex;
     justify-content: center;
   }
+
 }
 
 
