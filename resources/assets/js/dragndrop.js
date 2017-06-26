@@ -31,17 +31,42 @@ module.exports = {
         function drop(ev) {
             ev.preventDefault();
 
-            if ($('#div2 .filter__items__wrapper')[0] !== undefined) {
-                $('.compare .filter__items')[0].append($('#div2 .filter__items__wrapper')[0]);
+            var $target = $(ev.target);
+
+            var $rightCountryCompare = $('#div2 .filter__items__wrapper');
+
+            if ($rightCountryCompare[0] !== undefined) {
+                $('.compare .filter__items')[0].append($rightCountryCompare[0]);
             }
 
-            var data = ev.originalEvent.dataTransfer.getData("countryId");
+            var countryId = ev.originalEvent.dataTransfer.getData("countryId");
 
-            if(data) {
-                ev.target.appendChild(document.getElementById(data));
+            if (countryId) {
+                ev.target.appendChild(document.getElementById(countryId));
+
+                var $close = $target.find('.close');
+
+                if ($close.length == 0) {
+                    addCloseButton($target);
+                }
             }
+        }
+
+        function addCloseButton($target) {
+            $target.append('<span class="close">x</span>');
+
+            var $close = $target.find('.close');
+
+            $close.bind('click', function () {
+                $close.remove();
+                $('#data-div2.compare__detail__data__item').hide();
+
+                var countryId = $target.find('.filter__items__wrapper')[0].id;
+                $('.filter__items').append($('#' + countryId));
+            });
         }
     }
 
 };
+
 
