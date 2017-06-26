@@ -5,38 +5,26 @@ module.exports = {
             var $statisticMenu = $(this);
             var statistic_type = $statisticMenu.data("statisticType");
 
-            // hide all
-            var statistic_type_divs = $("div.menu__inner");
-            $(statistic_type_divs).each(function (i) {
-                statistic_type_divs[i].style.display = "none";
-            });
-
             // toggle
-            var statistic_type_div = $("div." + statistic_type + ".menu__inner");
-            $(statistic_type_div).each(function (i) {
+            var $innerMenu = $("div." + statistic_type + ".menu__inner");
 
-                if (statistic_type_div[i].style.display == "inline") {
-                    statistic_type_div[i].style.display = "none";
-                } else {
-                    statistic_type_div[i].style.display = "inline";
-                }
-            });
+            if($innerMenu.is('.active')) {
+                closeSection();
+            } else {
+                closeSection();
+                $innerMenu.addClass('active');
+                $innerMenu.slideDown(300).addClass('open');
+            }
 
             $('html, body').animate({
                 scrollTop: $statisticMenu.offset().top
             }, 800);
+
+            function closeSection() {
+                $('div.menu__inner').removeClass('active');
+                $('div.menu__inner').slideUp(300).removeClass('open');
+            }
         });
-
-        /*var button = $("div.statistic-menu button.menu");
-
-        if (button.length > 0) {
-            //button[0].style.backgroundColor = "#F6CE41";
-            //button[1].style.backgroundColor = "#F5852B";
-            //button[2].style.backgroundColor = "#E45D5D";
-            //button[3].style.backgroundColor = "#C538F4";
-            //button[4].style.backgroundColor = "#45A6FA";
-            //button[5].style.backgroundColor = "#1DE3E1";
-        }*/
-
+        
     }
 };
