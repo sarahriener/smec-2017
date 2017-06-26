@@ -23,13 +23,20 @@
 
 }
 
+.compare__detail  {
+  &__select__item{
+    background-color: $w-alto;
+    border-color: $w-alto;
+    border-radius: 4px;
+  }
+}
+
 
 .compare__detail  {
   &__select__item, &__data__item {
     width: 49%;
     margin-right: 1%;
     float: left;
-    background-color: $w-alto;
     padding: 10px;
 
     &:last-child {
@@ -81,7 +88,7 @@
   }
 
   .filter__items__img {
-    width: 20px;
+    width: 30px;
     height: auto;
     margin-top: -2px;
   }
@@ -99,13 +106,17 @@
   margin: auto;
 
   a {
-    color: #000000;
+    color: $w-mine-shaft;
     font-size: initial;
+  }
+  a:hover{
+    text-decoration: none;
+    color: $w-alabaster;
   }
 }
 
 .compare__flag {
-  height: 20px;
+  height: 30px;
   width: auto;
 }
 

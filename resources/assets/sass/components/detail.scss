@@ -29,6 +29,7 @@
 }
 
 .menu:active {
+  color: $w-alabaster
 }
 
 .menu__inner{
@@ -96,8 +97,13 @@
   margin-bottom: 0.5em;
 }
 
+.sub_menu:first-child{
+  border-top: none;
+}
+
 .sub_menu:hover{
-  color: $w-green;
+  color: $w-mine-shaft;
+  font-weight: bold;
 }
 
 .sub_menu:focus {
