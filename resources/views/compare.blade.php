@@ -33,6 +33,7 @@
                 </div>
 
                 <div id="div2" class="compare__detail__select__item">
+                    <p class="div2__info">&raquo; Drag a country here! &laquo;</p>
                 </div>
             </div>
 
@@ -44,7 +45,6 @@
                 </div>
 
                 <div class="compare__detail__data__item" id="data-div2">
-
                     @include('layouts.statistic_menu')
 
                 </div>
