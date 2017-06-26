@@ -6,6 +6,10 @@
     &__header {
       font-weight: 700;
     }
+
+    p{
+      text-align: justify;
+    }
   }
 
   &__data {
@@ -50,6 +54,14 @@
       background-color: $w-orange;
       text-transform: uppercase;
       padding: 15px;
+    }
+    &__button:hover{
+      text-decoration: none;
+      color: $w-mine-shaft
+    }
+    &__button:active{
+      text-decoration: none;
+      color: $w-mine-shaft
     }
   }
 }
