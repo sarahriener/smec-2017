@@ -23,6 +23,11 @@
     background-color: $w-green;
     color: $w-alabaster;
   }
+
+  &.selected {
+    background-color: $w-green;
+    color: $w-alabaster;
+  }
 }
 
 
@@ -199,7 +204,22 @@
 
 /* mobile adjustments */
 
-@media (max-width: $min-xs) {
+@media (max-width: $max-xs) {
+
+}
+
+@media (max-width: $max-sm) {
+
+  .filter__tag {
+    font-size: 11px;
+    padding: 4px 6px 4px;
+  }
+
+  .compare , .detail {
+    .filter__items {
+      width: 100%;
+    }
+  }
 
   .filter__search {
     margin-top: 10px;
@@ -221,21 +241,4 @@
     }
   }
 
-  .filter__tag {
-    font-size: 11px;
-    padding: 4px 6px 4px;
-  }
-
-  .compare , .detail {
-    .filter__items {
-      width: 100%;
-    }
-  }
-
-  .overview .filter__items__wrapper {
-    width: 200px;
-    height: 200px;
-  }
-
 }
-

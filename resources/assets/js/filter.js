@@ -7,12 +7,15 @@ module.exports = {
             });
 
             $selectCountry.on("select2:select", function (e) {
+                $(".filter__tags .filter__tag").removeClass('selected');
                 let $currCountry = $(e.currentTarget).find("option:selected").val();
                 filterCountries("country", $currCountry);
             });
 
             let $selectContinent = $(".filter__tags .filter__tag");
             $selectContinent.on("click", function(e){
+                $(".filter__tags .filter__tag").removeClass('selected');
+                $(e.currentTarget).addClass('selected');
                 let $currContinent = $(e.currentTarget).data("continent");
 
                 // reset select if region is chosen

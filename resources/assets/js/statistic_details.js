@@ -36,6 +36,9 @@ module.exports = {
         function initMenu() {
             $("div.statistic-menu button.sub_menu").on("click", function (e) {
                 var type = e.target;
+                $("div.statistic-menu button.sub_menu").removeClass('selected');
+                $(this).addClass('selected');
+
                 var sub_statistic_type = $(type).data("statisticType");
                 var sub_menu = $(".statistic-menu").find("button.sub_menu[data-statistic-type='" + sub_statistic_type + "']");
 
