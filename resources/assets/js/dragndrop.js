@@ -42,6 +42,12 @@ module.exports = {
             var countryId = ev.originalEvent.dataTransfer.getData("countryId");
 
             if (countryId) {
+                var $infoText = $target.find('.div2__info');
+
+                if($infoText) {
+                    $infoText.hide();
+                }
+
                 ev.target.appendChild(document.getElementById(countryId));
 
                 var $close = $target.find('.close');
