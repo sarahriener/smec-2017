@@ -21,8 +21,13 @@
     overflow: auto;
 
     &__item {
-      width: 30%;
+      width: 33%;
       float: left;
+
+      @media (max-width: 767px) {
+        width: 100%;
+        padding: 8% 0;
+      }
 
       &__img {
         height: 50px;
