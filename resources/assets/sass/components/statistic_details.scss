@@ -4,6 +4,13 @@
 
 .list-group{
   list-style-type: decimal;
+
+  .list-group-item:first-child{
+    font-weight: 400;
+    line-height: 32px;
+    text-transform: uppercase;
+    background-color: $w-alabaster;
+  }
 }
 
 .data{

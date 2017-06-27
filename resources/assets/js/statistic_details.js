@@ -36,6 +36,9 @@ module.exports = {
         function initMenu() {
             $("div.statistic-menu button.sub_menu").on("click", function (e) {
                 var type = e.target;
+                $("div.statistic-menu button.sub_menu").removeClass('selected');
+                $(this).addClass('selected');
+
                 var sub_statistic_type = $(type).data("statisticType");
                 var sub_menu = $(".statistic-menu").find("button.sub_menu[data-statistic-type='" + sub_statistic_type + "']");
 
@@ -96,6 +99,17 @@ module.exports = {
                     '[data-country="' + country.id + '"]' +
                     '[data-statistic-type="' + statistic_type.name.split(' ').join('_') + '"]');
             }
+
+            // if mobile: insert data after heading
+            var mq = window.matchMedia( "(max-width: 767px)" );
+            if (mq.matches) {
+                statistic_detail_div = $('div' +
+                    '.statistic-data' +
+                    '.compare-data' +
+                    '[data-country="' + country.id + '"]' +
+                    '[data-statistic-type="' + statistic_type.name.split(' ').join('_') + '"]');
+            }
+
             //insert data
             if (!statistic_details) { // no date available
                 if (isCompare) {
@@ -248,7 +262,7 @@ module.exports = {
                     var detail_string = '<div class="alert alert-info">Oops! There are no details available</div>';
 
                     if(subTypeDetails ){
-                        detail_string = "<ul class='list-group'>";
+                        detail_string = "<ul class='list-group'><li class='list-group-item'>Super Titel + Jahreszahl</h3>";
 
                         $.each(subTypeDetails, function (name, obj) {
                             detail_string += "<li class='list-group-item'><b>" + name + "</b>: ";
@@ -388,7 +402,7 @@ module.exports = {
                     },
                     title: {
                         display: true,
-                        text: statistic_type.description,
+                        text: statistic_type.description +", "+ data.generatedDataLabels[0],
                         fontSize: 16
                     },
                     animation: {
@@ -477,6 +491,16 @@ module.exports = {
                 return numb;
             }
             return n;
+        }
+
+
+        var mq = window.matchMedia( "(max-width: 767px)" );
+        if (mq.matches) {
+            var elem = $('.country');
+            $('.menu__left').before(elem);
+
+        } else {
+            // window width is less than 500px
         }
     }
 
