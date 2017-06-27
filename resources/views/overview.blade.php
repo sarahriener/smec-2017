@@ -5,7 +5,7 @@
 <div class="whoop-header">
     <span class="whoop-header__intro">Google Shopping Countries</span>
     <p>
-        Learn more about e-commerce in different regions
+        Learn more about E-commerce in different regions
     </p>
 </div>
 
@@ -20,8 +20,6 @@
                 </ol>
             </div>
         </div>
-
         @include('layouts.filter')
-
     </div>
 @endsection

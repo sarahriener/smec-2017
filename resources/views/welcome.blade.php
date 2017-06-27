@@ -4,7 +4,7 @@
 
 <div class="whoop-header">
     <!-- header img -->
-    <span class="whoop-header__intro">Global E-Commerce Facts</span>
+    <span class="whoop-header__intro">Global E-commerce Facts</span>
     <p>
         Information about all Google Shopping Countries
     </p>
@@ -15,14 +15,14 @@
     <div class="entry">
 
         <div class="entry__text">
-            <span class="entry__text__header">E-Commerce Facts</span>
+            <span class="entry__text__header">E-commerce Facts</span>
             <p>
-                With the following data, we want to answer the first important questions about e-commerce. We collected
+                With the following data, we want to answer the first important questions about E-commerce. We collected
                 important facts such as the number of inhabitants,
                 the turnover, the web usage according to the device, but also the advertising expenditures online,
                 spatially distributed by country and prepared them visually appealing.
                 The focus is on the use of the initial information for people who need start-up assistance in
-                e-commerce.
+                E-commerce.
             </p>
         </div>
 
@@ -32,7 +32,7 @@
                     <img class="entry__data__item__img" src="/img/icons/coins_orange.png">
                 </div>
 
-                <p class="entry__data__item__info">Worldwide E-Commerce Sales 2016</p>
+                <p class="entry__data__item__info">Worldwide E-commerce Sales 2016</p>
                 <span class="entry__data__item__head">{{$type}} {{$aggregatedSales}}</span>
             </div>
 
@@ -41,7 +41,7 @@
                     <img class="entry__data__item__img" src="/img/icons/basket_orange.png">
                 </div>
 
-                <p class="entry__data__item__info">Future Worldwide E-Commerce Sales 2021</p>
+                <p class="entry__data__item__info">Future Worldwide E-commerce Sales 2021</p>
                 <span class="entry__data__item__head">{{$type}} {{$aggregatedFutureSales}}</span>
             </div>
 
