@@ -78,20 +78,23 @@ class DetailsController extends Controller
         $subTypes = $statistic_type->subTypes();
 
         $data = array();
+        $no_data_details = true;
 
         foreach($subTypes as $subType){
             $statistic = $country->statistics->where('statistic_type_id', $subType->id)->first();
-            $statistic_details = $statistic->statistic_details;
 
             $detail = [];
             $detail['subType'] = $subType;
-            $detail['subTypesDetails'] = $statistic_details;
-
+            $detail['subTypesDetails'] = null;
+            if($statistic){
+                $detail['subTypesDetails'] = $statistic->statistic_details; // several details for each type (per year)
+                $no_data_details = false;
+            }
 
             $data = array_add($data, $subType->name, $detail);
         }
 
-        return $data;
+        return $no_data_details ? null : $data;
     }
 
 
