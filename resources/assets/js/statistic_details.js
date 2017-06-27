@@ -234,7 +234,7 @@ module.exports = {
                                         if (subType.type == "%"){
                                             type = subType.type;
                                         }
-                                        
+
                                         detail_string +=  sorted_detail_array[name].value + type+" (" + sorted_detail_array[name].year + ") " + "</li>";
                                     });
                                     detail_string += "</ul></div>";
