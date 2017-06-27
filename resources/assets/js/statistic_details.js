@@ -132,30 +132,31 @@ module.exports = {
 
             switch (statistic_type.type) {
                 case "inhabitants":
-                    var data = createDataForChart(statistic_details);
-                    createBarChart(data, ctx, statistic_type);
-                    break;
                 case "€":
                 case "$":
+                case "years":
                     if (statistic_details.length == 1) {
                         showData(statistic_details, statistic_type, detail_div, statistic_type);
                     } else {
                         var data = createDataForChart(statistic_details, statistic_type);
-                        createLineChart(data, ctx, statistic_type);
+                        createBarChart(data, ctx, statistic_type);
                     }
                     break;
                 case "top":
                     createRanking(detail_div, statistic_type, country_id);
                     break;
                 case "%":
-                case "years":
                     var data = createDataForChart(statistic_details, statistic_type);
                     createDoughnutChart(data, ctx, statistic_type);
                     break;
 
                 default:
-                    var data = createDataForChart(statistic_details, statistic_type);
-                    createBarChart(data, ctx, statistic_type);
+                    if (statistic_details.length == 1) {
+                        showData(statistic_details, statistic_type, detail_div, statistic_type);
+                    } else {
+                        var data = createDataForChart(statistic_details, statistic_type);
+                        createLineChart(data, ctx, statistic_type);
+                    }
             }
         }
 
@@ -390,9 +391,22 @@ module.exports = {
                     scales: {
                         yAxes: [{
                             ticks: {
-                                beginAtZero: true
+                                // Include a dollar sign in the ticks
+                                callback: function (value, index, values) {
+                                    return " " + formatNumber(value) + " " + statistic_type.type;
+                                }
                             }
                         }]
+                    },
+                    tooltips: {
+                        callbacks: {
+                            label: function (tooltipItem, data) {
+                                return " " + formatNumber(tooltipItem.yLabel) + " " + statistic_type.type;
+                            }
+                        }
+                    },
+                    legend: {
+                        display: false
                     },
                     title: {
                         display: true,
