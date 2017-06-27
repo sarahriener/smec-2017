@@ -202,47 +202,30 @@ module.exports = {
                 type: 'GET',
                 url: '/getStatisticTypeSubTypes',
                 data: {
-                    statistic_type_id: statistic_type.id
+                    statistic_type_id: statistic_type.id,
+                    country_id: country_id
                 },
-                success: function(statisticTypeSubTypes) {
-                    var subTypes = statisticTypeSubTypes;
-                    var rankings = [];
 
-                    $.each(subTypes, function( i, subType ){
-                        $.ajax({ // ask for data and add to div
-                            type: 'GET',
-                            url: '/getStatisticDetails',
-                            data: {
-                                country_id: country_id,
-                                statistic_type: subType.name
-                            },
-                            success: function(data){
-                                rankings.push(data);
-                                if(rankings.length == Object.keys(subTypes).length){
-                                    var sorted_detail_array = [];
-                                    $.each(rankings, function(i, ranking) {
-                                        sorted_detail_array[ranking.statistic_type.name] = ranking.statistic_details[0];
-                                    });
-                                    var keys = Object.keys(sorted_detail_array).sort();
+                success: function(subTypeDetails){
+                    var detail_string = "";
+                    detail_string += "<ul class='list-group'>";
 
-                                    var detail_string = "";
-                                    detail_string += "<ul class='list-group'>";
-                                    $.each(keys, function(i, name) {
-                                        detail_string += "<li class='list-group-item'><b>" + name + "</b>: ";
+                    $.each(subTypeDetails, function(name, obj) {
+                        var detail = obj["subTypesDetails"][0];
+                        var subType = obj["subType"];
 
-                                        var type = "";
-                                        if (subType.type == "%"){
-                                            type = subType.type;
-                                        }
+                        detail_string += "<li class='list-group-item'><b>" + name + "</b>: ";
 
-                                        detail_string +=  sorted_detail_array[name].value + type +" (" + sorted_detail_array[name].year + ") " + "</li>";
-                                    });
-                                    detail_string += "</ul>";
-                                    $(detail_div).parent().html(detail_string);
-                                }
-                            }
-                        });
+                        var type = "";
+                        if (subType.type == "%"){
+                            type = subType.type;
+                        }
+
+                        detail_string +=  detail.value + type + " (" + detail.year + ") " + "</li>";
                     });
+
+                    detail_string += "</ul>";
+                    $(detail_div).parent().html(detail_string);
 
                 }
             });
