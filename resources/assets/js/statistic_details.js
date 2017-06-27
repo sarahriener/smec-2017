@@ -134,13 +134,15 @@ module.exports = {
                 case "inhabitants":
                 case "€":
                 case "$":
-                case "years":
                     if (statistic_details.length == 1) {
                         showData(statistic_details, statistic_type, detail_div, statistic_type);
                     } else {
                         var data = createDataForChart(statistic_details, statistic_type);
                         createBarChart(data, ctx, statistic_type);
                     }
+                    break;
+                case "years":
+                    createYearData(statistic_type, country_id, ctx);
                     break;
                 case "top":
                     createRanking(detail_div, statistic_type, country_id);
@@ -196,6 +198,41 @@ module.exports = {
             }
 
             $(detail_div).parent().html(detail_string);
+        }
+
+        function createYearData(statistic_type, country_id, ctx){
+            $.ajax({ // ask for data and add to div
+                type: 'GET',
+                url: '/getStatisticTypeSubTypes',
+                data: {
+                    statistic_type_id: statistic_type.id,
+                    country_id: country_id
+                },
+
+                success: function (subTypeDetails) {
+                    var generatedDataPoints = [];
+                    var generatedDataPointsForLabel = [];
+                    var generatedDataLabels = [];
+
+                    $.each(subTypeDetails, function (name, obj) {
+                        if(obj["subTypesDetails"]){
+                            var detail = obj["subTypesDetails"][0];
+                            var year = detail.year;
+                            var value = detail.value;
+
+                            generatedDataPoints.push(value);
+                            generatedDataPointsForLabel.push(formatNumber(value) + " " + statistic_type.type );
+                            generatedDataLabels.push(name);
+                        }
+                    });
+                    var data = {};
+                    data.generatedDataPoints = generatedDataPoints;
+                    data.generatedDataPointsForLabel = generatedDataPointsForLabel;
+                    data.generatedDataLabels = generatedDataLabels;
+
+                    createBarChart(data, ctx, statistic_type);
+                }
+            });
         }
 
         function createRanking(detail_div, statistic_type, country_id) {
