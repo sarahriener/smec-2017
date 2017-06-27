@@ -13,6 +13,7 @@ module.exports = {
             } else {
                 closeSection();
                 $innerMenu.addClass('active');
+                $innerMenu.parent().find('.menu').addClass('white');
                 $innerMenu.slideDown(300).addClass('open');
             }
 
@@ -22,6 +23,7 @@ module.exports = {
 
             function closeSection() {
                 $('div.menu__inner').removeClass('active');
+                $('div.menu__inner').parent().find('.menu').removeClass('white');
                 $('div.menu__inner').slideUp(300).removeClass('open');
             }
         });

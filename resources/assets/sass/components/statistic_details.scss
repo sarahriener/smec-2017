@@ -1,0 +1,30 @@
+.compare .list-group{
+  margin: 0;
+}
+
+.list-group{
+  list-style-type: decimal;
+
+  .list-group-item:first-child{
+    font-weight: 400;
+    line-height: 32px;
+    text-transform: uppercase;
+    background-color: $w-alabaster;
+  }
+}
+
+.data{
+  font-weight: 700;
+  font-size: xx-large;
+}
+
+.data-div{
+  background-color: $w-alabaster;
+  text-align: center;
+  padding: 20px;
+}
+
+.data-div img{
+  width: 20%;
+  padding: 20px;
+}

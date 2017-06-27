@@ -1,10 +1,3 @@
-//var $ = require('jquery');
-//var jQuery = $;
-
-// TODO require jquery, select2 and bootstrap instead of link and script tags above
-//var select2BootstrapTheme = require('select2-bootstrap-theme');
-
-
 module.exports = {
     init: function () {
             let $selectCountry = $(".filter__search .filter__search__search");
@@ -14,12 +7,15 @@ module.exports = {
             });
 
             $selectCountry.on("select2:select", function (e) {
+                $(".filter__tags .filter__tag").removeClass('selected');
                 let $currCountry = $(e.currentTarget).find("option:selected").val();
                 filterCountries("country", $currCountry);
             });
 
             let $selectContinent = $(".filter__tags .filter__tag");
             $selectContinent.on("click", function(e){
+                $(".filter__tags .filter__tag").removeClass('selected');
+                $(e.currentTarget).addClass('selected');
                 let $currContinent = $(e.currentTarget).data("continent");
 
                 // reset select if region is chosen
