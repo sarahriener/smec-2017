@@ -135,30 +135,31 @@ module.exports = {
 
             switch (statistic_type.type) {
                 case "inhabitants":
-                    var data = createDataForChart(statistic_details);
-                    createBarChart(data, ctx, statistic_type);
-                    break;
                 case "€":
                 case "$":
+                case "years":
                     if (statistic_details.length == 1) {
                         showData(statistic_details, statistic_type, detail_div, statistic_type);
                     } else {
                         var data = createDataForChart(statistic_details, statistic_type);
-                        createLineChart(data, ctx, statistic_type);
+                        createBarChart(data, ctx, statistic_type);
                     }
                     break;
                 case "top":
                     createRanking(detail_div, statistic_type, country_id);
                     break;
                 case "%":
-                case "years":
                     var data = createDataForChart(statistic_details, statistic_type);
                     createDoughnutChart(data, ctx, statistic_type);
                     break;
 
                 default:
-                    var data = createDataForChart(statistic_details, statistic_type);
-                    createBarChart(data, ctx, statistic_type);
+                    if (statistic_details.length == 1) {
+                        showData(statistic_details, statistic_type, detail_div, statistic_type);
+                    } else {
+                        var data = createDataForChart(statistic_details, statistic_type);
+                        createLineChart(data, ctx, statistic_type);
+                    }
             }
         }
 
@@ -213,7 +214,7 @@ module.exports = {
                     var detail_string = '<div class="alert alert-info">Oops! There are no details available</div>';
 
                     if(subTypeDetails ){
-                        detail_string = "<ul class='list-group'>";
+                        detail_string = "<ul class='list-group'><li class='list-group-item'>Super Titel + Jahreszahl</h3>";
 
                         $.each(subTypeDetails, function (name, obj) {
                             detail_string += "<li class='list-group-item'><b>" + name + "</b>: ";
@@ -353,7 +354,7 @@ module.exports = {
                     },
                     title: {
                         display: true,
-                        text: statistic_type.description,
+                        text: statistic_type.description +", "+ data.generatedDataLabels[0],
                         fontSize: 16
                     },
                     animation: {
@@ -393,9 +394,22 @@ module.exports = {
                     scales: {
                         yAxes: [{
                             ticks: {
-                                beginAtZero: true
+                                // Include a dollar sign in the ticks
+                                callback: function (value, index, values) {
+                                    return " " + formatNumber(value) + " " + statistic_type.type;
+                                }
                             }
                         }]
+                    },
+                    tooltips: {
+                        callbacks: {
+                            label: function (tooltipItem, data) {
+                                return " " + formatNumber(tooltipItem.yLabel) + " " + statistic_type.type;
+                            }
+                        }
+                    },
+                    legend: {
+                        display: false
                     },
                     title: {
                         display: true,
