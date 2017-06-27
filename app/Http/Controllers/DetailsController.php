@@ -69,7 +69,26 @@ class DetailsController extends Controller
         $statistic_type_id = $_GET['statistic_type_id'];
         $statistic_type = StatisticType::find($statistic_type_id);
 
-        return $statistic_type->subTypes();
+        $country_id = $_GET['country_id'];
+        $country = Country::find($country_id);
+
+        $subTypes = $statistic_type->subTypes();
+
+        $data = array();
+
+        foreach($subTypes as $subType){
+            $statistic = $country->statistics->where('statistic_type_id', $subType->id)->first();
+            $statistic_details = $statistic->statistic_details;
+
+            $detail = [];
+            $detail['subType'] = $subType;
+            $detail['subTypesDetails'] = $statistic_details;
+
+
+            $data = array_add($data, $subType->name, $detail);
+        }
+
+        return $data;
     }
 
 
