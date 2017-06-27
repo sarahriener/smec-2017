@@ -99,6 +99,17 @@ module.exports = {
                     '[data-country="' + country.id + '"]' +
                     '[data-statistic-type="' + statistic_type.name.split(' ').join('_') + '"]');
             }
+
+            // if mobile: insert data after heading
+            var mq = window.matchMedia( "(max-width: 767px)" );
+            if (mq.matches) {
+                statistic_detail_div = $('div' +
+                    '.statistic-data' +
+                    '.compare-data' +
+                    '[data-country="' + country.id + '"]' +
+                    '[data-statistic-type="' + statistic_type.name.split(' ').join('_') + '"]');
+            }
+
             //insert data
             if (!statistic_details) { // no date available
                 if (isCompare) {
@@ -443,6 +454,16 @@ module.exports = {
                 return numb;
             }
             return n;
+        }
+
+
+        var mq = window.matchMedia( "(max-width: 767px)" );
+        if (mq.matches) {
+            var elem = $('.country');
+            $('.menu__left').before(elem);
+
+        } else {
+            // window width is less than 500px
         }
     }
 
