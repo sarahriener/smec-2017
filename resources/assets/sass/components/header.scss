@@ -47,12 +47,28 @@
   height: 65px;
   width: 400px;
   float:left;
-  position: relative;
+  position: absolute;
+}
+
+.nav .navbar-nav{
+  padding-top: 5px;
+  height: 65px;
+  width: 400px;
+  position: absolute;
+  float: right;
+}
+
+.navbar-left{
+  float:left;
+}
+
+.navbar-right{
+  float:right;
 }
 
 li{
-  display: inline;
   padding-top: 5px;
+  display:inline-block;
 }
 
 .dropdown-menu{
@@ -76,7 +92,36 @@ a:hover{
 }
 
 .current-lang-btn{
+  border: none;
+}
 
+.signup {
+  background-color: #e65c5a;
+  border-radius: 5px;
+  height: 26px;
+  padding: 12px 15px 12px 15px;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+ul li:hover > ul{
+  display: block;
+}
+
+ul ul {
+  display:none;
+  position:absolute;
+  background:#FFFFFF;
+}
+
+ul ul li{
+  float:left;
+  width:100px
+}
+
+ul ul a
+{
+  line-height:120%;
 }
 /*
 
@@ -106,12 +151,7 @@ a:hover{
     font-size: 12px;
 }
 
-.signup {
-    background-color: #e65c5a;
-    border-radius: 5px;
-    font-weight: 700;
-    color: #FFFFFF;
-}
+
 
 .header__nav:hover {
     text-decoration: none;
