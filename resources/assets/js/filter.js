@@ -1,10 +1,3 @@
-//var $ = require('jquery');
-//var jQuery = $;
-
-// TODO require jquery, select2 and bootstrap instead of link and script tags above
-//var select2BootstrapTheme = require('select2-bootstrap-theme');
-
-
 module.exports = {
     init: function () {
             let $selectCountry = $(".filter__search .filter__search__search");
