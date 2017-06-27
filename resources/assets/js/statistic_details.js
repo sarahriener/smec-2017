@@ -182,10 +182,10 @@ module.exports = {
             var detail_string = "";
             var stat_type = statistic_type.type;
             $(statistic_details).each(function(i, detail){
-                var data_value = parseFloat(detail.value.replace(/[^0-9\.]/g, ''));
+                var data_value = detail.value;
                 if(data_value){
-                    detail_string +=  data_value + " " + stat_type;
-                    detail_string += " (" + detail.year + ") " + "</p>";
+                    detail_string += "<div class='data-div'><img src='/img/coins.png'><p class='data'>" + data_value + " " + stat_type + "</p>";
+                    detail_string += "<p> in " + detail.year + "</p></div>";
                 }
             });
             if(detail_string == ""){
@@ -205,9 +205,10 @@ module.exports = {
                     statistic_type_id: statistic_type.id,
                     country_id: country_id
                 },
+
                 success: function(subTypeDetails){
                     var detail_string = "";
-                    detail_string += "<div class='panel panel-default'><ul class='list-group'>";
+                    detail_string += "<ul class='list-group'>";
 
                     $.each(subTypeDetails, function(name, obj) {
                         var detail = obj["subTypesDetails"][0];
@@ -223,7 +224,7 @@ module.exports = {
                         detail_string +=  detail.value + type + " (" + detail.year + ") " + "</li>";
                     });
 
-                    detail_string += "</ul></div>";
+                    detail_string += "</ul>";
                     $(detail_div).parent().html(detail_string);
 
                 }
