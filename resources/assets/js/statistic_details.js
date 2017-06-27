@@ -140,7 +140,7 @@ module.exports = {
                     if(statistic_details.length == 1){
                         showData(statistic_details, statistic_type, detail_div, statistic_type);
                     } else {
-                        var data = createDataForChart(statistic_details);
+                        var data = createDataForChart(statistic_details, statistic_type);
                         createLineChart(data, ctx, statistic_type);
                     }
                     break;
@@ -149,30 +149,54 @@ module.exports = {
                     break;
                 case "%":
                 case "years":
-                    var data = createDataForChart(statistic_details);
+                    var data = createDataForChart(statistic_details,statistic_type);
                     createDoughnutChart(data, ctx, statistic_type);
                     break;
 
                 default:
-                    var data = createDataForChart(statistic_details);
+                    var data = createDataForChart(statistic_details, statistic_type);
                     createBarChart(data, ctx, statistic_type);
             }
         }
 
-        function createDataForChart(statistic_details){
+        function formatNumber(n, onlyNumber=false){
+            var numb;
+            if (n > 1000000000000){
+                numb = (n/1000000000000).toFixed(2);
+                if(!onlyNumber) numb = numb +' trillion';
+                return numb;
+            } else if(n > 1000000000){
+                numb = (n/1000000000).toFixed(2);
+                if(!onlyNumber) numb = numb +' billion';
+                return numb;
+            } else if (n > 1000000){
+                numb = (n/1000000).toFixed(2);
+                if(!onlyNumber) numb = numb +' million';
+                return numb;
+            } else if (n > 1000){
+                numb = (n/1000).toFixed(2);
+                if(!onlyNumber) numb = numb +' thousand';
+                return numb;
+            }
+            return n;
+        }
+
+        function createDataForChart(statistic_details, statistic_type){
             var generatedDataPoints = [];
+            var generatedDataPointsForLabel = [];
             var generatedDataLabels = [];
 
             $(statistic_details).each(function(i, detail){
                 var year =  detail.year;
                 var value =  detail.value;
-                var data_value = parseFloat(value.replace(/[^0-9\.]/g, ''));
 
-                generatedDataPoints.push(data_value);
+                generatedDataPoints.push(value);
+                generatedDataPointsForLabel.push((formatNumber(value) + " " + statistic_type.type));
                 generatedDataLabels.push(year.toString());
             });
             var data = {};
             data.generatedDataPoints = generatedDataPoints;
+            data.generatedDataPointsForLabel = generatedDataPointsForLabel;
             data.generatedDataLabels = generatedDataLabels;
 
             return data;
@@ -182,7 +206,7 @@ module.exports = {
             var detail_string = "";
             var stat_type = statistic_type.type;
             $(statistic_details).each(function(i, detail){
-                var data_value = detail.value;
+                var data_value = formatNumber(detail.value);
                 if(data_value){
                     detail_string += "<div class='data-div'><img src='/img/coins.png'><p class='data'>" + data_value + " " + stat_type + "</p>";
                     detail_string += "<p> in " + detail.year + "</p></div>";
@@ -219,7 +243,7 @@ module.exports = {
                             type = subType.type;
                         }
 
-                        detail_string +=  detail.value + type + " (" + detail.year + ") " + "</li>";
+                        detail_string +=  detail.value + " " + type + " (" + detail.year + ") " + "</li>";
                     });
 
                     detail_string += "</ul>";
@@ -249,6 +273,7 @@ module.exports = {
                     datasets: [{
                         label: statistic_type.name,
                         data: data.generatedDataPoints,
+
                         backgroundColor: [
                             'rgba(54, 162, 235,1)',
                             'rgba(255, 206, 86,1)',
@@ -263,7 +288,14 @@ module.exports = {
                     display: true,
                     responsive: true,
                     legend: {
-                        position: 'top'
+                       display: false
+                    },
+                    tooltips: {
+                        callbacks: {
+                            label: function(tooltipItem, data){
+                                return " " + formatNumber(tooltipItem.yLabel) + " " + statistic_type.type;
+                            }
+                        }
                     },
                     title: {
                         display: true,
@@ -279,7 +311,7 @@ module.exports = {
                             ticks: {
                                 // Include a dollar sign in the ticks
                                 callback: function(value, index, values) {
-                                    return '$ ' + value/100000000 + 'Mio.';
+                                    return " " + formatNumber(value) + " " + statistic_type.type;
                                 }
                             }
                         }]
@@ -298,13 +330,14 @@ module.exports = {
             // TODO SR this is just a quick fix - rework logic here
             if(data.generatedDataPoints.length == 1) {
                 data.generatedDataPoints.push(100 - data.generatedDataPoints[0]);
+                data.generatedDataPointsForLabel.push(formatNumber(100 - data.generatedDataPoints[0]) + " " + statistic_type.type);
                 data.generatedDataLabels.push(data.generatedDataLabels[0]);
             }
 
             var doughnutChart = new Chart(ctx, {
                 type: 'doughnut',
                 data: {
-                    labels: data.generatedDataLabels,
+                    labels: data.generatedDataPointsForLabel,
                     datasets: [{
                         label: statistic_type.name,
                         data: data.generatedDataPoints,
@@ -321,7 +354,16 @@ module.exports = {
                 options: {
                     responsive: true,
                     legend: {
-                        position: 'top'
+                        position: 'top',
+                        fontSize: 16
+                    },
+                    tooltips: {
+                        callbacks: {
+                            label: function(tooltipItem, detail){
+                                return " " + data.generatedDataLabels[tooltipItem.index] +
+                                    ": " + " " + formatNumber(data.generatedDataPoints[tooltipItem.index]) + " " + statistic_type.type;
+                            }
+                        }
                     },
                     title: {
                         display: true,
