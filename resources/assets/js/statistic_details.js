@@ -210,7 +210,7 @@ module.exports = {
                     var detail_string = '<div class="alert alert-info">Oops! There are no details available</div>';
 
                     if(subTypeDetails ){
-                        detail_string = "<ul class='list-group'>";
+                        detail_string = "<ul class='list-group'><li class='list-group-item'>Super Titel + Jahreszahl</h3>";
 
                         $.each(subTypeDetails, function (name, obj) {
                             detail_string += "<li class='list-group-item'><b>" + name + "</b>: ";
@@ -350,7 +350,7 @@ module.exports = {
                     },
                     title: {
                         display: true,
-                        text: statistic_type.description,
+                        text: statistic_type.description +", "+ data.generatedDataLabels[0],
                         fontSize: 16
                     },
                     animation: {
