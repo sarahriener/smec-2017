@@ -100,11 +100,11 @@ module.exports = {
             if (!statistic_details) { // no date available
                 if (isCompare) {
                     $(statistic_detail_div).html(
-                        '<p>There are no details available for this statistic type.</p>');
+                        '<div class="alert alert-info">Oops! There are no details available for this statistic type.</div>');
                 } else {
                     $(statistic_detail_div).html(
                         '<h2>' + statistic_type.name + '</h2>' +
-                        '<p>There are no details available for this statistic type.</p>');
+                        '<div class="alert alert-info">Oops! There are no details available for this statistic type.</div>');
                 }
             } else {
                 var statistic_detail_data = '<div class="chart"><canvas id="chartContainer-' + statistic_type.name.split(' ').join('_') + '_' + country.id + '">Loading data ...</canvas></div>';
@@ -191,7 +191,7 @@ module.exports = {
                 }
             });
             if (detail_string == "") {
-                detail_string = "There is no data available!";
+                detail_string = '<div class="alert alert-info">Oops! There is no data available!</div>';
             }
 
             $(detail_div).parent().html(detail_string);
@@ -207,24 +207,29 @@ module.exports = {
                 },
 
                 success: function (subTypeDetails) {
-                    var detail_string = "";
-                    detail_string += "<ul class='list-group'>";
+                    var detail_string = '<div class="alert alert-info">Oops! There are no details available</div>';
 
-                    $.each(subTypeDetails, function (name, obj) {
-                        var detail = obj["subTypesDetails"][0];
-                        var subType = obj["subType"];
+                    if(subTypeDetails ){
+                        detail_string = "<ul class='list-group'>";
 
-                        detail_string += "<li class='list-group-item'><b>" + name + "</b>: ";
+                        $.each(subTypeDetails, function (name, obj) {
+                            detail_string += "<li class='list-group-item'><b>" + name + "</b>: ";
 
-                        var type = "";
-                        if (subType.type == "%") {
-                            type = subType.type;
-                        }
+                            if(obj["subTypesDetails"]){
+                                detail = obj["subTypesDetails"][0];
+                                var subType = obj["subType"];
+                                var type = "";
+                                if (subType.type == "%") type = subType.type;
 
-                        detail_string += detail.value + " " + type + " (" + detail.year + ") " + "</li>";
-                    });
+                                detail_string += detail.value + " " + type + " (" + detail.year + ") " + "</li>";
+                            } else{
+                                var detail = "No data available.";
+                                detail_string += detail + "</li>";
+                            }
+                        });
+                        detail_string += "</ul>";
+                    }
 
-                    detail_string += "</ul>";
                     $(detail_div).parent().html(detail_string);
 
 
