@@ -145,7 +145,7 @@ module.exports = {
                     }
                     break;
                 case "top":
-                    createRanking(detail_div, statistic_type);
+                    createRanking(detail_div, statistic_type, country_id);
                     break;
                 case "%":
                 case "years":
@@ -195,9 +195,7 @@ module.exports = {
             $(detail_div).parent().html(detail_string);
         }
 
-        function createRanking(detail_div, statistic_type){
-            var country_id = statistic_type.pivot.country_id;
-
+        function createRanking(detail_div, statistic_type, country_id){
             $.ajax({ // ask for data and add to div
                 type: 'GET',
                 url: '/getStatisticTypeSubTypes',
