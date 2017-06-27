@@ -176,3 +176,25 @@ a {
   color: #ffffff;
 }
 
+
+
+/* mobile adjustments */
+
+@media (max-width: $min-xs) {
+
+  .menu__left {
+    width: 100%;
+  }
+
+  .compareBtn {
+    display: none;
+  }
+
+  .country {
+    padding-left: 0;
+    width: 100%;
+    float: none;
+    margin-top: 30px;
+  }
+
+}
