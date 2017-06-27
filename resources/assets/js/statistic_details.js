@@ -226,11 +226,18 @@ module.exports = {
                                     var keys = Object.keys(sorted_detail_array).sort();
 
                                     var detail_string = "";
+                                    detail_string += "<div class='panel panel-default'><ul class='list-group'>";
                                     $.each(keys, function(i, name) {
-                                        detail_string += "<p><b>" + name + "</b>: ";
-                                        detail_string +=  sorted_detail_array[name].value + " (" + sorted_detail_array[name].year + ") " + "</p>";
+                                        detail_string += "<li class='list-group-item'><b>" + name + "</b>: ";
 
+                                        var type = "";
+                                        if (subType.type == "%"){
+                                            type = subType.type;
+                                        }
+                                        
+                                        detail_string +=  sorted_detail_array[name].value + type+" (" + sorted_detail_array[name].year + ") " + "</li>";
                                     });
+                                    detail_string += "</ul></div>";
                                     $(detail_div).parent().html(detail_string);
                                 }
                             }
@@ -270,6 +277,7 @@ module.exports = {
                     }]
                 },
                 options: {
+                    display: true,
                     responsive: true,
                     legend: {
                         position: 'top'
@@ -282,7 +290,17 @@ module.exports = {
                         animateScale: true,
                         animateRotate: true
                     },
-                    maintainAspectRatio: false
+                    maintainAspectRatio: false,
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                // Include a dollar sign in the ticks
+                                callback: function(value, index, values) {
+                                    return '$ ' + value/100000000 + 'Mio.';
+                                }
+                            }
+                        }]
+                    }
                 }
             });
         }
