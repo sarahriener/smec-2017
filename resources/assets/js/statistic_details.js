@@ -182,10 +182,10 @@ module.exports = {
             var detail_string = "";
             var stat_type = statistic_type.type;
             $(statistic_details).each(function(i, detail){
-                var data_value = parseFloat(detail.value.replace(/[^0-9\.]/g, ''));
+                var data_value = detail.value;
                 if(data_value){
-                    detail_string +=  data_value + " " + stat_type;
-                    detail_string += " (" + detail.year + ") " + "</p>";
+                    detail_string += "<div class='data-div'><img src='/img/coins.png'><p class='data'>" + data_value + " " + stat_type + "</p>";
+                    detail_string += "<p> in " + detail.year + "</p></div>";
                 }
             });
             if(detail_string == ""){
@@ -226,7 +226,7 @@ module.exports = {
                                     var keys = Object.keys(sorted_detail_array).sort();
 
                                     var detail_string = "";
-                                    detail_string += "<div class='panel panel-default'><ul class='list-group'>";
+                                    detail_string += "<ul class='list-group'>";
                                     $.each(keys, function(i, name) {
                                         detail_string += "<li class='list-group-item'><b>" + name + "</b>: ";
 
@@ -235,9 +235,9 @@ module.exports = {
                                             type = subType.type;
                                         }
 
-                                        detail_string +=  sorted_detail_array[name].value + type+" (" + sorted_detail_array[name].year + ") " + "</li>";
+                                        detail_string +=  sorted_detail_array[name].value + type +" (" + sorted_detail_array[name].year + ") " + "</li>";
                                     });
-                                    detail_string += "</ul></div>";
+                                    detail_string += "</ul>";
                                     $(detail_div).parent().html(detail_string);
                                 }
                             }
