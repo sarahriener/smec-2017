@@ -97,7 +97,7 @@ module.exports = {
                     '[data-statistic-type="' + statistic_type.name.split(' ').join('_') + '"]');
             }
             //insert data
-            if(statistic_details.length <= 0){ // no date available
+            if(!statistic_details){ // no date available
                 if(isCompare){
                     $(statistic_detail_div).html(
                         '<p>There are no details available for this statistic type.</p>');
@@ -225,6 +225,8 @@ module.exports = {
 
                     detail_string += "</ul></div>";
                     $(detail_div).parent().html(detail_string);
+
+
 
                 }
             });

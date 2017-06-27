@@ -52,14 +52,17 @@ class DetailsController extends Controller
         $type = $_GET['statistic_type'];
         $type= str_replace("_", " ", $type);
 
-        $statistic_type  = $country->statistic_types->where('name', $type)->first();
+        $statistic_type  = StatisticType::all()->where('name', $type)->first();
+
         $statistic = $country->statistics->where('statistic_type_id', $statistic_type->id)->first();
-        $statistic_details = $statistic->statistic_details;
 
         $data = array();
         $data['country'] = $country;
         $data['statistic_type'] = $statistic_type; // just one type
-        $data['statistic_details'] = $statistic_details; // several details for each type (per year)
+        $data['statistic_details'] = null;
+        if($statistic){
+            $data['statistic_details'] = $statistic->statistic_details; // several details for each type (per year)
+        }
 
         return $data;
     }
