@@ -13,7 +13,7 @@ use App\Country;
 
 class HomeController extends Controller
 {
-    private $TYPE = 'Sales';
+    private $TYPE = 'Sales in E-commerce';
     private $sType;
     private $iTypeId;
 

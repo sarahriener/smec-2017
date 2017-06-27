@@ -1,0 +1,23 @@
+.compare .list-group{
+  margin: 0;
+}
+
+.list-group{
+  list-style-type: decimal;
+}
+
+.data{
+  font-weight: 700;
+  font-size: xx-large;
+}
+
+.data-div{
+  background-color: $w-alabaster;
+  text-align: center;
+  padding: 20px;
+}
+
+.data-div img{
+  width: 20%;
+  padding: 20px;
+}

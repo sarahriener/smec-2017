@@ -1,8 +1,10 @@
-.chart{
-  height: 230px;
-  width: 70%;
-  margin: 30px;
-  display: inline-block;
+.detail {
+  .chart {
+    height: 230px;
+    width: 70%;
+    margin: 30px;
+    display: inline-block;
+  }
 }
 
 .menu{
@@ -128,6 +130,10 @@
 }
 
 .menu:hover{
+  color: $w-white;
+}
+
+.menu:active{
   color: $w-white;
 }
 
