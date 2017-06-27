@@ -24,7 +24,7 @@
       width: 33%;
       float: left;
 
-      @media (max-width: 767px) {
+      @media (max-width: $max-sm) {
         width: 100%;
         padding: 8% 0;
       }
