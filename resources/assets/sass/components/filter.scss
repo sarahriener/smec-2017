@@ -32,6 +32,7 @@
 }
 
 .filter__search {
+  text-align: center;
   margin-top: 25px;
 }
 
@@ -40,17 +41,16 @@
   font-weight: 300;
 
   .filter__search__span {
-    width: 50%;
     float: left;
     text-align: right;
-    padding-right: 10px;
+    //padding-right: 10px;
   }
 
   .filter__search__search {
     width: 35%;
     height: 40px;
     float: left;
-    text-align: left;
+    //text-align: center;
   }
 
   .img-flag {
