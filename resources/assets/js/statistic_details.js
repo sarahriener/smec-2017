@@ -297,6 +297,12 @@ module.exports = {
          * @param statistic_type
          */
         function createDoughnutChart(data, ctx, statistic_type){
+            // TODO SR this is just a quick fix - rework logic here
+            if(data.generatedDataPoints.length == 1) {
+                data.generatedDataPoints.push(100 - data.generatedDataPoints[0]);
+                data.generatedDataLabels.push(data.generatedDataLabels[0]);
+            }
+
             var doughnutChart = new Chart(ctx, {
                 type: 'doughnut',
                 data: {
