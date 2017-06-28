@@ -1,5 +1,5 @@
 .compare {
-  margin-bottom: 30px;
+  //margin-bottom: 30px;
 
   .chart{
     margin: 5px 30px 40px;
@@ -40,18 +40,20 @@
     float: left;
     padding: 10px;
 
+
     &:last-child {
       margin: 0;
     }
   }
 
-  &__data__item {
-    padding-bottom: 400px;
-  }
-
   &__data {
     margin-top: 20px;
   }
+
+  &__data__item {
+    margin-bottom: 20px;
+  }
+
 }
 
 
@@ -64,11 +66,13 @@
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 
-  #div1, #div2, .compare__detail__data {
+  #div1, #div2 {
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
     height: 54px;
+    //height: 100%;
+    //margin-bottom: 50px;
   }
 }
 
