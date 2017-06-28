@@ -64,7 +64,7 @@
         </div>
 
         <div class="entry__more">
-            <p>Curious About our Google Shopping Countries?</p>
+            <p>Curious about our Google Shopping Countries?</p>
             <span><a href="/overview" class="entry__more__button">Learn more</a> </span>
         </div>
 
