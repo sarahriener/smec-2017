@@ -50,6 +50,8 @@
                     <img class="entry__data__item__img" src="/img/icons/globe_orange.png">
                 </div>
 
+                <p class="entry__data__item__info">Random Google Shopping Country</p>
+
                 <span class="entry__data__item__head">{{$salesOfCountry->name}}</span>
                 @if (strcmp($salesOfCountry->sales, "") === 0)
                     <p class="entry__data__item__info">
