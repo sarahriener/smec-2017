@@ -14,7 +14,7 @@
     <div class="filter__tags">
         <button type="button" class="filter__tag" data-continent="null">All</button>
         @foreach ($continents as $continent)
-            <button class="filter__tag" data-continent="{{$continent->id}}">{{ $continent->name }}</button>
+            <button class="filter__tag" data-continent="{{$continent->id}}" data-toggle="tooltip" title="Information about {{ count($continent->countries) }} Google Shopping Countries available">{{ $continent->name }}</button>
         @endforeach
     </div>
     <div class="filter__items__container">

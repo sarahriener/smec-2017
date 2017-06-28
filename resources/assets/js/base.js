@@ -14,3 +14,7 @@ var statistic_details = require('./statistic_details');
 statistic_details.init();
 
 var bootstrap = require('bootstrap');
+
+$(document).ready(function() {
+    $('[data-toggle="tooltip"]').tooltip();
+});
