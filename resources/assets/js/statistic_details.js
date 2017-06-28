@@ -364,8 +364,10 @@ module.exports = {
         function createDoughnutChart(data, ctx, statistic_type) {
             // TODO SR this is just a quick fix - rework logic here
             if (data.generatedDataPoints.length == 1) {
-                data.generatedDataPoints.push(100 - data.generatedDataPoints[0]);
-                data.generatedDataPointsForLabel.push(formatNumber(100 - data.generatedDataPoints[0]) + " " + statistic_type.type);
+                var num = (100 - data.generatedDataPoints[0]).toFixed(2);
+
+                data.generatedDataPoints.push(num);
+                data.generatedDataPointsForLabel.push(num + " " + statistic_type.type);
                 data.generatedDataLabels.push(data.generatedDataLabels[0]);
             }
 

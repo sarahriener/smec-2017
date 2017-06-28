@@ -4,7 +4,6 @@ module.exports = {
         $(document).ready(function() {
             // open first inner menu as default
             var $defaultStatisticMenuButton = $("div.statistic-menu").first().find('button.menu');
-            console.log("first", $defaultStatisticMenuButton);
             var statisticType = $defaultStatisticMenuButton.data("statisticType");
             var $innerMenu = $("div." + statisticType + ".menu__inner");
 
