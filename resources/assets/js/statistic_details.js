@@ -239,8 +239,8 @@ module.exports = {
                             var value = detail.value;
 
                             generatedDataPoints.push(value);
-                            generatedDataPointsForLabel.push(year);
-                            generatedDataLabels.push(name);
+                            generatedDataPointsForLabel.push(name);
+                            generatedDataLabels.push(year);
                         }
                     });
                     var data = {};
@@ -248,7 +248,7 @@ module.exports = {
                     data.generatedDataPointsForLabel = generatedDataPointsForLabel;
                     data.generatedDataLabels = generatedDataLabels;
 
-                    createBarChart(data, ctx, statistic_type, sub_statistic_type);
+                    createDoughnutChart(data, ctx, statistic_type, sub_statistic_type);
                 }
             });
         }
@@ -362,7 +362,7 @@ module.exports = {
          * @param ctx
          * @param statistic_type
          */
-        function createDoughnutChart(data, ctx, statistic_type) {
+        function createDoughnutChart(data, ctx, statistic_type, sub_statistic_type = false) {
             // TODO SR this is just a quick fix - rework logic here
             if (data.generatedDataPoints.length == 1) {
                 var num = formatNumber(100 - data.generatedDataPoints[0]);
@@ -392,7 +392,7 @@ module.exports = {
                 options: {
                     responsive: true,
                     legend: {
-                        reverse: true,
+                        reverse: false,
                         onClick: (e) => e.stopPropagation(),
                         position: 'top',
                         fontSize: 15
@@ -400,6 +400,9 @@ module.exports = {
                     tooltips: {
                         callbacks: {
                             label: function (tooltipItem, detail) {
+                                if(sub_statistic_type)
+                                    return " " + data.generatedDataPointsForLabel[tooltipItem.index] +
+                                        ": " + " " + formatNumber(data.generatedDataPoints[tooltipItem.index]) + " " + sub_statistic_type.type;
                                 return " " + data.generatedDataLabels[tooltipItem.index] +
                                     ": " + " " + formatNumber(data.generatedDataPoints[tooltipItem.index]) + " " + statistic_type.type;
                             }
@@ -426,10 +429,8 @@ module.exports = {
          * @param ctx
          * @param statistic_type
          */
-        function createBarChart(data, ctx, statistic_type, sub_statistic_type = false) {
-            var year = "";
-            if(sub_statistic_type)
-                year =  ", " + data.generatedDataPointsForLabel[0];
+        function createBarChart(data, ctx, statistic_type) {
+
             var barChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
@@ -455,8 +456,6 @@ module.exports = {
                                 min: 0,
                                 // Include a dollar sign in the ticks
                                 callback: function (value, index, values) {
-                                    if(sub_statistic_type)
-                                        return " " + formatNumber(value) + " " + sub_statistic_type.type;
                                     return " " + formatNumber(value) + " " + statistic_type.type;
                                 }
                             }
@@ -465,8 +464,6 @@ module.exports = {
                     tooltips: {
                         callbacks: {
                             label: function (tooltipItem, data) {
-                                if(sub_statistic_type)
-                                    return " " + formatNumber(tooltipItem.yLabel) + " " + sub_statistic_type.type;
                                 return " " + formatNumber(tooltipItem.yLabel) + " " + statistic_type.type;
                             }
                         }
@@ -476,7 +473,7 @@ module.exports = {
                     },
                     title: {
                         display: true,
-                        text: statistic_type.description + year,
+                        text: statistic_type.description,
                         fontSize: 15,
                         padding: 30
                     },
