@@ -1,32 +1,47 @@
 module.exports = {
     init: function () {
 
-        $("div.statistic-menu button.menu").on("click", function (e) {
-            var $statisticMenu = $(this);
-            var statistic_type = $statisticMenu.data("statisticType");
+        $(document).ready(function() {
+            // open first inner menu as default
+            var $defaultStatisticMenuButton = $("div.statistic-menu").first().find('button.menu');
+            console.log("first", $defaultStatisticMenuButton);
+            var statisticType = $defaultStatisticMenuButton.data("statisticType");
+            var $innerMenu = $("div." + statisticType + ".menu__inner");
 
-            // toggle
-            var $innerMenu = $("div." + statistic_type + ".menu__inner");
+            openSection($innerMenu);
+        });
+
+        $("div.statistic-menu button.menu").on("click", function (e) {
+            var $statisticMenuButton = $(this);
+            var statisticType = $statisticMenuButton.data("statisticType");
+
+            // toggle inner menu
+            var $innerMenu = $("div." + statisticType + ".menu__inner");
 
             if($innerMenu.is('.active')) {
                 closeSection();
             } else {
                 closeSection();
-                $innerMenu.addClass('active');
-                $innerMenu.parent().find('.menu').addClass('white');
-                $innerMenu.slideDown(300).addClass('open');
+                $statisticMenuButton.addClass('white');
+                openSection($innerMenu);
             }
 
             $('html, body').animate({
-                scrollTop: $statisticMenu.offset().top
+                scrollTop: $statisticMenuButton.offset().top
             }, 800);
 
-            function closeSection() {
-                $('div.menu__inner').removeClass('active');
-                $('div.menu__inner').parent().find('.menu').removeClass('white');
-                $('div.menu__inner').slideUp(300).removeClass('open');
-            }
         });
+
+        function openSection($innerMenu) {
+            $innerMenu.addClass('active');
+            $innerMenu.slideDown(300).addClass('open');
+        }
+
+        function closeSection() {
+            $('div.statistic-menu button.menu').removeClass('white');
+            $('div.menu__inner').removeClass('active');
+            $('div.menu__inner').slideUp(300).removeClass('open');
+        }
         
     }
 };
