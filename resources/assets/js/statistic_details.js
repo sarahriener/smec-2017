@@ -364,7 +364,7 @@ module.exports = {
         function createDoughnutChart(data, ctx, statistic_type) {
             // TODO SR this is just a quick fix - rework logic here
             if (data.generatedDataPoints.length == 1) {
-                var num = (100 - data.generatedDataPoints[0]).toFixed(2);
+                var num = formatNumber(100 - data.generatedDataPoints[0]);
 
                 data.generatedDataPoints.push(num);
                 data.generatedDataPointsForLabel.push(num + " " + statistic_type.type + " None " + statistic_type.name);
@@ -474,6 +474,10 @@ module.exports = {
 
 
         function formatNumber(n, onlyNumber = false) {
+            if(isNaN(n)) {
+                return n;
+            }
+
             var numb;
             if (n > 1000000000000) {
                 numb = (n / 1000000000000).toFixed(2);
@@ -492,7 +496,8 @@ module.exports = {
                 if (!onlyNumber) numb = numb + ' thousand';
                 return numb;
             }
-            return n;
+
+            return Number(n).toFixed(2);
         }
 
 
