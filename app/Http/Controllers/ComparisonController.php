@@ -14,8 +14,8 @@ class ComparisonController extends Controller
 
     public function index()
     {
-        $countries = Country::all();
-        $continents = Continent::all();
+        $countries = Country::all()->sortBy('name', SORT_ASC);
+        $continents = Continent::all()->sortBy('name', SORT_ASC);
 
         return view('compare', ['continents' => $continents, 'countries' => $countries]);
     }
@@ -26,8 +26,8 @@ class ComparisonController extends Controller
      */
     public function show($id)
     {
-        $countries = Country::all();
-        $continents = Continent::all();
+        $countries = Country::all()->sortBy('name', SORT_ASC);
+        $continents = Continent::all()->sortBy('name', SORT_ASC);
 
         $country = Country::find($id);
         $continent = $country->continent();

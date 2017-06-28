@@ -19,8 +19,8 @@ class OverviewController extends Controller
      */
     public function index()
     {
-        $countries = Country::all();
-        $continents = Continent::all();
+        $countries = Country::all()->sortBy('name', SORT_ASC);
+        $continents = Continent::all()->sortBy('name', SORT_ASC);
 
          return view('overview', ['continents' => $continents, 'countries' => $countries]);
     }
