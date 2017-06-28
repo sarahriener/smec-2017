@@ -343,6 +343,7 @@ module.exports = {
                     maintainAspectRatio: false,
                     scales: {
                         yAxes: [{
+                            min: 0,
                             ticks: {
                                 // Include a dollar sign in the ticks
                                 callback: function (value, index, values) {
@@ -447,7 +448,9 @@ module.exports = {
                 options: {
                     scales: {
                         yAxes: [{
+
                             ticks: {
+                                min: 0,
                                 // Include a dollar sign in the ticks
                                 callback: function (value, index, values) {
                                     if(sub_statistic_type)
