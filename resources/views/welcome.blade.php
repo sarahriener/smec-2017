@@ -15,7 +15,7 @@
     <div class="entry">
 
         <div class="entry__text">
-            <span class="entry__text__header">E-commerce Facts</span>
+            <h4 class="entry__text__header">E-commerce Facts</h4>
             <p>
                 With the following data, we want to answer the first important questions about E-commerce. We collected
                 important facts such as the number of inhabitants,
