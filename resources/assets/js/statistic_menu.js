@@ -5,10 +5,9 @@ module.exports = {
             // open first inner menu as default
             var $defaultStatisticMenuButton = $("div.statistic-menu").first().find('button.menu');
             var statisticType = $defaultStatisticMenuButton.data("statisticType");
+
             var $innerMenu = $("div." + statisticType + ".menu__inner");
-
             openSection($innerMenu);
-
             $innerMenu.find("button.sub_menu").first().trigger("click");
         });
 
@@ -25,6 +24,8 @@ module.exports = {
                 closeSection();
                 $statisticMenuButton.addClass('white');
                 openSection($innerMenu);
+
+                $innerMenu.find("button.sub_menu").first().trigger("click");
             }
 
             $('html, body').animate({
