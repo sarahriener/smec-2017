@@ -59,7 +59,7 @@ module.exports = {
         }
 
         function addCloseButton($target) {
-            $target.append('<span class="close">x</span>');
+            $target.prepend('<span class="close">x</span>');
 
             var $close = $target.find('.close');
 
