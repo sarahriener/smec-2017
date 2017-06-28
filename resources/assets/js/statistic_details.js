@@ -393,6 +393,7 @@ module.exports = {
                     responsive: true,
                     legend: {
                         reverse: true,
+                        onClick: (e) => e.stopPropagation(),
                         position: 'top',
                         fontSize: 15
                     },
