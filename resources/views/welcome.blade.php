@@ -41,7 +41,7 @@
                     <img class="entry__data__item__img" src="/img/icons/basket_orange.png">
                 </div>
 
-                <p class="entry__data__item__info">Future Worldwide E-commerce Sales 2021</p>
+                <p class="entry__data__item__info">Predicted Worldwide E-commerce Sales 2021</p>
                 <span class="entry__data__item__head">{{$type}} {{$aggregatedFutureSales}}</span>
             </div>
 
