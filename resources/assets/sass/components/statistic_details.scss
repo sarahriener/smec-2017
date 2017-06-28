@@ -28,3 +28,16 @@
   width: 20%;
   padding: 20px;
 }
+
+.statistic-data {
+  &.compare-data .explanation {
+      font-size: 12px;
+      background-color: #eee;
+      padding: 5px;
+    }
+
+    .explanation span.glyphicon {
+      padding-right: 5px;
+      color: #999;
+    }
+}

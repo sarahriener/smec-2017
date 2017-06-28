@@ -125,15 +125,14 @@ module.exports = {
                     '<canvas id="chartContainer-' + statistic_type.name.split(' ').join('_') + '_' + country.id + '">Loading data ...</canvas>' +
                     '</div></div>';
 
-                var statisticTypeExplanation = statistic_type.explanation ? statistic_type.explanation : '';
+                var statisticTypeExplanation = statistic_type.explanation ? '<p class="explanation"><span class="glyphicon glyphicon-info-sign"></span>' + statistic_type.explanation + '</p>' : '';
 
                 if (isCompare) {
-                    $(statistic_detail_div).html('<p class="explanation"><span class="glyphicon glyphicon-info-sign"></span>' + statisticTypeExplanation + '</p>' +
+                    $(statistic_detail_div).html(statisticTypeExplanation +
                         statistic_detail_data);
                 } else {
                    $(statistic_detail_div).html(
-                        '<h2>' + statistic_type.name + '</h2>' +
-                        '<p>' + statisticTypeExplanation + '</p>' +
+                        '<h2>' + statistic_type.name + '</h2>' + statisticTypeExplanation +
                         statistic_detail_data);
                 }
 
@@ -231,6 +230,8 @@ module.exports = {
                     var generatedDataPointsForLabel = [];
                     var generatedDataLabels = [];
 
+                    var sub_statistic_type = subTypeDetails[Object.keys(subTypeDetails)[0]]["subType"];
+
                     $.each(subTypeDetails, function (name, obj) {
                         if(obj["subTypesDetails"]){
                             var detail = obj["subTypesDetails"][0];
@@ -238,7 +239,7 @@ module.exports = {
                             var value = detail.value;
 
                             generatedDataPoints.push(value);
-                            generatedDataPointsForLabel.push(formatNumber(value) + " " + statistic_type.type );
+                            generatedDataPointsForLabel.push(year);
                             generatedDataLabels.push(name);
                         }
                     });
@@ -247,7 +248,7 @@ module.exports = {
                     data.generatedDataPointsForLabel = generatedDataPointsForLabel;
                     data.generatedDataLabels = generatedDataLabels;
 
-                    createBarChart(data, ctx, statistic_type);
+                    createBarChart(data, ctx, statistic_type, sub_statistic_type);
                 }
             });
         }
@@ -264,18 +265,19 @@ module.exports = {
                 success: function (subTypeDetails) {
                     var detail_string = '<div class="alert alert-info">Oops! There are no details available</div>';
 
-                    if(subTypeDetails ){
-                        detail_string = "<ul class='list-group'><li class='list-group-item'>Super Titel + Jahreszahl</li>";
+
+                    if(subTypeDetails){
+                        var year = subTypeDetails[Object.keys(subTypeDetails)[0]]["subTypesDetails"][0].year;
+                        detail_string = "<ul class='list-group'><li class='list-group-item'>Rankings of " + year + "</li>";
 
                         $.each(subTypeDetails, function (name, obj) {
                             if(obj["subTypesDetails"]){
                                 detail_string += "<li class='list-group-item'><b>" + name + "</b>: ";
-                                var  detail = obj["subTypesDetails"][0];
+                                var detail = obj["subTypesDetails"][0];
                                 var subType = obj["subType"];
-                                var type = "";
-                                if (subType.type == "%") type = subType.type;
+                                var type = subType.type == "%" ? subType.type : "";
 
-                                detail_string += detail.value + " " + type + " (" + detail.year + ") " + "</li>";
+                                detail_string += detail.value + " " + type + "</li>";
                             }
 
                         });
@@ -335,7 +337,8 @@ module.exports = {
                     title: {
                         display: true,
                         text: statistic_type.description,
-                        fontSize: 16
+                        fontSize: 15,
+                        padding: 25
                     },
                     animation: {
                         animateScale: true,
@@ -368,7 +371,7 @@ module.exports = {
                 var num = formatNumber(100 - data.generatedDataPoints[0]);
 
                 data.generatedDataPoints.push(num);
-                data.generatedDataPointsForLabel.push(num + " " + statistic_type.type + " None " + statistic_type.name);
+                data.generatedDataPointsForLabel.push(num + " " + statistic_type.type + " Non-" + statistic_type.name);
                 data.generatedDataLabels.push(data.generatedDataLabels[0]);
             }
 
@@ -393,7 +396,7 @@ module.exports = {
                     responsive: true,
                     legend: {
                         position: 'top',
-                        fontSize: 16
+                        fontSize: 15
                     },
                     tooltips: {
                         callbacks: {
@@ -406,7 +409,8 @@ module.exports = {
                     title: {
                         display: true,
                         text: statistic_type.description +", "+ data.generatedDataLabels[0],
-                        fontSize: 16
+                        fontSize: 15,
+                        padding: 20
                     },
                     animation: {
                         animateScale: true,
@@ -423,7 +427,10 @@ module.exports = {
          * @param ctx
          * @param statistic_type
          */
-        function createBarChart(data, ctx, statistic_type) {
+        function createBarChart(data, ctx, statistic_type, sub_statistic_type = false) {
+            var year = "";
+            if(sub_statistic_type)
+                year =  ", " + data.generatedDataPointsForLabel[0];
             var barChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
@@ -447,6 +454,8 @@ module.exports = {
                             ticks: {
                                 // Include a dollar sign in the ticks
                                 callback: function (value, index, values) {
+                                    if(sub_statistic_type)
+                                        return " " + formatNumber(value) + " " + sub_statistic_type.type;
                                     return " " + formatNumber(value) + " " + statistic_type.type;
                                 }
                             }
@@ -455,6 +464,8 @@ module.exports = {
                     tooltips: {
                         callbacks: {
                             label: function (tooltipItem, data) {
+                                if(sub_statistic_type)
+                                    return " " + formatNumber(tooltipItem.yLabel) + " " + sub_statistic_type.type;
                                 return " " + formatNumber(tooltipItem.yLabel) + " " + statistic_type.type;
                             }
                         }
@@ -464,8 +475,9 @@ module.exports = {
                     },
                     title: {
                         display: true,
-                        text: statistic_type.description,
-                        fontSize: 16
+                        text: statistic_type.description + year,
+                        fontSize: 15,
+                        padding: 30
                     },
                     responsive: true,
                     maintainAspectRatio: false
