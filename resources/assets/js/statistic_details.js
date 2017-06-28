@@ -272,8 +272,7 @@ module.exports = {
                                 detail_string += "<li class='list-group-item'><b>" + name + "</b>: ";
                                 var  detail = obj["subTypesDetails"][0];
                                 var subType = obj["subType"];
-                                var type = "";
-                                if (subType.type == "%") type = subType.type;
+                                var type = subType.type == "%" ? subType.type : "";
 
                                 detail_string += detail.value + " " + type + " (" + detail.year + ") " + "</li>";
                             }
