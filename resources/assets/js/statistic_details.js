@@ -121,7 +121,9 @@ module.exports = {
                         '<div class="alert alert-info">Oops! There are no details available for this statistic type.</div>');
                 }
             } else {
-                var statistic_detail_data = '<div class="chart"><canvas id="chartContainer-' + statistic_type.name.split(' ').join('_') + '_' + country.id + '">Loading data ...</canvas></div>';
+                var statistic_detail_data = '<div class="chart"><div class="canvas-container">' +
+                    '<canvas id="chartContainer-' + statistic_type.name.split(' ').join('_') + '_' + country.id + '">Loading data ...</canvas>' +
+                    '</div></div>';
 
                 var statisticTypeExplanation = statistic_type.explanation ? statistic_type.explanation : '';
 
@@ -212,7 +214,7 @@ module.exports = {
                 detail_string = '<div class="alert alert-info">Oops! There is no data available!</div>';
             }
 
-            $(detail_div).parent().html(detail_string);
+            $(detail_div).parents().find("div.chart").html(detail_string);
         }
 
         function createYearData(statistic_type, country_id, ctx){
@@ -281,7 +283,7 @@ module.exports = {
                         detail_string += "</ul>";
                     }
 
-                    $(detail_div).parent().html(detail_string);
+                    $(detail_div).parents().find("div.chart").html(detail_string);
 
 
                 }
