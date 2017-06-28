@@ -230,6 +230,8 @@ module.exports = {
                     var generatedDataPointsForLabel = [];
                     var generatedDataLabels = [];
 
+                    var sub_statistic_type = subTypeDetails[Object.keys(subTypeDetails)[0]]["subType"];
+
                     $.each(subTypeDetails, function (name, obj) {
                         if(obj["subTypesDetails"]){
                             var detail = obj["subTypesDetails"][0];
@@ -246,7 +248,7 @@ module.exports = {
                     data.generatedDataPointsForLabel = generatedDataPointsForLabel;
                     data.generatedDataLabels = generatedDataLabels;
 
-                    createBarChart(data, ctx, statistic_type);
+                    createBarChart(data, ctx, statistic_type, sub_statistic_type);
                 }
             });
         }
@@ -335,7 +337,8 @@ module.exports = {
                     title: {
                         display: true,
                         text: statistic_type.description,
-                        fontSize: 15
+                        fontSize: 15,
+                        padding: 25
                     },
                     animation: {
                         animateScale: true,
@@ -406,7 +409,8 @@ module.exports = {
                     title: {
                         display: true,
                         text: statistic_type.description +", "+ data.generatedDataLabels[0],
-                        fontSize: 15
+                        fontSize: 15,
+                        padding: 20
                     },
                     animation: {
                         animateScale: true,
@@ -423,12 +427,9 @@ module.exports = {
          * @param ctx
          * @param statistic_type
          */
-        function createBarChart(data, ctx, statistic_type) {
-
-
-            console.log(statistic_type.type);
+        function createBarChart(data, ctx, statistic_type, sub_statistic_type = false) {
             var year = "";
-            if(statistic_type.type == "years")
+            if(sub_statistic_type)
                 year =  ", " + data.generatedDataPointsForLabel[0];
             var barChart = new Chart(ctx, {
                 type: 'bar',
@@ -453,6 +454,8 @@ module.exports = {
                             ticks: {
                                 // Include a dollar sign in the ticks
                                 callback: function (value, index, values) {
+                                    if(sub_statistic_type)
+                                        return " " + formatNumber(value) + " " + sub_statistic_type.type;
                                     return " " + formatNumber(value) + " " + statistic_type.type;
                                 }
                             }
@@ -461,6 +464,8 @@ module.exports = {
                     tooltips: {
                         callbacks: {
                             label: function (tooltipItem, data) {
+                                if(sub_statistic_type)
+                                    return " " + formatNumber(tooltipItem.yLabel) + " " + sub_statistic_type.type;
                                 return " " + formatNumber(tooltipItem.yLabel) + " " + statistic_type.type;
                             }
                         }
@@ -471,7 +476,8 @@ module.exports = {
                     title: {
                         display: true,
                         text: statistic_type.description + year,
-                        fontSize: 15
+                        fontSize: 15,
+                        padding: 30
                     },
                     responsive: true,
                     maintainAspectRatio: false
