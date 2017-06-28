@@ -362,8 +362,6 @@ module.exports = {
          * @param statistic_type
          */
         function createDoughnutChart(data, ctx, statistic_type) {
-            console.log("data", data, "statistic_type", statistic_type);
-
             // TODO SR this is just a quick fix - rework logic here
             if (data.generatedDataPoints.length == 1) {
                 var num = (100 - data.generatedDataPoints[0]).toFixed(2);

@@ -8,6 +8,8 @@ module.exports = {
             var $innerMenu = $("div." + statisticType + ".menu__inner");
 
             openSection($innerMenu);
+
+            $innerMenu.find("button.sub_menu").first().trigger("click");
         });
 
         $("div.statistic-menu button.menu").on("click", function (e) {
