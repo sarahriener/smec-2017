@@ -214,7 +214,7 @@ module.exports = {
                 detail_string = '<div class="alert alert-info">Oops! There is no data available!</div>';
             }
 
-            $(detail_div).parents().find("div.chart").html(detail_string);
+            $(detail_div).closest("div.chart").html(detail_string);
         }
 
         function createYearData(statistic_type, country_id, ctx){
@@ -266,7 +266,6 @@ module.exports = {
                 success: function (subTypeDetails) {
                     var detail_string = '<div class="alert alert-info">Oops! There are no details available</div>';
 
-
                     if(subTypeDetails){
                         var year = subTypeDetails[Object.keys(subTypeDetails)[0]]["subTypesDetails"][0].year;
                         detail_string = "<ul class='list-group'><li class='list-group-item'>Rankings of " + year + "</li>";
@@ -280,15 +279,12 @@ module.exports = {
 
                                 detail_string += detail.value + " " + type + "</li>";
                             }
-
                         });
 
                         detail_string += "</ul>";
                     }
 
-                    $(detail_div).parents().find("div.chart").html(detail_string);
-
-
+                    $(detail_div).closest("div.chart").html(detail_string);
                 }
             });
         }
