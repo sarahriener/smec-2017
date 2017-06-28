@@ -33,13 +33,13 @@
                         </span>
                         <ul class="dropdown-menu" aria-labelledby="dLabel">
                             <li>
-                                <a href="/en/faq/">FAQ</a>
+                                <a href="https://whoopapp.com/en/faq/">FAQ</a>
                             </li>
                             <li>
-                                <a href="/google-shopping-compendium/">Compendium</a>
+                                <a href="https://whoopapp.com/google-shopping-compendium/">Compendium</a>
                             </li>
                             <li>
-                                <a href="/en/resources/">Documents</a>
+                                <a href="https://whoopapp.com/en/resources/">Documents</a>
                             </li>
                         </ul>
                     </li>

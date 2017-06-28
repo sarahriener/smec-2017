@@ -157,6 +157,10 @@
   font-weight: 700;
 }
 
+#main-navbar .language-switch {
+  padding-right: 5px;
+}
+
 .nav__item {
   text-transform: uppercase;
 }
@@ -168,5 +172,10 @@
     display: block;
     width: 120px;
     z-index: 20;
+}
 
+.dropdown.leandropdown, .dropdown.language-switch {
+  span {
+    -webkit-appearance: inherit;
+  }
 }
