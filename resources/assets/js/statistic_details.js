@@ -392,6 +392,7 @@ module.exports = {
                 options: {
                     responsive: true,
                     legend: {
+                        reverse: true,
                         position: 'top',
                         fontSize: 15
                     },
