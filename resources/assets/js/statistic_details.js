@@ -338,7 +338,8 @@ module.exports = {
                     title: {
                         display: true,
                         text: statistic_type.description,
-                        fontSize: 15
+                        fontSize: 15,
+                        padding: 25
                     },
                     animation: {
                         animateScale: true,
@@ -409,7 +410,8 @@ module.exports = {
                     title: {
                         display: true,
                         text: statistic_type.description +", "+ data.generatedDataLabels[0],
-                        fontSize: 15
+                        fontSize: 15,
+                        padding: 20
                     },
                     animation: {
                         animateScale: true,
@@ -475,7 +477,8 @@ module.exports = {
                     title: {
                         display: true,
                         text: statistic_type.description + year,
-                        fontSize: 15
+                        fontSize: 15,
+                        padding: 30
                     },
                     responsive: true,
                     maintainAspectRatio: false
