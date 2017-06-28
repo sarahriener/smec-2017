@@ -426,9 +426,6 @@ module.exports = {
          * @param statistic_type
          */
         function createBarChart(data, ctx, statistic_type) {
-
-
-            console.log(statistic_type.type);
             var year = "";
             if(statistic_type.type == "years")
                 year =  ", " + data.generatedDataPointsForLabel[0];
