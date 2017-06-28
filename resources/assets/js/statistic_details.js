@@ -123,12 +123,13 @@ module.exports = {
             } else {
                 var statistic_detail_data = '<div class="chart"><canvas id="chartContainer-' + statistic_type.name.split(' ').join('_') + '_' + country.id + '">Loading data ...</canvas></div>';
 
-                if (isCompare) {
-                    $(statistic_detail_div).html(statistic_detail_data);
-                } else {
-                    var statisticTypeExplanation = statistic_type.explanation ? statistic_type.explanation : '';
+                var statisticTypeExplanation = statistic_type.explanation ? statistic_type.explanation : '';
 
-                    $(statistic_detail_div).html(
+                if (isCompare) {
+                    $(statistic_detail_div).html('<p class="explanation"><span class="glyphicon glyphicon-info-sign"></span>' + statisticTypeExplanation + '</p>' +
+                        statistic_detail_data);
+                } else {
+                   $(statistic_detail_div).html(
                         '<h2>' + statistic_type.name + '</h2>' +
                         '<p>' + statisticTypeExplanation + '</p>' +
                         statistic_detail_data);
