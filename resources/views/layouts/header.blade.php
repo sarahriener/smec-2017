@@ -1,12 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<link rel="stylesheet" href="style.css">
-
 <div id="main-navbar">
     <nav class="navbar-default">
         <div class="container-fluid">
@@ -57,6 +48,3 @@
         </div>
     </nav>
 </div>
-
-</body>
-</html>

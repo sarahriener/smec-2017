@@ -2,9 +2,10 @@
 
 @section('title', 'Compare')
 
+@include('layouts.header')
+
 @section('content')
     <div class="compare">
-        @include('layouts.header')
 
         <div class="nav__top">
             <!--a href="/country/{{ $country->id }}" class="nav__top__back"><span class="glyphicon glyphicon-menu-left"></span>Back to countries</a-->
