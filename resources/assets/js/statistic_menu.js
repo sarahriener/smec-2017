@@ -25,6 +25,8 @@ module.exports = {
             } else {
                 closeSection();
                 openSection($statisticMenuButton, $innerMenu);
+
+                $innerMenu.find("button.sub_menu").first().trigger("click");
             }
 
             $('html, body').animate({
