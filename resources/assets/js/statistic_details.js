@@ -491,24 +491,32 @@ module.exports = {
 
             var numb;
             if (n > 1000000000000) {
-                numb = (n / 1000000000000).toFixed(2);
+                numb = divide(n, 1000000000000);
                 if (!onlyNumber) numb = numb + ' trillion';
                 return numb;
             } else if (n > 1000000000) {
-                numb = (n / 1000000000).toFixed(2);
+                numb = divide(n, 1000000000);
                 if (!onlyNumber) numb = numb + ' billion';
                 return numb;
             } else if (n > 1000000) {
-                numb = (n / 1000000).toFixed(2);
+                numb = divide(n, 1000000);
                 if (!onlyNumber) numb = numb + ' million';
                 return numb;
             } else if (n > 1000) {
-                numb = (n / 1000).toFixed(2);
+                numb = divide(n, 1000);
                 if (!onlyNumber) numb = numb + ' thousand';
                 return numb;
             }
 
-            return Number(n).toFixed(2);
+            return divide(n, 1);
+        }
+
+        function divide(dividend, divisor) {
+            var quotient = dividend / divisor;
+
+            if(quotient % 1 != 0) return Number(quotient).toFixed(2);
+
+            return quotient;
         }
 
 
