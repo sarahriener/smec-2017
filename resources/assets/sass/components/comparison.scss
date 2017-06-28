@@ -2,11 +2,14 @@
   margin-bottom: 30px;
 
   .chart{
-    min-height: 230px;
-    margin: 5px 30px;
+    margin: 5px 30px 40px;
     display: -ms-flexbox;
     justify-content: center;
     padding: auto;
+
+    .canvas-container{
+      min-height: 250px;
+    }
 
   }
 }

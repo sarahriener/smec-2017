@@ -121,7 +121,9 @@ module.exports = {
                         '<div class="alert alert-info">Oops! There are no details available for this statistic type.</div>');
                 }
             } else {
-                var statistic_detail_data = '<div class="chart"><canvas id="chartContainer-' + statistic_type.name.split(' ').join('_') + '_' + country.id + '">Loading data ...</canvas></div>';
+                var statistic_detail_data = '<div class="chart"><div class="canvas-container">' +
+                    '<canvas id="chartContainer-' + statistic_type.name.split(' ').join('_') + '_' + country.id + '">Loading data ...</canvas>' +
+                    '</div></div>';
 
                 if (isCompare) {
                     $(statistic_detail_div).html(statistic_detail_data);
@@ -211,7 +213,7 @@ module.exports = {
                 detail_string = '<div class="alert alert-info">Oops! There is no data available!</div>';
             }
 
-            $(detail_div).parent().html(detail_string);
+            $(detail_div).parents().find("div.chart").html(detail_string);
         }
 
         function createYearData(statistic_type, country_id, ctx){
@@ -262,27 +264,25 @@ module.exports = {
                     var detail_string = '<div class="alert alert-info">Oops! There are no details available</div>';
 
                     if(subTypeDetails ){
-                        detail_string = "<ul class='list-group'><li class='list-group-item'>Super Titel + Jahreszahl</h3>";
+                        detail_string = "<ul class='list-group'><li class='list-group-item'>Super Titel + Jahreszahl</li>";
 
                         $.each(subTypeDetails, function (name, obj) {
-                            detail_string += "<li class='list-group-item'><b>" + name + "</b>: ";
-
                             if(obj["subTypesDetails"]){
-                                detail = obj["subTypesDetails"][0];
+                                detail_string += "<li class='list-group-item'><b>" + name + "</b>: ";
+                                var  detail = obj["subTypesDetails"][0];
                                 var subType = obj["subType"];
                                 var type = "";
                                 if (subType.type == "%") type = subType.type;
 
                                 detail_string += detail.value + " " + type + " (" + detail.year + ") " + "</li>";
-                            } else{
-                                var detail = "No data available.";
-                                detail_string += detail + "</li>";
                             }
+
                         });
+
                         detail_string += "</ul>";
                     }
 
-                    $(detail_div).parent().html(detail_string);
+                    $(detail_div).parents().find("div.chart").html(detail_string);
 
 
                 }
