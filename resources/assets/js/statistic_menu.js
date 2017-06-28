@@ -7,7 +7,7 @@ module.exports = {
             var statisticType = $defaultStatisticMenuButton.data("statisticType");
             var $innerMenu = $("div." + statisticType + ".menu__inner");
 
-            openSection($innerMenu);
+            openSection($defaultStatisticMenuButton, $innerMenu);
 
             $innerMenu.find("button.sub_menu").first().trigger("click");
         });
@@ -15,6 +15,7 @@ module.exports = {
         $("div.statistic-menu button.menu").on("click", function (e) {
             var $statisticMenuButton = $(this);
             var statisticType = $statisticMenuButton.data("statisticType");
+            $statisticMenuButton = $('[data-statistic-type='+ statisticType + ']');
 
             // toggle inner menu
             var $innerMenu = $("div." + statisticType + ".menu__inner");
@@ -23,8 +24,7 @@ module.exports = {
                 closeSection();
             } else {
                 closeSection();
-                $statisticMenuButton.addClass('white');
-                openSection($innerMenu);
+                openSection($statisticMenuButton, $innerMenu);
             }
 
             $('html, body').animate({
@@ -33,7 +33,15 @@ module.exports = {
 
         });
 
-        function openSection($innerMenu) {
+        $('.compare__detail__select__item').on('drop', function (e) {
+            var $openStatisticMenuButton = $('div.statistic-menu button.menu.white');
+            var statisticType = $openStatisticMenuButton.data("statisticType");
+
+            $('[data-statistic-type='+ statisticType + ']').addClass('white');
+        });
+
+        function openSection($menuButton, $innerMenu) {
+            $menuButton.addClass('white');
             $innerMenu.addClass('active');
             $innerMenu.slideDown(300).addClass('open');
         }
