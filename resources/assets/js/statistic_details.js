@@ -332,7 +332,7 @@ module.exports = {
                     },
                     title: {
                         display: true,
-                        text: statistic_type.description,
+                        text: (statistic_type.description ? statistic_type.description : "Current statistic") ,
                         fontSize: 15,
                         padding: 25
                     },
@@ -410,7 +410,7 @@ module.exports = {
                     },
                     title: {
                         display: true,
-                        text: statistic_type.description +", "+ data.generatedDataLabels[0],
+                        text: (statistic_type.description ? statistic_type.description + ", " : "Statistic of ") + data.generatedDataLabels[0],
                         fontSize: 15,
                         padding: 20
                     },
@@ -473,7 +473,7 @@ module.exports = {
                     },
                     title: {
                         display: true,
-                        text: statistic_type.description,
+                        text: (statistic_type.description ? statistic_type.description : "Current statistic") ,
                         fontSize: 15,
                         padding: 30
                     },
