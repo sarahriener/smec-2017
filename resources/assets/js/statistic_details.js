@@ -264,23 +264,21 @@ module.exports = {
                     var detail_string = '<div class="alert alert-info">Oops! There are no details available</div>';
 
                     if(subTypeDetails ){
-                        detail_string = "<ul class='list-group'><li class='list-group-item'>Super Titel + Jahreszahl</h3>";
+                        detail_string = "<ul class='list-group'><li class='list-group-item'>Super Titel + Jahreszahl</li>";
 
                         $.each(subTypeDetails, function (name, obj) {
-                            detail_string += "<li class='list-group-item'><b>" + name + "</b>: ";
-
                             if(obj["subTypesDetails"]){
-                                detail = obj["subTypesDetails"][0];
+                                detail_string += "<li class='list-group-item'><b>" + name + "</b>: ";
+                                var  detail = obj["subTypesDetails"][0];
                                 var subType = obj["subType"];
                                 var type = "";
                                 if (subType.type == "%") type = subType.type;
 
                                 detail_string += detail.value + " " + type + " (" + detail.year + ") " + "</li>";
-                            } else{
-                                var detail = "No data available.";
-                                detail_string += detail + "</li>";
                             }
+
                         });
+
                         detail_string += "</ul>";
                     }
 
