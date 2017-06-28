@@ -213,7 +213,7 @@ module.exports = {
                 detail_string = '<div class="alert alert-info">Oops! There is no data available!</div>';
             }
 
-            $(detail_div).parents().find("div.chart").html(detail_string);
+            $(detail_div).closest("div.chart").html(detail_string);
         }
 
         function createYearData(statistic_type, country_id, ctx){
@@ -265,7 +265,6 @@ module.exports = {
                 success: function (subTypeDetails) {
                     var detail_string = '<div class="alert alert-info">Oops! There are no details available</div>';
 
-
                     if(subTypeDetails){
                         var year = subTypeDetails[Object.keys(subTypeDetails)[0]]["subTypesDetails"][0].year;
                         detail_string = "<ul class='list-group'><li class='list-group-item'>Rankings of " + year + "</li>";
@@ -279,15 +278,12 @@ module.exports = {
 
                                 detail_string += detail.value + " " + type + "</li>";
                             }
-
                         });
 
                         detail_string += "</ul>";
                     }
 
-                    $(detail_div).parents().find("div.chart").html(detail_string);
-
-
+                    $(detail_div).closest("div.chart").html(detail_string);
                 }
             });
         }
@@ -347,6 +343,7 @@ module.exports = {
                     maintainAspectRatio: false,
                     scales: {
                         yAxes: [{
+                            min: 0,
                             ticks: {
                                 // Include a dollar sign in the ticks
                                 callback: function (value, index, values) {
@@ -451,7 +448,9 @@ module.exports = {
                 options: {
                     scales: {
                         yAxes: [{
+
                             ticks: {
+                                min: 0,
                                 // Include a dollar sign in the ticks
                                 callback: function (value, index, values) {
                                     if(sub_statistic_type)

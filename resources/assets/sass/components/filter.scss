@@ -213,11 +213,13 @@
 
 /* mobile adjustments */
 
-@media (max-width: $max-xs) {
-
-}
-
 @media (max-width: $max-sm) {
+
+  #bs-example-navbar-collapse-1 {
+    border-bottom: 1px solid $w-alto;
+    border-top: none;
+  }
+
 
   .filter__tag {
     font-size: 11px;
@@ -226,7 +228,7 @@
 
   .compare , .detail {
     .filter__items {
-      width: 100%;
+      width: 80%;
     }
   }
 
@@ -250,4 +252,24 @@
     }
   }
 
+  .detail .chart {
+    height: auto;
+  }
+
+  .statistic-data.compare-data {
+    text-align: center;
+
+    h2 {
+      display: none;
+    }
+  }
+}
+
+
+@media (max-width: $max-xs) {
+  .compare , .detail {
+    .filter__items {
+      width: 95%;
+    }
+  }
 }
