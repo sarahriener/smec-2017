@@ -62,7 +62,8 @@
     }
     &__button:hover{
       text-decoration: none;
-      color: $w-mine-shaft
+      background-color: $w-orange-light;
+      color: #ffffff;
     }
     &__button:active{
       text-decoration: none;
