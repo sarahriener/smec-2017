@@ -186,7 +186,7 @@ module.exports = {
                 var value = detail.value;
 
                 generatedDataPoints.push(value);
-                generatedDataPointsForLabel.push((formatNumber(value) + " " + statistic_type.type));
+                generatedDataPointsForLabel.push((formatNumber(value) + " " + statistic_type.type + " " + statistic_type.name));
                 generatedDataLabels.push(year.toString());
             });
             var data = {};
@@ -362,12 +362,14 @@ module.exports = {
          * @param statistic_type
          */
         function createDoughnutChart(data, ctx, statistic_type) {
+            console.log("data", data, "statistic_type", statistic_type);
+
             // TODO SR this is just a quick fix - rework logic here
             if (data.generatedDataPoints.length == 1) {
                 var num = (100 - data.generatedDataPoints[0]).toFixed(2);
 
                 data.generatedDataPoints.push(num);
-                data.generatedDataPointsForLabel.push(num + " " + statistic_type.type);
+                data.generatedDataPointsForLabel.push(num + " " + statistic_type.type + " None " + statistic_type.name);
                 data.generatedDataLabels.push(data.generatedDataLabels[0]);
             }
 
