@@ -237,7 +237,7 @@ module.exports = {
                             var value = detail.value;
 
                             generatedDataPoints.push(value);
-                            generatedDataPointsForLabel.push(formatNumber(value) + " " + statistic_type.type );
+                            generatedDataPointsForLabel.push(year);
                             generatedDataLabels.push(name);
                         }
                     });
@@ -263,18 +263,20 @@ module.exports = {
                 success: function (subTypeDetails) {
                     var detail_string = '<div class="alert alert-info">Oops! There are no details available</div>';
 
-                    if(subTypeDetails ){
-                        detail_string = "<ul class='list-group'><li class='list-group-item'>Super Titel + Jahreszahl</li>";
+
+                    if(subTypeDetails){
+                        var year = subTypeDetails[Object.keys(subTypeDetails)[0]]["subTypesDetails"][0].year;
+                        detail_string = "<ul class='list-group'><li class='list-group-item'>Rankings of " + year + "</li>";
 
                         $.each(subTypeDetails, function (name, obj) {
                             if(obj["subTypesDetails"]){
                                 detail_string += "<li class='list-group-item'><b>" + name + "</b>: ";
-                                var  detail = obj["subTypesDetails"][0];
+                                var detail = obj["subTypesDetails"][0];
                                 var subType = obj["subType"];
                                 var type = "";
                                 if (subType.type == "%") type = subType.type;
 
-                                detail_string += detail.value + " " + type + " (" + detail.year + ") " + "</li>";
+                                detail_string += detail.value + " " + type + "</li>";
                             }
 
                         });
@@ -334,7 +336,7 @@ module.exports = {
                     title: {
                         display: true,
                         text: statistic_type.description,
-                        fontSize: 16
+                        fontSize: 15
                     },
                     animation: {
                         animateScale: true,
@@ -392,7 +394,7 @@ module.exports = {
                     responsive: true,
                     legend: {
                         position: 'top',
-                        fontSize: 16
+                        fontSize: 15
                     },
                     tooltips: {
                         callbacks: {
@@ -405,7 +407,7 @@ module.exports = {
                     title: {
                         display: true,
                         text: statistic_type.description +", "+ data.generatedDataLabels[0],
-                        fontSize: 16
+                        fontSize: 15
                     },
                     animation: {
                         animateScale: true,
@@ -423,6 +425,12 @@ module.exports = {
          * @param statistic_type
          */
         function createBarChart(data, ctx, statistic_type) {
+
+
+            console.log(statistic_type.type);
+            var year = "";
+            if(statistic_type.type == "years")
+                year =  ", " + data.generatedDataPointsForLabel[0];
             var barChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
@@ -463,8 +471,8 @@ module.exports = {
                     },
                     title: {
                         display: true,
-                        text: statistic_type.description,
-                        fontSize: 16
+                        text: statistic_type.description + year,
+                        fontSize: 15
                     },
                     responsive: true,
                     maintainAspectRatio: false
