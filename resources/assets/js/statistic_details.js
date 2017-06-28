@@ -125,15 +125,14 @@ module.exports = {
                     '<canvas id="chartContainer-' + statistic_type.name.split(' ').join('_') + '_' + country.id + '">Loading data ...</canvas>' +
                     '</div></div>';
 
-                var statisticTypeExplanation = statistic_type.explanation ? statistic_type.explanation : '';
+                var statisticTypeExplanation = statistic_type.explanation ? '<p class="explanation"><span class="glyphicon glyphicon-info-sign"></span>' + statistic_type.explanation + '</p>' : '';
 
                 if (isCompare) {
-                    $(statistic_detail_div).html('<p class="explanation"><span class="glyphicon glyphicon-info-sign"></span>' + statisticTypeExplanation + '</p>' +
+                    $(statistic_detail_div).html(statisticTypeExplanation +
                         statistic_detail_data);
                 } else {
                    $(statistic_detail_div).html(
-                        '<h2>' + statistic_type.name + '</h2>' +
-                        '<p>' + statisticTypeExplanation + '</p>' +
+                        '<h2>' + statistic_type.name + '</h2>' + statisticTypeExplanation +
                         statistic_detail_data);
                 }
 
@@ -369,7 +368,7 @@ module.exports = {
                 var num = formatNumber(100 - data.generatedDataPoints[0]);
 
                 data.generatedDataPoints.push(num);
-                data.generatedDataPointsForLabel.push(num + " " + statistic_type.type + " None " + statistic_type.name);
+                data.generatedDataPointsForLabel.push(num + " " + statistic_type.type + " Non-" + statistic_type.name);
                 data.generatedDataLabels.push(data.generatedDataLabels[0]);
             }
 
