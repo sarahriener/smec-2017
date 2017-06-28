@@ -185,6 +185,9 @@
   .filter__item {
     width: 130px;
     height: 130px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 
   .filter__items {
