@@ -12,3 +12,5 @@ statistic_menu.init();
 
 var statistic_details = require('./statistic_details');
 statistic_details.init();
+
+var bootstrap = require('bootstrap');
