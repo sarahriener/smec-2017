@@ -12,7 +12,6 @@
 
 <div class="container">
     @yield('content')
-    @yield('charts')
     @yield('detail')
 </div>
 
