@@ -26,7 +26,7 @@
                     <li class="nav__item">
                         <a href="http://blog.whoopapp.com/">Blog</a>
                     </li>
-                    <li class="dropdown leandropdown">
+                    <li class="dropdown leandropdown nav__item">
                         <span class="current-lang-btn" id="rLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           RESOURCES
                           <i class="glyphicon glyphicon-menu-down" aria-hidden="true"></i>

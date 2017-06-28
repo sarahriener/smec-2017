@@ -113,10 +113,16 @@
 
 
 .filter__item, .filter__items__wrapper {
-  background-color: $w-alto;
+  background-color: #f5f5f5;
   border-radius: 15px;
   font-size: initial;
-  color: #000000;
+  color: #767676;
+
+  a:hover{
+    text-decoration: none;
+    color: #000000;
+    font-weight: 700;
+  }
 }
 
 

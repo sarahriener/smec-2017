@@ -163,6 +163,11 @@
 
 .nav__item {
   text-transform: uppercase;
+
+  a:hover, span:hover {
+    font-weight: 700;
+    color: #000000;
+  }
 }
 
 .nav__logo {

@@ -26,8 +26,8 @@
 
 .compare__detail  {
   &__select__item{
-    background-color: $w-alto;
-    border-color: $w-alto;
+    background-color: #f5f5f5;
+    border-color: #f5f5f5;
     border-radius: 4px;
   }
 }
@@ -69,19 +69,6 @@
     display: -ms-flexbox;
     display: flex;
     height: 54px;
-
-    .statistic-data.compare-data {
-      .explanation {
-        font-size: 12px;
-        background-color: #eee;
-        padding: 5px;
-
-        span.glyphicon {
-          padding-right: 5px;
-          color: #999;
-        }
-      }
-    }
   }
 }
 
@@ -128,13 +115,26 @@
   margin: auto;
 
   a {
-    color: $w-mine-shaft;
+    color: #767676;;
     font-size: initial;
     line-height: 2;
   }
   a:hover{
     text-decoration: none;
-    color: $w-alabaster;
+    color: #000000;
+    font-weight: 700;
+  }
+}
+
+#div2 .filter__items__wrapper {
+  a {
+    color: #767676;
+  }
+
+  a:hover{
+    text-decoration: none;
+    color: #000000;
+    font-weight: 700;
   }
 }
 
